@@ -1,44 +1,91 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.github</groupId>
-	<artifactId>fractalr2</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<properties>
-		<springVersion>2.5.6</springVersion>
-		<java-version>1.8</java-version>
-	</properties>
+    <modelVersion>4.0.0</modelVersion>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring</artifactId>
-			<version>${springVersion}</version>
-		</dependency>
+    <groupId>com.github</groupId>
+    <artifactId>fractalr2</artifactId>
+    <name>fractalr2</name>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>4.1.3.RELEASE</version>
-		</dependency>
+    <packaging>jar</packaging>
+    <version>2.0.1</version>
+    
+    <organization>
+        <!-- Used as the 'Vendor' for JNLP generation -->
+        <name>rafaelsousa</name>
+    </organization>
 
-	</dependencies>
+    <properties>
+        <slf4j.version>1.6.1</slf4j.version>
+    </properties>
+
+    <build>
+
+        <finalName>fractalr2</finalName>
+
+        <plugins>
+
+            <plugin>
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+
+                    <mainClass>com.github.fractalr2.main.FractalR2</mainClass>
+
+                    <!-- only required if signing the jar file -->
+                    <keyStoreAlias>example-user</keyStoreAlias>
+                    <keyStorePassword>example-password</keyStorePassword>
+                    <allPermissions>true</allPermissions>
+
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 
 
-	<build>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<version>2.5.1</version>
-			<configuration>
-				<source>${java-version}</source>
-				<target>${java-version}</target>
-				<showWarnings>true</showWarnings>
-				<showDeprecation>true</showDeprecation>
-			</configuration>
-		</plugin>
-	</build>
+    <dependencies>
+    
+        <!-- MigLayout -->
 
+        <dependency>
+            <groupId>com.miglayout</groupId>
+            <artifactId>miglayout-javafx</artifactId>
+            <version>4.2</version>
+        </dependency>
+
+        <!-- Apache Commons -->
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <!-- Logging  -->
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+
+    </dependencies>
 
 </project>
