@@ -1,4 +1,4 @@
-package com.github.fractalr2.main;
+package com.github.rafaelsousa.fractalr2.main;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
