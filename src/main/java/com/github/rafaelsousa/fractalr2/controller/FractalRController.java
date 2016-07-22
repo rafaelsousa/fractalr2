@@ -1,4 +1,4 @@
-package com.github.fractalr2.controller;
+package com.github.rafaelsousa.fractalr2.controller;
 
 
 public class FractalRController {
