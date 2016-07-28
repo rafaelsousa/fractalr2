@@ -1,4 +1,6 @@
 package com.github.rafaelsousa.fractalr2.ui;
+import java.util.ArrayList;
+
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.paint.*;
@@ -7,76 +9,74 @@ import javafx.scene.text.*;
 
 public class FormulaPanel extends Group  {
 	
-	private static FormulaPanel instanciaAtual;
+	private ArrayList<ActionButton> botoes;    
+	private ArrayList<ImageView> iconesBotoes;
+	private Text formula;
+	private Rectangle area; 
+	private Rectangle contornoAreaDeBotoes;
+	private Group areaDeBotoes;
 	
-	private FormulaPanel(){}
 	
+
+	private static FormulaPanel instanciaAtual;	
+	private FormulaPanel(){
+
+		//Setting title
+		this.formula = new Text(170,55,"Formulas");
+		this.formula.setFont(new Font("Bitstream Vera Sans Bold",12)); 
+		this.formula.setFill(Color.BLACK);
+		
+		//Setting area
+		this.area = new Rectangle();
+		this.area.setX(165);
+		this.area.setY(33);
+		this.area.setArcWidth(10);
+		this.area.setArcHeight(10);
+		this.area.setWidth(660);
+		this.area.setHeight(33);
+		
+		Stop[] stops = new Stop[] {new Stop(0,Color.WHITE),new Stop(1,Color.web("#AAA"))};		
+		LinearGradient fill = new LinearGradient(0, 0.5, 0, 1.5, true, CycleMethod.NO_CYCLE, stops);
+		this.area.setFill(fill);
+		this.area.setStroke(Color.web("#111") );
+		
+		this.contornoAreaDeBotoes = new Rectangle();
+		this.contornoAreaDeBotoes.setX(243);
+		this.contornoAreaDeBotoes.setY(this.area.getY()+3);
+		this.contornoAreaDeBotoes.setWidth(this.botoes.size()*32+2);
+		this.contornoAreaDeBotoes.setHeight(25);
+		this.contornoAreaDeBotoes.setVisible(botoes.size()>0);
+	    this.contornoAreaDeBotoes.setFill(new LinearGradient(0, 0.7, 0, 0, Boolean.TRUE, CycleMethod.NO_CYCLE,
+	    										new Stop[]{
+	    												new Stop(0, Color.web("#FFFFAC1")),
+	    												new Stop(1, Color.web("#AAA")),
+	    										}
+	    								));   
+	    this.contornoAreaDeBotoes.setStroke(Color.web("#444"));
+	    
+	    this.getChildren().add(area);
+	    this.getChildren().add(formula);
+	    this.getChildren().add(contornoAreaDeBotoes);
+	    this.getChildren().add(areaDeBotoes);
+	      
+		
+	}	
 	public static FormulaPanel getInstance(){
 		if(instanciaAtual==null){
 			instanciaAtual = new FormulaPanel();
 		}
 		return instanciaAtual;
 	}
-	
-	
-	
-	public var botoes:ActionButton[];
-    public var iconesBotoes:ImageView[];
-    var formula = Text {
-       content: "Formulas:"
-       y:55
-       x:170
-       font: Font { name: "Bitstream Vera Sans Bold", size: 12} fill: Color.web("#000")
-   }
-    public var area= Rectangle{
-       x: 165 
-       y: 33
-       arcWidth: 10  
-       arcHeight: 10
-       width: 660  
-       height: 33
-       fill: LinearGradient {
-                   startX: 0.0, startY: 0.5, endX: 0.0, endY: 1.5
-                   proportional: true
-                   stops: [ Stop { offset: 0.0 color: Color.web("#FFF") },
-                            Stop { offset: 1.0 color: Color.web("#aaa") } ]
-               }
-       stroke:Color.web("#111")
-   };
-   
-   var areaDeBotoes:Group = Group {}
-   
-   var contornoAreaDeBotoes:Rectangle =Rectangle {
-       x : 243;
-       y : area.y+3;
-       width : bind (sizeof botoes)*32+2;
-       height : 25;
-       visible:bind (sizeof botoes)>0;
-       fill: LinearGradient {
-              startX: 0.0, startY: 0.7, endX: 0.0, endY: 1.5
-              proportional: true
-              stops: [ Stop { offset: 0.0 color: Color.web("#FFFAC1") },
-                       Stop { offset: 1.0 color: Color.web("#aaa") } ]
-          }
-      stroke:Color.web("#444")
-   }
-    override public function create(): Node {
-	       instanciaAtual=this;
-	       Group {
-	           content: bind [
-	           			area,
-	           			formula,
-	           			contornoAreaDeBotoes,
-	           			areaDeBotoes
-	               ]
-	       };
-    }        
-	public function redesenhaBarra(): Void {
-	    delete areaDeBotoes.content;
-	    var cont=0;
-	    for(botao in botoes){
+    	
+	public void redesenhaBarra() {
+	    //delete areaDeBotoes.content;
+		this.areaDeBotoes.getChildren().clear();
+	    Integer cont=0;
+	    for(BotaoFormula botao : botoes){
+	    	
 	        var urlNova=botao.icone.image.url;
-		  	var rect = Rectangle{
+		  	
+	        var rect = Rectangle{
 		  	   cursor:Cursor.MOVE
 		  	   focusTraversable: true
                y: area.y+5

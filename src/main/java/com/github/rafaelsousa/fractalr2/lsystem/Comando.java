@@ -1,4 +1,6 @@
-package net.sourceforge.fractalr.lsystem;
+package com.github.rafaelsousa.fractalr2.lsystem;
+
+import javafx.util.Duration;
 
 /**
  * Comando contendo as coordenadas passadas para o lapis
@@ -6,13 +8,21 @@ package net.sourceforge.fractalr.lsystem;
  */
 
 public class Comando {
-    public var coordenadaInicial : Ponto;
-    public var coordenadaFinal: Ponto;
-    public var tipoComando : Integer;  
-    public var duracao : Duration;
-    public var ultimoAngulo : Number;
+	
+    private Ponto coordenadaInicial;
+    private Ponto coordenadaFinal;
+    private Integer tipoComando;  
+    private Duration duracao;
+    private Double ultimoAngulo;
     
-    public override function toString() : String{
+    public static final Integer MOVER = 1;
+    public static final Integer TRANSPORTAR = 2;
+    public static final Integer GIRAR_DIREITA = 3;
+    public static final Integer GIRAR_ESQUERDA = 4;
+    
+    
+    @Override
+    public String toString(){
         if(tipoComando == Comando.MOVER){
             return "Mover";
         }
@@ -27,12 +37,59 @@ public class Comando {
         }
         return "Comando desconhecido";
     }
+
+
+	public Ponto getCoordenadaInicial() {
+		return coordenadaInicial;
+	}
+
+
+	public void setCoordenadaInicial(Ponto coordenadaInicial) {
+		this.coordenadaInicial = coordenadaInicial;
+	}
+
+
+	public Ponto getCoordenadaFinal() {
+		return coordenadaFinal;
+	}
+
+
+	public void setCoordenadaFinal(Ponto coordenadaFinal) {
+		this.coordenadaFinal = coordenadaFinal;
+	}
+
+
+	public Integer getTipoComando() {
+		return tipoComando;
+	}
+
+
+	public void setTipoComando(Integer tipoComando) {
+		this.tipoComando = tipoComando;
+	}
+
+
+	public Duration getDuracao() {
+		return duracao;
+	}
+
+
+	public void setDuracao(Duration duracao) {
+		this.duracao = duracao;
+	}
+
+
+	public Double getUltimoAngulo() {
+		return ultimoAngulo;
+	}
+
+
+	public void setUltimoAngulo(Double ultimoAngulo) {
+		this.ultimoAngulo = ultimoAngulo;
+	}
     
     
 }
 
-public static var MOVER = 1;
-public static var TRANSPORTAR = 2;
-public static var GIRAR_DIREITA = 3;
-public static var GIRAR_ESQUERDA = 4;
+
 

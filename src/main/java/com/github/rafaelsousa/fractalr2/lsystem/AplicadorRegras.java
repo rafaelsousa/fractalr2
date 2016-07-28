@@ -1,37 +1,33 @@
 package com.github.rafaelsousa.fractalr2.lsystem;
 
-import net.sourceforge.fractalr.FormulaPanel;
-import net.sourceforge.fractalr.ActionButton;
-import net.sourceforge.fractalr.MainClass;
-import net.sourceforge.fractalr.TransformationPanel;
+import java.util.ArrayList;
+import java.util.Stack;
 
-import java.lang.Math;
-import java.lang.System;
-
+import com.github.rafaelsousa.fractalr2.ui.ActionButton;
+import com.github.rafaelsousa.fractalr2.ui.FormulaPanel;
+import com.github.rafaelsousa.fractalr2.ui.TransformationPanel;
 
 /**
- * Aplica as regras que geram os comandos para o 
- * lapis criar o desenho do fractal
+ * Aplica as regras que geram os comandos para o lapis criar o desenho do
+ * fractal
+ * 
  * @author rafael
  */
- 
- 
-
 
 public class AplicadorRegras {
-}
 
-public static var iteracao : Integer;
-public static var botoesFormula:ActionButton[];
+	private Integer iteracao;
+	private ArrayList<ActionButton> botoesFormula;
+	private Stack<Comando> pilhaComandos;
+	private Stack<AcaoLSystem> pilhaAcoes;
 
-static var pilhaComandos : Comando[];
-static var pilhaAcoes	 : AcaoLSystem[];
-
-public static function gerarComandos() {
-    pilhaComandos = [];
-    pilhaAcoes = [];
-    var cmds : Comando[] ;  //so that jfx let it be changed in other function
-    botoesFormula = FormulaPanel.instanciaAtual.botoes;
+	public void gerarComandos() {
+		pilhaComandos = new Stack<>();
+		pilhaAcoes = new Stack<>();
+		//TODO: see why did I wrote this : "so that jfx let it be changed in other function"
+		Stack<Comando> cmds; 
+		
+		botoesFormula = FormulaPanel.getInstance().getBotoes();
     
     var tamanhoSegmento = 1;// Tamanho das linhas
         
@@ -325,22 +321,21 @@ public static function expandeFazerRetornar(botao: ActionButton,pnlTransformacoe
 		    for(j in [2..((sizeof botoes)-1)]){
 		        var b = botoes[j];
 		        if(b.acaoLSystem.tipoAcao == AcaoLSystem.ACAO_FAZER_RETORNAR){
-		            insert expandeFazerRetornar(b,pnlTransformacoes) into botoesExpandidos;
-		        }else{
+
+	insert expandeFazerRetornar(b,pnlTransformacoes) into botoesExpandidos;
+		        }else
+
+	{
 			        insert b into botoesExpandidos;
-		        }
-		    }
-        }
-    }
-    var botaoRestaurar = ActionButton {
-        nome:"Restaurar"
-		acaoLSystem : AcaoLSystem{
+		        }}}}
+	var botaoRestaurar = ActionButton{nome:"Restaurar"acaoLSystem:AcaoLSystem
+	{
 		    tipoAcao : AcaoLSystem.ACAO_RESTAURAR;
-		}
-    }
-    insert botaoRestaurar into botoesExpandidos;    
-    //println("saindo recursao fazer retornar");
-    return botoesExpandidos;
+		}}
+	insert botaoRestaurar
+	into botoesExpandidos;
+	// println("saindo recursao fazer retornar");
+	return botoesExpandidos;
 }
 
 public static function empilhaComando(acaoLSystem : AcaoLSystem,comando : Comando) : Void{
@@ -358,3 +353,4 @@ public static function desempilhaComando(acaoLSystem : AcaoLSystem) : Comando{
     return null;
 }
 
+}
