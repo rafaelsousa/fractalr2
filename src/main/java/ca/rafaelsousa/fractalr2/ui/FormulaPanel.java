@@ -8,11 +8,9 @@ import javafx.scene.shape.*;
 import javafx.scene.text.*;
 
 public class FormulaPanel extends Group  {
-	
-	private ArrayList<ActionButton> botoes;    
-	private ArrayList<ImageView> iconesBotoes;
+
 	private Text formula;
-	private Rectangle area; 
+	private Rectangle area;
 	private Rectangle contornoAreaDeBotoes;
 	private Group areaDeBotoes;
 	

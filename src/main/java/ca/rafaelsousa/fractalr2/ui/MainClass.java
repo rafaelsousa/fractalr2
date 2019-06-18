@@ -2,18 +2,24 @@ package ca.rafaelsousa.fractalr2.ui;
 
 import javafx.scene.*;
 
-public static var instanciaAtual:MainClass;
-public class MainClass extends CustomNode  {
-		public var alturaSistema=719;
-		public var larguraSistema=970;
-	  	public var pnlExemplos = new ExamplePanel();
-	  	public var pnlBotoes = new ButtonPanel();
-		public var pnlFormulas = new FormulaPanel();
-		public var pnlTransformacoes = new TransformationPanel();
-		public var pnlControle = new ControlPanel();
-		public var design = new DesktopLayout();
-		public var pencil = Pencil.get();
-		    //path for pencil animation
+
+
+
+public class MainClass extends Node  {
+
+		public static MainClass instanciaAtual;
+
+
+		public Integer alturaSistema=719;
+		public Integer larguraSistema=970;
+	  	public ExamplePanel pnlExemplos = new ExamplePanel();
+	  	public ButtonPanel pnlBotoes = new ButtonPanel();
+		public FormulaPanel pnlFormulas = new FormulaPanel();
+		public TransformationPanel pnlTransformacoes = new TransformationPanel();
+		public ControlPanel pnlControle = new ControlPanel();
+		public DesktopLayout design = new DesktopLayout();
+		public Integer pencil = Pencil.get();
+
 		public var transformacoes : Node[]  = [
 									design,
 				               		pnlExemplos,

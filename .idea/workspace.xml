@@ -3,104 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="b3a273ca-b732-4d4f-bb5b-0fc124f33053" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/deploy/package/macosx/fractalr2.icns" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/deploy/package/windows/fractalr2.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/controller/FractalRController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/controller/FractalRController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/lsystem/AcaoExpansiva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/lsystem/AcaoExpansiva.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/lsystem/AcaoLSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/lsystem/AcaoLSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/lsystem/AplicadorRegras.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/lsystem/AplicadorRegras.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/lsystem/Comando.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/lsystem/Comando.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/lsystem/GerenciadorLSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/lsystem/GerenciadorLSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/lsystem/Ponto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/lsystem/Ponto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/main/FractalR2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/main/FractalR2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/main/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/main/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/ActionButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/ActionButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/BotaoFormula.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/BotaoFormula.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/BotaoTransformacoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/BotaoTransformacoes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/ButtonPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/ButtonPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/ColorSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/ColorSelector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/ControlPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/DesktopLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/DesktopLayout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/DragDrop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/DragDrop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/ExamplePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/ExamplePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/FormulaPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/FormulaPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/Fractal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/Fractal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/FractalAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/FractalAnimation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/MainClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/Pencil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/Pencil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/Start.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/rafaelsousa/fractalr2/ui/TransformationPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/TransformationPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/ActionButton.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/ButtonPanel.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/ColorSelector.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/ControlPanel.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/DesktopLayout.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/DragDrop.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/ExamplePanel.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/FormulaPanel.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/Fractal.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/FractalAnimation.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/MainClass.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/Pencil.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/Start.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/TransformationPanel.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/anterior.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/anterior.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/bg_sistema.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/bg_sistema.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/bg_topo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/bg_topo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/bgexemplo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/bgexemplo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/bgexemplordp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/bgexemplordp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/anda.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/anda.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/arrow-right.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/arrow-right.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/direita.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/direita.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/document-sign.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/document-sign.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/draw-arrow-back.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/draw-arrow-back.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/draw-freehand.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/draw-freehand.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/esquerda.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/esquerda.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/fazerRetornar.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/fazerRetornar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/lastmoves.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/lastmoves.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/legalmoves.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/legalmoves.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/media-playback-start.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/media-playback-start.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/media-playback-stop.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/media-playback-stop.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/media-seek-backward.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/media-seek-backward.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/rating.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/rating.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/rotate.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/rotate.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/transform-rotate.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/transform-rotate.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes/translate.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes/translate.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes_barra/anda.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes_barra/anda.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes_barra/bg_botoes.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes_barra/bg_botoes.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes_barra/direita.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes_barra/direita.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes_barra/draw-arrow-back.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes_barra/draw-arrow-back.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes_barra/esquerda.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes_barra/esquerda.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes_barra/fazerRetornar.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes_barra/fazerRetornar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes_barra/lastmoves.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes_barra/lastmoves.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes_barra/legalmoves.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes_barra/legalmoves.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/botoes_barra/rotate.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/botoes_barra/rotate.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/controle.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/controle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/formula.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/formula.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/igual.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/igual.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/lapis.old.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/lapis.old.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/lapis.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/lapis.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/lapis_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/lapis_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/limpar.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/limpar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/modelo_recorte.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/modelo_recorte.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/pause.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/pause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/play.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/play.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/proximo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/proximo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/restart.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/restart.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/stop.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/stop.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/imagens/transf.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/imagens/transf.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/lsystem/AcaoExpansiva.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/lsystem/AcaoLSystem.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/lsystem/AplicadorRegras.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/lsystem/Comando.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/lsystem/GerenciadorLSystem.fx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/sourceforge/fractalr/lsystem/Ponto.fx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/main/FractalR2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/FractalR2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/main/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/FormulaPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/FormulaPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/Fractal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/Fractal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/MainClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/TransformationPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/TransformationPanel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -120,10 +30,40 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/uicomponents">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="fractalr2" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="fractalr2" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="fractalr2" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/Fractal.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
               <caret line="7" selection-start-line="7" selection-end-line="7" />
@@ -131,16 +71,104 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/FractalR2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="592">
+              <caret line="78" column="27" lean-forward="true" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1973#1974#0" expanded="true" />
+                <element signature="e#2012#2013#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/MainClass.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/FormulaPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="22" column="38" lean-forward="true" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/ActionButton.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="24" column="9" lean-forward="true" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/TransformationPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="411">
+              <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/BotaoTransformacoes.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/12.0.1/eb2eebbd957e5519332cec722ccf485674d65b4a/javafx-graphics-12.0.1-sources.jar!/javafx/scene/Group.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="77" column="32" selection-start-line="77" selection-start-column="32" selection-end-line="77" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/12.0.1/eb2eebbd957e5519332cec722ccf485674d65b4a/javafx-graphics-12.0.1-sources.jar!/javafx/scene/Parent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="295">
+              <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+              <caret line="15" column="78" selection-start-line="15" selection-start-column="78" selection-end-line="15" selection-end-column="78" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>create</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -150,6 +178,12 @@
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/HelloController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/Fractal.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/FractalR2.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/MainClass.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/FormulaPanel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/TransformationPanel.java" />
       </list>
     </option>
   </component>
@@ -198,6 +232,15 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="fractalr2" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Fractal R2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fractalr2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fractalr2" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -211,6 +254,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -234,59 +278,85 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560819387377</updated>
-      <workItem from="1560819388760" duration="927000" />
+      <workItem from="1560819388760" duration="4108000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="927000" />
+    <option name="totallyTimeSpent" value="4108000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="46" y="27" width="1874" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Designer" />
-      <window_info id="Image Layers" />
-      <window_info id="Capture Tool" />
-      <window_info id="UI Designer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Build" visible="true" weight="0.3293348" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Gradle" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="Image Layers" order="0" />
+      <window_info id="Capture Tool" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Designer" order="4" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.49945474" visible="true" weight="0.25" />
+      <window_info id="Structure" order="6" sideWeight="0.50054526" side_tool="true" visible="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="0" />
+      <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="4" />
+      <window_info anchor="bottom" id="Build" order="5" weight="0.3293348" />
+      <window_info anchor="bottom" id="Message" order="6" />
+      <window_info anchor="bottom" id="Find" order="7" />
+      <window_info anchor="bottom" id="Run" order="8" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="12" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Gradle" order="2" weight="0.3298687" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="7" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Image Layers" order="0" />
+      <window_info id="Capture Tool" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Designer" order="4" />
+      <window_info content_ui="combo" id="Project" order="5" weight="0.25" />
+      <window_info active="true" id="Structure" order="6" side_tool="true" visible="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="0" />
+      <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="4" />
+      <window_info anchor="bottom" id="Build" order="5" weight="0.3293348" />
+      <window_info anchor="bottom" id="Message" order="6" />
+      <window_info anchor="bottom" id="Find" order="7" />
+      <window_info anchor="bottom" id="Run" order="8" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="12" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Gradle" order="2" weight="0.3298687" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="7" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/App.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -294,10 +364,108 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/HelloController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="77" selection-start-line="36" selection-start-column="77" selection-end-line="36" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <caret line="15" column="78" selection-start-line="15" selection-start-column="78" selection-end-line="15" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/Fractal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/MainClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/FormulaPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="22" column="38" lean-forward="true" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/ActionButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="24" column="9" lean-forward="true" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/FractalR2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="78" column="27" lean-forward="true" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1973#1974#0" expanded="true" />
+            <element signature="e#2012#2013#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/12.0.1/eb2eebbd957e5519332cec722ccf485674d65b4a/javafx-graphics-12.0.1-sources.jar!/javafx/scene/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="423" column="41" selection-start-line="423" selection-start-column="33" selection-end-line="423" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/12.0.1/eb2eebbd957e5519332cec722ccf485674d65b4a/javafx-graphics-12.0.1-sources.jar!/javafx/scene/Parent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/12.0.1/eb2eebbd957e5519332cec722ccf485674d65b4a/javafx-graphics-12.0.1-sources.jar!/javafx/scene/Group.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="77" column="32" selection-start-line="77" selection-start-column="32" selection-end-line="77" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/BotaoTransformacoes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ca/rafaelsousa/fractalr2/ui/TransformationPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
