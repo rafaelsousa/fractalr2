@@ -1,4 +1,5 @@
 package ca.rafaelsousa.fractalr2.ui;
+import ca.rafaelsousa.fractalr2.utils.GenericBuilder;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
@@ -11,6 +12,7 @@ import javafx.scene.input.*;
 import javafx.scene.paint.*;
 import javafx.scene.shape.*;
 import javafx.scene.text.*;
+import org.w3c.dom.css.Rect;
 
 
 public class TransformationPanel extends Node  {
@@ -22,6 +24,20 @@ public class TransformationPanel extends Node  {
 	Boolean ultimo=true;
 	String txtSinal="";
 	Integer posY=(incrementoY*posicao)+44;
+	public Rectangle area = new GenericBuilder<Rectangle>()
+			.with(s->setX(165))
+			.with(s->setY(posY))
+			.with(s->setArcWidth(10))
+			.with(s->setWidth(660))
+			.with(s->setHeight(22))
+			.with(
+					fill: LinearGradient {
+							startX: 0.0, startY: 0.0, endX: 0.0, endY: 1.0
+							proportional: true
+							stops: [ Stop { offset: 0.0 color: Color.web("#f1ffde") },
+							Stop { offset: 1.0 color: Color.web("#c8eab2") } ]
+	}
+			)
 	public Rectangle area = new Rectangle()
 
 	{
@@ -30,16 +46,8 @@ public class TransformationPanel extends Node  {
 		area.arcWidth: 10
 		area.arcHeight: 10
 		area.width: 660
-		area.height: 22
-		area.fill = new LinearGradient {
-			startX: 0.0,
-			startY: 0.0,
-				endX: 0.0,
-				endY: 1.0,
-				proportional: true
-			    stops: [ Stop { offset: 0.0 color: Color.web("#f1ffde") },
-		        Stop { offset: 1.0 color: Color.web("#c8eab2") } ]
-		}
+		height: 22
+
 		stroke:Color.web("#f8f8f8")
 	};
 	public var btnDpl= SwingButton { // swing button B
