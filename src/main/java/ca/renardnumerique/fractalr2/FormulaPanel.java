@@ -1,4 +1,5 @@
 package ca.renardnumerique.fractalr2;
+import java.net.URL;
 import java.util.List;
 
 import javafx.scene.Cursor;
@@ -83,14 +84,14 @@ public class FormulaPanel extends Group  {
 	
 	public void redesenhaBarra() {
 	    areaDeBotoes.getChildren().clear();
-	    Integer cont = 0;
+	    //final Integer cont = 0;
 	    botoes.stream().forEach(botao -> {
-		    	Url urlNova = botao.getIcone().getImage().getUrl();
+		    	//URL urlNova = botao.getgetIcone().getImage().getUrl();
 		    	Rectangle rect = new Rectangle();
 		    	rect.setCursor(Cursor.MOVE);
 		    	rect.setFocusTraversable(true);
 	            rect.setY(area.getY()+5);
-	            rect.setX(contornoAreaDeBotoes.x+7+(30*cont));
+	            //rect.setX(contornoAreaDeBotoes.x+7+(30*cont));
 	            rect.setWidth(26);
 	            rect.setHeight(22);
 	            rect.setArcWidth(10);  
@@ -101,9 +102,9 @@ public class FormulaPanel extends Group  {
 	            ImageView img = new ImageView();
 		  	    img.setCursor(Cursor.MOVE);
 		  	    img.setFocusTraversable(true);
-                img.setImage(new Image(urlNova));
+                //img.setImage(new Image(urlNova));
                 img.setY(area.getY()+6);
-                img.setX(contornoAreaDeBotoes.getX()+10+(30*cont));
+                //img.setX(contornoAreaDeBotoes.getX()+10+(30*cont));
 			    
 //			    var nodo=BotaoFormula{
 //			        rect:rect
@@ -117,70 +118,70 @@ public class FormulaPanel extends Group  {
 //			      	onSoltar:trataMoverExcluir
 //			      }
 //		        insert nodo into areaDeBotoes.content;
-			    cont++;
+			    //cont++;
 		    }
 	    );
 	    
 //	    Fractal.desenhoModificado = true;
 	}
-	public void calculaPosicaoBotao(btn:DragDrop) {
-	    var zx = btn.tx + (btn.target as BotaoFormula).img.x;
-	    var zy = btn.ty;
-	    var imgAntes:ImageView;
-	    var count =0;
-	    for(imagem in areaDeBotoes.content){
-	        if(zx <= (imagem as BotaoFormula).img.x){
-	            imgAntes =(imagem as BotaoFormula).img;
-	            break;
-	        }
-	        count++;
-	    }
-	    var botaoAtual = (btn.target as BotaoFormula).btn;
-	    delete botaoAtual  from botoes;  
-	    insert botaoAtual  before botoes[count];  
-	}
-	
-	// trata no reposicionar e o tirar um icone da barra de formulas
-	public function trataMoverExcluir(btn:DragDrop): Void {
-		if(btn.estaEm(contornoAreaDeBotoes)){
-	   	 	calculaPosicaoBotao(btn);
-		}else{
-	  	   	delete (btn.target as BotaoFormula).btn from botoes;
-		}
-  	  	redesenhaBarra();
-	}
-	
-	//retorna o bot�o correspondente a um icone
-	public function getBotao(img:ImageView): ActionButton {
-	  for(botao in botoes){
-  	      if(botao.icone.image.url == img.image.url){
-  	          return botao;
-  	      }
-  	  }
-  	  return null;
-	}
-	
-	//trata a adi��o da um bot�o na barra de formulas
-	public function trataArrastar(btn:DragDrop): Void {
- 		delete ActionButton.botaoSeparador from TransformationPanel.instanciaAtual.botoes;
-	    TransformationPanel.instanciaAtual.redesenhaBarra();
-		if(btn.estaEm(area)){
-		 	for(botao in botoes){
-		 	    if(botao == ActionButton.botaoSeparador )
-		 	    	return;
-		 	}
-		    insert ActionButton.botaoSeparador into botoes;
-		}else{
- 			delete ActionButton.botaoSeparador from botoes; 			
-		}
-    	redesenhaBarra();
-	}
-	//trata a adi��o da um bot�o na barra de formulas
-	public function trataSoltar(btn:DragDrop): Void {
-	    delete ActionButton.botaoSeparador from botoes;
-		if(btn.estaEm(area)){
-		    insert  (btn.target as ActionButton).duplicar()   into botoes;
-		}
-	    redesenhaBarra();
-	}
+//	public void calculaPosicaoBotao(btn:DragDrop) {
+//	    var zx = btn.tx + (btn.target as BotaoFormula).img.x;
+//	    var zy = btn.ty;
+//	    var imgAntes:ImageView;
+//	    var count =0;
+//	    for(imagem in areaDeBotoes.content){
+//	        if(zx <= (imagem as BotaoFormula).img.x){
+//	            imgAntes =(imagem as BotaoFormula).img;
+//	            break;
+//	        }
+//	        count++;
+//	    }
+//	    var botaoAtual = (btn.target as BotaoFormula).btn;
+//	    delete botaoAtual  from botoes;  
+//	    insert botaoAtual  before botoes[count];  
+//	}
+//	
+//	// trata no reposicionar e o tirar um icone da barra de formulas
+//	public function trataMoverExcluir(btn:DragDrop): Void {
+//		if(btn.estaEm(contornoAreaDeBotoes)){
+//	   	 	calculaPosicaoBotao(btn);
+//		}else{
+//	  	   	delete (btn.target as BotaoFormula).btn from botoes;
+//		}
+//  	  	redesenhaBarra();
+//	}
+//	
+//	//retorna o bot�o correspondente a um icone
+//	public function getBotao(img:ImageView): ActionButton {
+//	  for(botao in botoes){
+//  	      if(botao.icone.image.url == img.image.url){
+//  	          return botao;
+//  	      }
+//  	  }
+//  	  return null;
+//	}
+//	
+//	//trata a adi��o da um bot�o na barra de formulas
+//	public function trataArrastar(btn:DragDrop): Void {
+// 		delete ActionButton.botaoSeparador from TransformationPanel.instanciaAtual.botoes;
+//	    TransformationPanel.instanciaAtual.redesenhaBarra();
+//		if(btn.estaEm(area)){
+//		 	for(botao in botoes){
+//		 	    if(botao == ActionButton.botaoSeparador )
+//		 	    	return;
+//		 	}
+//		    insert ActionButton.botaoSeparador into botoes;
+//		}else{
+// 			delete ActionButton.botaoSeparador from botoes; 			
+//		}
+//    	redesenhaBarra();
+//	}
+//	//trata a adi��o da um bot�o na barra de formulas
+//	public function trataSoltar(btn:DragDrop): Void {
+//	    delete ActionButton.botaoSeparador from botoes;
+//		if(btn.estaEm(area)){
+//		    insert  (btn.target as ActionButton).duplicar()   into botoes;
+//		}
+//	    redesenhaBarra();
+//	}
 }
