@@ -1,16 +1,20 @@
-//package ca.renardnumerique.fractalr2;
-//
-//public static var instanciaAtual:MainClass;
-//public class MainClass extends CustomNode  {
-//		
-//	  	public var pnlExemplos = new ExamplePanel();
-//	  	public var pnlBotoes = new ButtonPanel();
-//		public var pnlFormulas = new FormulaPanel();
-//		public var pnlTransformacoes = new TransformationPanel();
-//		public var pnlControle = new ControlPanel();
-//		public var design = new DesktopLayout();
-//		public var pencil = Pencil.get();
-//		    //path for pencil animation
+package ca.renardnumerique.fractalr2;
+
+import javafx.scene.Group;
+
+public class MainClass extends Group  {
+		
+		public static MainClass instance = new MainClass(); 
+
+		public DesktopLayout design = new DesktopLayout();
+		
+	  	//public var pnlExemplos = new ExamplePanel();
+	  	//public var pnlBotoes = new ButtonPanel();
+		//public var pnlFormulas = new FormulaPanel();
+		//public var pnlTransformacoes = new TransformationPanel();
+		//public var pnlControle = new ControlPanel();
+		//public var pencil = Pencil.get();
+		    //path for pencil animation
 //		public var transformacoes : Node[]  = [
 //									design,
 //				               		pnlExemplos,
@@ -30,5 +34,11 @@
 //		      pencil.canvas = MainClass.instanciaAtual.design.canvas;
 //		      return grupo;
 //	    }
-//	   	   
-//}
+		
+		
+		private MainClass() {
+			this.getChildren().add(design);
+		}
+		
+	   	   
+}

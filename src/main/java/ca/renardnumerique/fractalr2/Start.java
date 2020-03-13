@@ -28,8 +28,8 @@ public class Start extends Application {
     public void start(Stage stage) {
         String javaVersion = System.getProperty("java.version");
         String javafxVersion = System.getProperty("javafx.version");
-        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        Scene scene = new Scene(new StackPane(l), 970, 719);
+        //Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
+        Scene scene = new Scene(MainClass.instance);
         stage.setScene(scene);
         stage.show();
     }
