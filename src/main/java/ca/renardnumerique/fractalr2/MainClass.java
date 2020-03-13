@@ -12,7 +12,7 @@ public class MainClass extends Group  {
 	  	//public var pnlBotoes = new ButtonPanel();
 		//public var pnlFormulas = new FormulaPanel();
 		//public var pnlTransformacoes = new TransformationPanel();
-		//public var pnlControle = new ControlPanel();
+		public ControlPanel pnlControle = new ControlPanel();
 		//public var pencil = Pencil.get();
 		    //path for pencil animation
 //		public var transformacoes : Node[]  = [
@@ -37,7 +37,7 @@ public class MainClass extends Group  {
 		
 		
 		private MainClass() {
-			this.getChildren().add(design);
+			this.getChildren().addAll(design,pnlControle);
 		}
 		
 	   	   

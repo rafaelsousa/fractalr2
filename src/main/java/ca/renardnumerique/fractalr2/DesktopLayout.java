@@ -13,7 +13,7 @@ import javafx.scene.shape.Rectangle;
 public class DesktopLayout extends Group  {
    
    private static final int INICIO_DESENHO_Y = 140;
-ImageView fundoSistema;
+   ImageView fundoSistema;
    {
 	   fundoSistema = new ImageView(new Image("images/bg_sistema.png"));
 	   fundoSistema.setFocusTraversable(Boolean.TRUE);
