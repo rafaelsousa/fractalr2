@@ -206,14 +206,3 @@ public class ControlPanel extends Group {
 				imgStop, ttStop, imgReinicio, ttReinicio, spinner);
 	}
 }
-
-//public static function proxima() : Void {
-//	MainClass.instanciaAtual.pnlControle.iteracoes++;
-//	Fractal.reiniciarDesenho();
-//}
-//public static function anterior() : Void {
-//    if(MainClass.instanciaAtual.pnlControle.iteracoes>0){
-//		MainClass.instanciaAtual.pnlControle.iteracoes--;
-//		Fractal.reiniciarDesenho();
-//    }
-//}
