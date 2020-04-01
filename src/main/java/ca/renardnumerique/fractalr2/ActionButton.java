@@ -1,12 +1,14 @@
 package ca.renardnumerique.fractalr2;
 
 import javafx.scene.Group;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.*;
+
 
 public class ActionButton extends Group {
+
+	private Image icone;
 
 	public LinearGradient fillNormal;
 
@@ -17,4 +19,11 @@ public class ActionButton extends Group {
 		fillNormal.getStops().add(new Stop(1.0, Color.web("#AAA")));
 	}
 
+	public Image getIcone() {
+		return this.icone;
+	}
+
+	public LinearGradient getFillNormal() {
+		return this.fillNormal;
+	}
 }
