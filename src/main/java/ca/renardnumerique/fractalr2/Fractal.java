@@ -1,11 +1,12 @@
 package ca.renardnumerique.fractalr2;
 
-import javafx.scene.shape.*;
+import javafx.scene.shape.Line;
+import lombok.Data;
 
 import java.util.List;
-//import lib.fractalr.*;
 
 
+@Data
 public class Fractal {
 
     public static Fractal instance = new Fractal();
@@ -27,17 +28,17 @@ public class Fractal {
     private Integer iteracao = -1;
 
     public void iniciarDesenho() {
-        if (iteracao != MainClass.instance.pnlControle.getIteracoes() || desenhoModificado) {
+        if (iteracao != MainClass.getInstance().getPnlControle().getIteracoes() || desenhoModificado) {
             animacaoFractal.pause();
-            iteracao = MainClass.instanciaAtual.pnlControle.iteracoes;
+            iteracao = MainClass.getInstance().getPnlControle().getIteracoes();
             desenhoModificado = false;
             reiniciarDesenho();
         }
-        if (!iniciado){
+        if (!iniciado) {
             animacaoFractal.inicializar(AplicadorRegras.gerarComandos());
             animacaoFractal.playFromStart();
             iniciado = true;
-        }else{
+        } else {
             animacaoFractal.play();
         }
         if (not animacaoFractal.animacao.running){

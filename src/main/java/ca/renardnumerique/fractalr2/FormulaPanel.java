@@ -12,7 +12,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 import java.util.List;
 
@@ -75,7 +74,10 @@ public class FormulaPanel extends Group {
         contornoAreaDeBotoes.setStroke(Color.web("#444"));
     }
 
-    public FormulaPanel() {
+    private static FormulaPanel instance = new FormulaPanel();
+    public static FormulaPanel getInstance(){return instance;}
+
+    private FormulaPanel() {
         this.getChildren().addAll(area, formula, contornoAreaDeBotoes, areaDeBotoes);
     }
 
@@ -85,29 +87,29 @@ public class FormulaPanel extends Group {
         for (ActionButton botao : botoes) {
             String urlNova = botao.getIcone().getUrl();
             Rectangle rect = new Rectangle();
-			rect.setCursor(Cursor.MOVE);
-			rect.setFocusTraversable(Boolean.TRUE);
-			rect.setY(area.getY() + 5);
-			rect.setX(contornoAreaDeBotoes.getX() + 7 + (30 * cont));
-			rect.setWidth(26);
-			rect.setHeight(22);
-			rect.setArcWidth(10);
-			rect.setArcHeight(10);
-			rect.setFill(botao.getFillNormal());
-			rect.setStroke(Color.web("#aaa"));
-			ImageView img = new ImageView();
+            rect.setCursor(Cursor.MOVE);
+            rect.setFocusTraversable(Boolean.TRUE);
+            rect.setY(area.getY() + 5);
+            rect.setX(contornoAreaDeBotoes.getX() + 7 + (30 * cont));
+            rect.setWidth(26);
+            rect.setHeight(22);
+            rect.setArcWidth(10);
+            rect.setArcHeight(10);
+            rect.setFill(botao.getFillNormal());
+            rect.setStroke(Color.web("#aaa"));
+            ImageView img = new ImageView();
             img.setCursor(Cursor.MOVE);
             img.setFocusTraversable(true);
-            img.setImage(new Image (urlNova));
+            img.setImage(new Image(urlNova));
             img.setY(area.getY() + 6);
-			img.setX(contornoAreaDeBotoes.getX() + 10 + (30 * cont));
+            img.setX(contornoAreaDeBotoes.getX() + 10 + (30 * cont));
             BotaoFormula nodo = new BotaoFormula();
-			nodo.setRect(rect);
-			nodo.setImg(img);
-			nodo.setBtn(botao);
+            nodo.setRect(rect);
+            nodo.setImg(img);
+            nodo.setBtn(botao);
 
-			DragDrop dragDrop = new DragDrop();
-			dragDrop.setTarget(nodo);
+            DragDrop dragDrop = new DragDrop();
+            dragDrop.setTarget(nodo);
             dragDrop.setMaxX(780);
             dragDrop.setMaxY(74);
             dragDrop.setOnSoltar(this::trataMoverExcluir);
@@ -140,7 +142,7 @@ public class FormulaPanel extends Group {
     }
 
     // trata no reposicionar e o tirar um icone da barra de formulas
-    public void trataMoverExcluir(DragDrop btn){
+    public void trataMoverExcluir(DragDrop btn) {
         if (btn.estaEm(contornoAreaDeBotoes)) {
             calculaPosicaoBotao(btn);
         } else {
