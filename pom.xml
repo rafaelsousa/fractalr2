@@ -18,6 +18,16 @@
 			<artifactId>javafx-controls</artifactId>
 			<version>14</version>
 		</dependency>
+		<dependency>
+			<groupId>io.reactivex.rxjava2</groupId>
+			<artifactId>rxjavafx</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.reactivex.rxjava2</groupId>
+			<artifactId>rxjava</artifactId>
+			<version>2.2.19</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
