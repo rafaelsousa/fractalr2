@@ -8,9 +8,10 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
+import lombok.Data;
 
 
-
+@Data
 public class DesktopLayout extends Group  {
    
    private static final int INICIO_DESENHO_Y = 140;

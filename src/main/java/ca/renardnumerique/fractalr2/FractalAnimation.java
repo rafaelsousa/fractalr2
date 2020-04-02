@@ -5,6 +5,8 @@
  */
 package ca.renardnumerique.fractalr2;
 
+import ca.renardnumerique.fractalr2.lsystem.Comando;
+import com.sun.tools.javac.Main;
 import javafx.animation.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -20,7 +22,7 @@ public class FractalAnimation {
     private Double y;
 
     private Line linha;
-    public List<Timeline> transicoesGerais;
+    public List<Transition> transicoesGerais;
 
     public SequentialTransition animacao = new SequentialTransition();
 
@@ -30,245 +32,152 @@ public class FractalAnimation {
 
 
     public void acaoConclusaoTimeLine() {
-        MainClass.instance.design.canvas.requestLayout();
+        MainClass.getInstance().getDesign().requestLayout();
     }
 
-    public function inicializar(comandos :Comando[]) :Void
+    public void inicializar(List<Comando> comandos) {
+        Integer pos = 0;
+        ParallelTransition transicaoAnterior = null;
+        for (int iteracao = 0; iteracao < comandos.size(); iteracao++) {
+            var comando = comandos.get(iteracao);
+            if (comando.getTipoComando() == Comando.MOVER) {
+                x = comando.getCoordenadaInicial().getX();
+                y = comando.getCoordenadaInicial().getY();
 
-    {
-        var pos = 0;
-        var transicaoAnterior :ParallelTransition = null;
-        for (iteracao in[ 0..comandos.size() - 1]){
-        var comando = comandos[iteracao];
-        if (comando.tipoComando == Comando.MOVER) {
+                Double endx = comando.getCoordenadaFinal().getX();
+                Double endy = comando.getCoordenadaFinal().getY();
 
-            x = comando.coordenadaInicial.x;
-            y = comando.coordenadaInicial.y;
+                Double tamanhoX = Math.abs(endx - endy);
+                Double tamanhoY = Math.abs(endx - endy);
 
-            var endx :Number = comando.coordenadaFinal.x;
-            var endy :Number = comando.coordenadaFinal.y;
+                Line linha = new Line(x, y, endx, endy);
+                linha.setStroke(Color.BLACK);
+                linha.setStrokeWidth(1);
 
-            var tamanhoX = Math.abs(endx - endy);
-            var tamanhoY = Math.abs(endx - endy);
 
-            linha = Line {
-                startX:
-                x,
-                        startY:y,
-                        endX:endx,
-                        endY:endy,
-                        strokeWidth:1,
-                        stroke:Color.BLACK
-            }
+                MoveTo moveTo = new MoveTo(x, y);
+                LineTo lineTo = new LineTo((x + endx) / 2, (y + endy) / 2);
+                Path caminho = new Path();
+                caminho.getElements().addAll(moveTo, lineTo);
 
-            var caminho = Path {
-                elements: [
-                MoveTo {
-                    x:
-                    x;
-                    y:
-                    y;
-                },
-                LineTo {
-                    x:
-                    (x + endx) / 2;
-                    y:
-                    (y + endy) / 2;
+                MoveTo movetoLapis = new MoveTo(x + Pencil.instance.image.getWidth() / 2 - 3, y - Pencil.instance.image.getHeight() / 2);
+                LineTo linetoLapis = new LineTo(endx + Pencil.instance.image.getWidth() / 2 - 3, endy - Pencil.instance.image.getHeight() / 2);
+
+                Path pencilTrack = new Path(movetoLapis, linetoLapis);
+
+
+                FadeTransition fadeTransition = new FadeTransition();
+                fadeTransition.setDuration(comando.getDuracao());
+                fadeTransition.setFromValue(0);
+                fadeTransition.setToValue(1);
+
+                ScaleTransition scaleTransition = new ScaleTransition();
+                scaleTransition.setDuration(comando.getDuracao());
+                scaleTransition.setFromX(0);
+                scaleTransition.setFromY(0);
+                scaleTransition.setToX(1);
+                scaleTransition.setToY(1);
+
+                PathTransition pathTransition = new PathTransition();
+                pathTransition.setDuration(comando.getDuracao());
+                pathTransition.setPath(caminho);
+
+                ParallelTransition transicoesDesenho = new ParallelTransition();
+                transicoesDesenho.setNode(linha);
+                transicoesDesenho.getChildren().addAll(fadeTransition, scaleTransition, pathTransition);
+
+                PathTransition transicaoLapis = new PathTransition();
+                transicaoLapis.setPath(pencilTrack);
+                transicaoLapis.setNode(Pencil.instance);
+                transicaoLapis.setDuration(comando.getDuracao());
+
+                ParallelTransition transicaoParalela = new ParallelTransition();
+                transicaoParalela.getChildren().addAll(transicoesDesenho, transicaoLapis);
+
+                //Immediate insertion happens only in the first iteration.
+                if (iteracao == 0) {
+                    MainClass.getInstance().getDesign().getChildren().add(transicoesDesenho.getNode());
                 }
-					]
-            }
-            var caminhoLapis = Path {
-                elements: [
-                MoveTo {
-                    x:
-                    x + lapis.image.width / 2 - 3;
-                    y:
-                    y - lapis.image.height / 2;
-                },
-                LineTo {
-                    x:
-                    endx + lapis.image.width / 2 - 3;
-                    y:
-                    endy - lapis.image.height / 2;
+
+                if (transicaoAnterior != null) {
+                    transicaoAnterior.setOnFinished(e ->
+                            MainClass.getInstance().getDesign().getChildren().add(transicoesDesenho.getNode())
+                    );
                 }
-	                ]
-            }
-            var transicoesDesenho = ParallelTransition {
-                node:
-                linha,
-                        content : [
-                FadeTransition {
-                    duration:
-                    comando.duracao,
-                            fromValue	:0,
-                            toValue		:1
-                },
-                ScaleTransition {
-                    duration:
-                    comando.duracao,
-                            fromX:0
-                    fromY:
-                    0
-                    toX:
-                    1
-                    toY:
-                    1;
-                },
-                PathTransition {
-                    duration:
-                    comando.duracao,
-                            path:AnimationPath.createFromPath(caminho)
-                }
-		                ];
-                action:
-                acaoConclusaoTimeLine;
+                transicoesGerais.add(transicaoParalela);
+                transicaoAnterior = transicaoParalela;
             }
 
-            var transicaoLapis = PathTransition {
-                path:
-                AnimationPath.createFromPath(caminhoLapis);
-                node:
-                lapis;
-                duration:
-                comando.duracao
+            if (comando.getTipoComando() == Comando.TRANSPORTAR) {
+                x = comando.getCoordenadaInicial().getX();
+                y = comando.getCoordenadaInicial().getY();
+
+                Double endx = comando.getCoordenadaFinal().getX();
+                Double endy = comando.getCoordenadaFinal().getY();
+
+                var tamanhoX = Math.abs(endx - endy);
+                var tamanhoY = Math.abs(endx - endy);
+
+                MoveTo moveTo = new MoveTo(x, y);
+                LineTo lineTo = new LineTo((x + endx) / 2, (y + endy) / 2);
+                Path caminho = new Path();
+                caminho.getElements().addAll(moveTo, lineTo);
+
+                Path caminhoLapis = new Path();
+                caminhoLapis.getElements().addAll(
+                        new MoveTo(x + Pencil.instance.image.getWidth() / 2 - 3, y - Pencil.instance.image.getHeight() / 2),
+                        new LineTo(endx + Pencil.instance.image.getWidth() / 2 - 3, endy - Pencil.instance.image.getHeight() / 2)
+                );
+
+                PathTransition transicaoLapis = new PathTransition();
+                transicaoLapis.setPath(caminhoLapis);
+                transicaoLapis.setNode(Pencil.instance);
+
+                transicoesGerais.add(transicaoLapis);
+
             }
-
-            var transicaoParalela = ParallelTransition {
-                content: [transicoesDesenho, transicaoLapis]
-            }
-
-            //S� insere imediatamente na primeira itera��o
-            if (iteracao == 0) {
-                insert transicoesDesenho.node into MainClass.instance.design.canvas.content;
-            }
-
-            if (transicaoAnterior != null) {
-                transicaoAnterior.action = function() {
-                    insert transicoesDesenho.node into MainClass.instance.design.canvas.content;
-                }
-            }
-
-            insert transicaoParalela into transicoesGerais;
-
-            transicaoAnterior = transicaoParalela;
-        }
-        if (comando.tipoComando == Comando.TRANSPORTAR) {
-
-            x = comando.coordenadaInicial.x;
-            y = comando.coordenadaInicial.y;
-
-            var endx :Number = comando.coordenadaFinal.x;
-            var endy :Number = comando.coordenadaFinal.y;
-
-            var tamanhoX = Math.abs(endx - endy);
-            var tamanhoY = Math.abs(endx - endy);
-
-
-            var caminho = Path {
-                elements: [
-                MoveTo {
-                    x:
-                    x;
-                    y:
-                    y;
-                },
-                LineTo {
-                    x:
-                    (x + endx) / 2;
-                    y:
-                    (y + endy) / 2;
-                }
-					]
-            }
-            var caminhoLapis = Path {
-                elements: [
-                MoveTo {
-                    x:
-                    x + lapis.image.width / 2 - 3;
-                    y:
-                    y - lapis.image.height / 2;
-                },
-                LineTo {
-                    x:
-                    endx + lapis.image.width / 2 - 3;
-                    y:
-                    endy - lapis.image.height / 2;
-                }
-	                ]
-            }
-
-            var transicaoLapis = PathTransition {
-                path:
-                AnimationPath.createFromPath(caminhoLapis);
-                node:
-                lapis;
-                duration:
-                0 s;
-            }
-
-
-            insert transicaoLapis into transicoesGerais;
-
         }
     }
+
+    private void inserirLinhaProximoComando(Comando comando) {
+        x = comando.getCoordenadaInicial().getX();
+        y = comando.getCoordenadaInicial().getY();
+
+        Double endx = comando.getCoordenadaFinal().getX();
+        Double endy = comando.getCoordenadaFinal().getY();
+
+        Double tamanhoX = Math.abs(endx - endy);
+        Double tamanhoY = Math.abs(endx - endy);
+
+        Line linha = new Line(x, y, endx, endy);
+        linha.setStrokeWidth(1);
+        linha.setStroke(Color.BLACK);
+        MainClass.getInstance().getDesign().getChildren().add(linha);
     }
 
-    function inserirLinhaProximoComando(comando :Comando) {
-        x = comando.coordenadaInicial.x;
-        y = comando.coordenadaInicial.y;
-
-        var endx :Number = comando.coordenadaFinal.x;
-        var endy :Number = comando.coordenadaFinal.y;
-
-        var tamanhoX = Math.abs(endx - endy);
-        var tamanhoY = Math.abs(endx - endy);
-
-        linha = Line {
-            startX:
-            x,
-                    startY:y,
-                    endX:endx,
-                    endY:endy,
-                    strokeWidth:1,
-                    stroke:Color.BLACK
-        }
-        insert linha into MainClass.instance.design.canvas.content;
-    }
-
-    public function play() :Void
-
-    {
+    public void play() {
         animacao.play();
     }
 
-    public function pause() :Void
-
-    {
-        if (animacao.running) {
+    public void pause() {
+        if (animacao.getStatus().equals(Animation.Status.RUNNING)) {
             animacao.pause();
         } else {
             animacao.play();
         }
     }
 
-    public function playFromStart() :Void
-
-    {
+    public void playFromStart() {
         animacao.playFromStart();
     }
 
-    public function running() :Boolean
-
-    {
-        return animacao.running;
+    public Boolean running() {
+        return animacao.getStatus().equals(Animation.Status.RUNNING);
     }
 
-    public function stop() :Void
-
-    {
+    public void stop() {
         animacao.stop();
     }
-
 
 }
 
