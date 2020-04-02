@@ -16,6 +16,8 @@ import javafx.scene.text.Text;
 
 public class ControlPanel extends Group {
 
+
+
 	private Spinner<Integer> spinner = new Spinner<>();
 	{
 		spinner.setTranslateY(68);
@@ -204,5 +206,142 @@ public class ControlPanel extends Group {
 	public ControlPanel() {
 		this.getChildren().addAll(designRetangulo, limpar, contorno, anguloSlider, txtAngulo, titulo, imgPlay, ttPlay,
 				imgStop, ttStop, imgReinicio, ttReinicio, spinner);
+	}
+
+
+	public Spinner<Integer> getSpinner() {
+		return spinner;
+	}
+
+	public void setSpinner(Spinner<Integer> spinner) {
+		this.spinner = spinner;
+	}
+
+	public SpinnerValueFactory<Integer> getSpinnerValueFactory() {
+		return spinnerValueFactory;
+	}
+
+	public void setSpinnerValueFactory(SpinnerValueFactory<Integer> spinnerValueFactory) {
+		this.spinnerValueFactory = spinnerValueFactory;
+	}
+
+	public Integer getAngulo() {
+		return angulo;
+	}
+
+	public void setAngulo(Integer angulo) {
+		this.angulo = angulo;
+	}
+
+	public Integer getIteracoes() {
+		return iteracoes;
+	}
+
+	public void setIteracoes(Integer iteracoes) {
+		this.iteracoes = iteracoes;
+	}
+
+	public Integer getPosBotoes() {
+		return posBotoes;
+	}
+
+	public void setPosBotoes(Integer posBotoes) {
+		this.posBotoes = posBotoes;
+	}
+
+	public ImageView getLimpar() {
+		return limpar;
+	}
+
+	public void setLimpar(ImageView limpar) {
+		this.limpar = limpar;
+	}
+
+	public Rectangle getDesignRetangulo() {
+		return designRetangulo;
+	}
+
+	public void setDesignRetangulo(Rectangle designRetangulo) {
+		this.designRetangulo = designRetangulo;
+	}
+
+	public Text getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(Text titulo) {
+		this.titulo = titulo;
+	}
+
+	public Slider getAnguloSlider() {
+		return anguloSlider;
+	}
+
+	public void setAnguloSlider(Slider anguloSlider) {
+		this.anguloSlider = anguloSlider;
+	}
+
+	public Text getTxtAngulo() {
+		return txtAngulo;
+	}
+
+	public void setTxtAngulo(Text txtAngulo) {
+		this.txtAngulo = txtAngulo;
+	}
+
+	public Rectangle getContorno() {
+		return contorno;
+	}
+
+	public void setContorno(Rectangle contorno) {
+		this.contorno = contorno;
+	}
+
+	public ImageView getImgPlay() {
+		return imgPlay;
+	}
+
+	public void setImgPlay(ImageView imgPlay) {
+		this.imgPlay = imgPlay;
+	}
+
+	public Text getTtPlay() {
+		return ttPlay;
+	}
+
+	public void setTtPlay(Text ttPlay) {
+		this.ttPlay = ttPlay;
+	}
+
+	public Text getTtStop() {
+		return ttStop;
+	}
+
+	public void setTtStop(Text ttStop) {
+		this.ttStop = ttStop;
+	}
+
+	public ImageView getImgStop() {
+		return imgStop;
+	}
+
+	public void setImgStop(ImageView imgStop) {
+		this.imgStop = imgStop;
+	}
+
+	public Text getTtReinicio() {
+		return ttReinicio;
+	}
+
+	public void setTtReinicio(Text ttReinicio) {
+		this.ttReinicio = ttReinicio;
+	}
+
+	public ImageView getImgReinicio() {
+		return imgReinicio;
+	}
+
+	public void setImgReinicio(ImageView imgReinicio) {
+		this.imgReinicio = imgReinicio;
 	}
 }

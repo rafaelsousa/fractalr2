@@ -103,23 +103,19 @@ public class FormulaPanel extends Group {
 			nodo.setImg(img);
 			nodo.setBtn(botao);
 
-			Drag
+			DragDrop dragDrop = new DragDrop();
+			dragDrop.setTarget(nodo);
+            dragDrop.setMaxX(780);
+            dragDrop.setMaxY(74);
+            dragDrop.setOnSoltar(this::trataMoverExcluir);
 
-            var drag = DragDrop {
-                target:
-                nodo
-                maxX:
-                780
-                maxY:
-                74
-                onSoltar:
-                trataMoverExcluir
-            }
-            insert nodo into areaDeBotoes.content;
+
+            areaDeBotoes.getChildren().add(nodo);
             cont++;
         }
-        Fractal.desenhoModificado = true;
+        Fractal.instance.setDesenhoModificado(true);
     }
+
 
     public function calculaPosicaoBotao(btn:DragDrop):Void
 
@@ -141,13 +137,11 @@ public class FormulaPanel extends Group {
     }
 
     // trata no reposicionar e o tirar um icone da barra de formulas
-    public function trataMoverExcluir(btn:DragDrop):Void
-
-    {
+    public void trataMoverExcluir(DragDrop btn){
         if (btn.estaEm(contornoAreaDeBotoes)) {
             calculaPosicaoBotao(btn);
         } else {
-            delete(btn.target as BotaoFormula).btn from botoes;
+            botoes.remove(btn.getTarget());
         }
         redesenhaBarra();
     }
