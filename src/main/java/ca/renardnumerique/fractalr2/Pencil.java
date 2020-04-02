@@ -20,8 +20,7 @@ import java.util.List;
 public class Pencil extends ImageView {
 
 
-    private static Pencil instance = new Pencil();
-
+    public static final Pencil instance = new Pencil();
 
     private Boolean escreve = false;
     private Group canvas;
@@ -31,6 +30,7 @@ public class Pencil extends ImageView {
     private Boolean mudouY = Boolean.FALSE;
 
     private DropShadow efeitoEscrita = new DropShadow();
+
     {
         efeitoEscrita.setRadius(20);
         efeitoEscrita.setOffsetY(10);

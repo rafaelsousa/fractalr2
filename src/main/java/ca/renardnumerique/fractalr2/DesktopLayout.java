@@ -10,10 +10,11 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 
 
+
 public class DesktopLayout extends Group  {
    
    private static final int INICIO_DESENHO_Y = 140;
-   ImageView fundoSistema;
+   private ImageView fundoSistema;
    {
 	   fundoSistema = new ImageView(new Image("images/bg_sistema.png"));
 	   fundoSistema.setFocusTraversable(Boolean.TRUE);
@@ -21,7 +22,7 @@ public class DesktopLayout extends Group  {
 	   fundoSistema.setX(0.0);
    };
   
-   Rectangle areaDesenho = new Rectangle();
+   private Rectangle areaDesenho = new Rectangle();
     // sera usado pela classe Lapis, para limites de desenho.
    {
         areaDesenho.setX(236); 
@@ -31,7 +32,7 @@ public class DesktopLayout extends Group  {
         areaDesenho.setCursor(Cursor.DEFAULT);
         areaDesenho.setFill(Color.web("#FFF"));
     };
-    ImageView imgAnterior = new ImageView();
+    private ImageView imgAnterior = new ImageView();
     {
 	    imgAnterior.setOpacity(0.1);
 	    imgAnterior.setFocusTraversable(Boolean.TRUE);

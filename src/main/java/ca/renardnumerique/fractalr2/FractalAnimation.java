@@ -28,12 +28,9 @@ public class FractalAnimation {
         animacao.getChildren().addAll(transicoesGerais);
     }
 
-    private Pencil lapis = Pencil.get();
 
-    public function acaoConclusaoTimeLine() :Void
-
-    {
-        MainClass.instanciaAtual.design.canvas.requestLayout();
+    public void acaoConclusaoTimeLine() {
+        MainClass.instance.design.canvas.requestLayout();
     }
 
     public function inicializar(comandos :Comando[]) :Void
@@ -142,12 +139,12 @@ public class FractalAnimation {
 
             //S� insere imediatamente na primeira itera��o
             if (iteracao == 0) {
-                insert transicoesDesenho.node into MainClass.instanciaAtual.design.canvas.content;
+                insert transicoesDesenho.node into MainClass.instance.design.canvas.content;
             }
 
             if (transicaoAnterior != null) {
                 transicaoAnterior.action = function() {
-                    insert transicoesDesenho.node into MainClass.instanciaAtual.design.canvas.content;
+                    insert transicoesDesenho.node into MainClass.instance.design.canvas.content;
                 }
             }
 
@@ -235,7 +232,7 @@ public class FractalAnimation {
                     strokeWidth:1,
                     stroke:Color.BLACK
         }
-        insert linha into MainClass.instanciaAtual.design.canvas.content;
+        insert linha into MainClass.instance.design.canvas.content;
     }
 
     public function play() :Void
