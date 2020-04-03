@@ -4,10 +4,7 @@ import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.renardnumerique.fractalr2.ActionButton;
-import ca.renardnumerique.fractalr2.FormulaPanel;
-import ca.renardnumerique.fractalr2.MainClass;
-import ca.renardnumerique.fractalr2.TransformationPanel;
+import ca.renardnumerique.fractalr2.*;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import lombok.Data;
@@ -59,30 +56,21 @@ public class AplicadorRegras {
         Double angulo = Math.toRadians(MainClass.getInstance().getPnlControle().getAnguloSlider().getValue());
         Double anguloIncremento = 0.0;
         cmds.clear();
-        
 
-        var primeiroComando = Comando {
-            coordenadaInicial:
-            Ponto {
-                x:
-                0,
-                        y:0
-            }
-            tipoComando:
-            Comando.TRANSPORTAR
-        } ;
+
+
+        Comando primeiroComando = new Comando();
+        primeiroComando.setCoordenadaFinal(new Ponto(0.0,0.0));
+        primeiroComando.setTipoComando(Comando.TRANSPORTAR);
+
         //insert primeiroComando into cmds;
-        var ultimaCoordenada :Ponto = primeiroComando.coordenadaInicial;
-        //println("Coordenada inicial{ultimaCoordenada.toString()}");
-        //println("Percorrendo o array de botoes do painel de formulas e expandindo as substituicoes");
-        //println("iteracao numero {iteracao}");
-        for (i in[ 1..iteracao]){
-            var botoesExpandidos :ActionButton[];
-            for (botao in botoesFormula) {
-                var encontrou :Boolean = false;
-                //println("Verificando se o bot�o {botao.acaoLSystem.toString()} tem expans�o em {sizeof pnlTransformacoes} transforma��es");
-                for (transformacao in pnlTransformacoes) {
-                    var botoes = transformacao.botoes;
+        Ponto ultimaCoordenada = primeiroComando.getCoordenadaInicial();
+        for (int i=1;i<=iteracao;i++){
+            List<ActionButton> botoesExpandidos = new ArrayList<>();
+            for (ActionButton botao : botoesFormula) {
+                Boolean encontrou = Boolean.FALSE;
+                for (TransformationPanel transformacao : pnlTransformacoes) {
+                    var botoes = transformacao.getBotoes();
                     //println("Verificando {botoes[0].acaoLSystem}");
                     //println("Verificando {botoes[0].acaoLSystem} da transforma��o com {botao.acaoLSystem} da f�rmula");
                     if (botoes[0].acaoLSystem.equals(botao.acaoLSystem)) {

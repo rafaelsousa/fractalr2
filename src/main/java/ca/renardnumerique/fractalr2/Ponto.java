@@ -1,6 +1,11 @@
 package ca.renardnumerique.fractalr2;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class Ponto {
 
     private Double x;
