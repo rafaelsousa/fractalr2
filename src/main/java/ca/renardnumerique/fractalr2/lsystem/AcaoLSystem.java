@@ -6,10 +6,10 @@ package ca.renardnumerique.fractalr2.lsystem;
 
 public class AcaoLSystem {
 
-	public Integer tipoAcao;
+    public Integer tipoAcao;
 	public String simbolo;
 	public Integer cor;
-	
+
 	public static Integer ACAO_ANDAR = 1;
 	public static Integer ACAO_EXPANDIR = 2;
 	public static Integer ACAO_FAZER_RETORNAR = 3;
@@ -17,7 +17,6 @@ public class AcaoLSystem {
 	public static Integer ACAO_GIRAR_ESQUERDA = 5;
 	public static Integer ACAO_MEMORIZAR = 6;
 	public static Integer ACAO_RESTAURAR = 7;
-
 	@Override
 	public String toString() {
 	    if(tipoAcao == AcaoLSystem.ACAO_ANDAR){
@@ -43,10 +42,11 @@ public class AcaoLSystem {
    		}
    		return "Unknown action";
 	}
-	
+
 	public Boolean equals(AcaoLSystem acao) {
 	    return (this.tipoAcao == acao.tipoAcao) && (this.cor == acao.cor);
 	}
+
 }
 
 

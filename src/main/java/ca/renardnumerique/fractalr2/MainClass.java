@@ -7,7 +7,11 @@ import lombok.Data;
 @Data
 public class MainClass extends Group  {
 
+		private Integer alturaSistema=719;
+		private Integer larguraSistema=970;
+
 		private static MainClass instance = new MainClass();
+
 		public static MainClass getInstance(){
 			return instance;
 		}

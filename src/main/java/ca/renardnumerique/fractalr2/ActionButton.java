@@ -1,5 +1,6 @@
 package ca.renardnumerique.fractalr2;
 
+import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -25,4 +26,16 @@ public class ActionButton extends Group {
     public LinearGradient getFillNormal() {
         return this.fillNormal;
     }
+
+    public static ActionButton BOTAO_IGUAL = new ActionButton("imagens/igual.png", AcaoLSystem.EQUALS);
+    static {
+        public static var botaoIgual = ActionButton{
+            iconeUrl:"{__DIR__}"
+            acaoLSystem:AcaoLSystem{
+                simbolo:"=";
+            }
+        };
+    }
+
+
 }

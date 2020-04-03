@@ -1,240 +1,286 @@
 package ca.renardnumerique.fractalr2;
 
-import javafx.ext.swing.SwingButton;
+import javafx.beans.binding.DoubleBinding;
+import javafx.event.Event;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class TransformationPanel extends CustomNode  {
+@Data
+public class TransformationPanel extends Group  {
 
-    public static var quantidadeTransformacoes=1;
-    public static var instanciaAtual:TransformationPanel;
-    public var botoes:ActionButton[];
-    public var iconesBotoes:ImageView[];
-    var incrementoY=26;
-    public var posicao =quantidadeTransformacoes;
-    var ultimo=true;
-    var txtSinal="";
-    var posY=bind 44+(incrementoY*posicao);
-    public var area= Rectangle{
-        x: 165
-        y: bind posY
-        arcWidth: 10
-        arcHeight: 10
-        width: 660
-        height: 22
-        fill: LinearGradient {
-            startX: 0.0, startY: 0.0, endX: 0.0, endY: 1.0
-            proportional: true
-            stops: [ Stop { offset: 0.0 color: Color.web("#f1ffde") },
-            Stop { offset: 1.0 color: Color.web("#c8eab2") } ]
+    public static Integer quantidadeTransformacoes=1;
+    public static TransformationPanel instanciaAtual;
+    private List<ActionButton> botoes = new ArrayList<>();
+    private List<ImageView> iconesBotoes = new ArrayList<>();
+    private Integer incrementoY=26;
+    private Integer posicao = quantidadeTransformacoes;
+    private Boolean ultimo = Boolean.TRUE;
+    private String txtSinal="";
+    private DoubleBinding posY = new DoubleBinding() {
+        @Override
+        protected double computeValue() {
+            return 44+(incrementoY*posicao);
         }
-        stroke:Color.web("#f8f8f8")
     };
-    public var btnDpl= SwingButton { // swing button B
-        translateX: 813
-        translateY: bind posY
-        width: 10
-        height: 22
-        text: "b"
-        action: function(){
-            (this.parent.parent as TransformationPanel).trataAdicaoExclucao();
-        }
+
+    private Rectangle area = new Rectangle();
+
+    {
+        area.setX(165);
+        area.setY(posY.getValue());
+        area.setArcWidth(10);
+        area.setArcHeight(10);
+        area.setWidth(660);
+        area.setHeight(22);
+
+        LinearGradient linearFill =
+                new LinearGradient(0,
+                        0.0,
+                        0.0,
+                        1.5,
+                        Boolean.TRUE,
+                        CycleMethod.NO_CYCLE,
+                        new Stop(0.0, Color.web("#f1ffde")),
+                        new Stop(1.0, Color.web("#AAA")));
+        area.setFill(linearFill);
+        area.setStroke(Color.web("#111"));
     }
-    public var btnDuplicar= Rectangle{
-        x: 813
-        y: bind posY
-        arcWidth: 10
-        arcHeight: 10
-        width: 10
-        height: 22
-        cursor:Cursor.HAND
-        fill:  LinearGradient {
-            startX: 0.0, startY: 0.0, endX: 0.0, endY: 1.0
-            proportional: true
-            stops: [ Stop { offset: 0.0 color: Color.web("#3F9B2F") },
-            Stop { offset: 1.0 color: Color.web("#c8eab2") } ]
-        }
-        stroke:Color.web("#f8f8f8")
-        override public var onMouseClicked = function(e:MouseEvent):Void{
-            (this.parent.parent as TransformationPanel).trataAdicaoExclucao();
-        }
-    };
-    public function trataAdicaoExclucao(){
-        //println("posicao: {posicao} tamanho: {sizeof MainClass.instanciaAtual.transformacoes} ");
-        if(ultimo and (sizeof botoes >2)){
+    public Button btnDpl = new Button();
+    { // swing button B
+        btnDpl.setTranslateX(813);
+        btnDpl.setTranslateY(posY.getValue());
+        btnDpl.setMaxWidth(10);
+        btnDpl.setMaxHeight(22);
+        btnDpl.setText("b");
+        btnDpl.setOnAction(this::trataAdicaoExclusao);
+    }
+
+    public Rectangle btnDuplicar;
+    {
+        btnDuplicar.setX(813);
+        btnDuplicar.setY(posY);
+        btnDuplicar.setArcWidth(10);
+        btnDuplicar.setArcHeight(10);
+        btnDuplicar.setWidth(10);
+        btnDuplicar.setHeight(22);
+        btnDuplicar.setCursor(Cursor.HAND);
+        LinearGradient linearGradient =
+                new LinearGradient(
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0,
+                        Boolean.TRUE,
+                        CycleMethod.NO_CYCLE,
+                        new Stop(0.0, Color.web("#3F9B2F")),
+                        new Stop(1.0, Color.web("#c8eab2")));
+        btnDuplicar.setFill(linearGradient);
+        btnDuplicar.setStroke(Color.web("#f8f8f8"));
+        btnDuplicar.setOnMouseClicked(this::trataAdicaoExclusao);
+    }
+
+    private void trataAdicaoExclusao(Event mouseEvent) {
+        if(ultimo || botoes.size() > 2 ){
             adicionarBarra();
         }else{
             excluirBarra();
         }
     }
-    public function adicionarBarra(){
-        MainClass.instanciaAtual.design.inicioDesenhoY+=incrementoY;
-        MainClass.instanciaAtual.alturaSistema+=incrementoY;
-        var aux = new TransformationPanel();
-        insert aux after MainClass.instanciaAtual.transformacoes[3];
+
+    public void adicionarBarra(){
+        Integer inicioDesenhoY = MainClass.getInstance().getDesign().getInicioDesenhoY();
+        MainClass.getInstance().getDesign().setInicioDesenhoY(inicioDesenhoY+incrementoY);
+        Integer alturaRealSistema = MainClass.getInstance().getAlturaSistema();
+        MainClass.getInstance().setAlturaSistema(alturaRealSistema+incrementoY);
+        TransformationPanel aux = new TransformationPanel();
+        MainClass.getInstance().getTransformacoes().getChildren().add(3,aux);
         txtSinal="-";
         ultimo=false;
         instanciaAtual = aux;
-        Fractal.limpaCanvas();
-        MainClass.instanciaAtual.pencil.clear();
+        Fractal.instance.limpaCanvas();
+        MainClass.getInstance().getPencil().clear();
     }
-    public function resetarBarra(){
-        while((sizeof MainClass.instanciaAtual.transformacoes >=8)){
+    public void resetarBarra(){
+        while((MainClass.getInstance().getTransformacoes().getChildren().size() >=8)){
             excluirBarra();
         }
 
     }
-    public function excluirBarra(){
-        if((sizeof MainClass.instanciaAtual.transformacoes >=8)){
-            MainClass.instanciaAtual.design.inicioDesenhoY-=incrementoY;
-            MainClass.instanciaAtual.alturaSistema-=incrementoY;
+    public void excluirBarra(){
+        if((MainClass.getInstance().getTransformacoes().getChildren().size() >=8)){
+
+            Integer inicioDesenhoY = MainClass.getInstance().getDesign().getInicioDesenhoY()-incrementoY;
+            Integer alturaRealSistema = MainClass.getInstance().getAlturaSistema()-incrementoY;
+            MainClass.getInstance().getDesign().setInicioDesenhoY(inicioDesenhoY);
+            MainClass.getInstance().setAlturaSistema(alturaRealSistema);
             quantidadeTransformacoes--;
-            delete this from MainClass.instanciaAtual.transformacoes;
-            var i =quantidadeTransformacoes-1;
-            var primeiro:TransformationPanel;
-            for(pnl in MainClass.instanciaAtual.transformacoes){
+            MainClass.getInstance().getTransformacoes().getChildren().remove(this);
+            var i = quantidadeTransformacoes-1;
+            TransformationPanel primeiro = null;
+            for(Node pnl : MainClass.getInstance().getTransformacoes().getChildren()){
                 if(pnl instanceof TransformationPanel){
-                    if(primeiro == null)
-                        primeiro=(pnl as TransformationPanel);
-                    (pnl as TransformationPanel).posicao=i--;
+                    if(primeiro == null){
+                        primeiro=(TransformationPanel)pnl;
+                    }
+                    ((TransformationPanel)pnl).setPosicao(i--);
                 }
             }
-            primeiro.txtSinal="+";
-            primeiro.ultimo=true;
-            instanciaAtual= primeiro ;
+            if(primeiro !=null  ){
+                primeiro.txtSinal="+";
+                primeiro.ultimo=true;
+                instanciaAtual= primeiro ;
+            }
         }
     }
-    var mais = Text {
-        content: bind txtSinal
-        y:bind btnDuplicar.y+15
-        x:bind btnDuplicar.x+1
-        font: Font { name: "Bitstream Vera Sans Bold", size: 10} fill: Color.web("#3a5833")
-    }
-    var transformacao = Text {
-        content: "Transformations"
-        y:bind area.y+17
-        x:bind area.x+5
-        font: Font { name: "Bitstream Vera Sans Bold", size: 10} fill: Color.web("#3a5833")
-    }
-    var areaDeBotoes:Group = Group {}
 
-    var contornoAreaDeBotoes:Rectangle =Rectangle {
-        x : bind area.x+ 100;
-        y : bind area.y+1;
-        width : bind (sizeof botoes)*26+10;
-        height : 20;
-        visible:bind (sizeof botoes)>0;
-        fill: LinearGradient {
-            startX: 0.0, startY: 0.7, endX: 0.0, endY: 1.5
-            proportional: true
-            stops: [ Stop { offset: 0.0 color: Color.web("#c8eab2") },
-            Stop { offset: 1.0 color: Color.web("#aaa") } ]
-        }
-        stroke:Color.web("#444")
+    private Text mais = new Text(txtSinal);
+    {
+        mais.setY(btnDuplicar.getY()+15);
+        mais.setX(btnDuplicar.getX()+1);
+        mais.setFont(new Font("Bitstream Vera Sans Bold",10));
+        mais.setFill(Color.web("#3a5833"));
     }
 
+    private Text transformacao = new Text("Transformations");
+    {
+        transformacao.setY(area.getY()+17);
+        transformacao.setX(area.getX()+5);
+        transformacao.setFont(new Font("Bitstream Vera Sans Bold", 10));
+        transformacao.setFill(Color.web("#3a5833"));
+    }
 
-    override public function create(): Node {
-        instanciaAtual=this;
+    private Group areaDeBotoes = new Group();
+
+    private Rectangle contornoAreaDeBotoes = new Rectangle();
+    {
+        contornoAreaDeBotoes.setX(area.getX()+ 100);
+        contornoAreaDeBotoes.setY(area.getY()+1);
+        contornoAreaDeBotoes.setWidth(botoes.size()*26+10);
+        contornoAreaDeBotoes.setHeight(20);
+        contornoAreaDeBotoes.setVisible(botoes.size()>0);
+        LinearGradient linearGradient =
+                new LinearGradient(
+                        0.0,
+                        0.7,
+                        0.0,
+                        1.5,
+                        Boolean.TRUE,
+                        CycleMethod.NO_CYCLE,
+                        new Stop(0.0, Color.web("#c8eab2")),
+                        new Stop(1.0, Color.web("#aaa")));
+        contornoAreaDeBotoes.setStroke(Color.web("#444"));
+    }
+
+
+    public TransformationPanel() {
         quantidadeTransformacoes++;
-        Group {
-            content: bind [
+        this.getChildren().addAll(
                     area,
                     transformacao,
                     contornoAreaDeBotoes,
                     areaDeBotoes,
                     btnDuplicar,
                     mais
-	               ]
-        };
+        );
     }
-    public function redesenhaBarra(): Void {
-        delete areaDeBotoes.content;
+
+    public void redesenhaBarra(){
+        areaDeBotoes.getChildren().clear();
         var cont=0;
-        if(ultimo and (sizeof botoes)>2){
+        if(ultimo && botoes.size()>2){
             txtSinal="+";
         }else{
-            if((sizeof MainClass.instanciaAtual.transformacoes >6)){
+            if((MainClass.getInstance().getTransformacoes().getChildren().size()>6)){
                 txtSinal="-";
             }
         }
-        for(botao in botoes){
-            var urlNova=botao.icone.image.url;
+        for(ActionButton botao : botoes){
+            var urlNova=botao.getIcone().getUrl();
             var alt=16;
             var larg=24;
 
-            var img = ImageView{
-                cursor:Cursor.MOVE
-                focusTraversable: true
-                image: Image{url:urlNova  width:larg height:alt}
-                y: bind area.y+3
-                x:contornoAreaDeBotoes.x+5+(26*cont)
+            ImageView img = new ImageView();
+            {
+                img.setCursor(Cursor.MOVE);
+                img.setFocusTraversable(Boolean.TRUE);
+                img.setImage(new Image(urlNova,larg,alt,Boolean.TRUE,Boolean.TRUE));
+                img.setY(area.getY()+3);
+                img.setX(contornoAreaDeBotoes.getX()+5+(26*cont));
 
             }
-            var rect = Rectangle{
-                cursor:Cursor.MOVE
-                focusTraversable: true
-                y: bind area.y+3
-                x:contornoAreaDeBotoes.x+5+(26*cont)
-                width : larg
-                height : alt
-                arcWidth: 10
-                arcHeight: 10
-                fill:botao.fillNormal
-                stroke:Color.web("#aaa")
+            Rectangle rect = new Rectangle();
+            {
+                rect.setCursor(Cursor.MOVE);
+                rect.setFocusTraversable(true);
+                rect.setY(area.getY()+3);
+                rect.setX(contornoAreaDeBotoes.getX()+5+(26*cont));
+                rect.setWidth(larg);
+                rect.setHeight(alt);
+                rect.setArcWidth(10);
+                rect.setArcHeight(10);
+                rect.setFill(botao.getFillNormal());
+                rect.setStroke(Color.web("#aaa"));
             }
-            var nodo=BotaoTransformacoes{
-                img:img
-                rect:rect
-                btn:botao
+            BotaoTransformacoes nodo = new BotaoTransformacoes();
+            {
+                nodo.setImg(img);
+                nodo.setRect(rect);
+                nodo.setBtn(botao);
             }
-            var drag = DragDrop {
-                target: nodo
-                maxX: 900
-                maxY: 874
-                onSoltar:trataMoverExcluir
+            DragDrop drag = new DragDrop();
+            {
+                drag.setTarget(nodo);
+                drag.setMaxX(900);
+                drag.setMaxY(874);
+                drag.setOnSoltar(this::trataMoverExcluir);
             }
-            insert  nodo into areaDeBotoes.content;
+            areaDeBotoes.getChildren().add(nodo);
             cont++;
         }
-        Fractal.desenhoModificado = true;
+        Fractal.instance.setDesenhoModificado(true);
     }
-    public function calculaPosicaoBotao(btn:DragDrop): Void {
-        var zx = btn.tx + (btn.target as BotaoTransformacoes).rect.x;
-        var zy = btn.ty;
-        var btransAntes:ImageView;
-        var count =0;
-        for(btrans in areaDeBotoes.content){
-            if(zx <= (btrans as BotaoTransformacoes).img.x){
-                btransAntes =(btrans as BotaoTransformacoes).img;
+
+    public void calculaPosicaoBotao(DragDrop btn) {
+        var zx = btn.getTx() + ((BotaoTransformacoes)btn.target).getRect().getX();
+        var zy = btn.getTy();
+        ImageView btransAntes = null;
+        var count = 0;
+        for(Node btrans : areaDeBotoes.getChildren()){
+            if(zx <= ((BotaoTransformacoes)btrans).img.getX()){
+                btransAntes =((BotaoTransformacoes)btrans).img;
                 break;
             }
             count++;
         }
-        var botaoAtual = (btn.target as BotaoTransformacoes).btn;
-        delete botaoAtual  from botoes;
-        insert botaoAtual before botoes[count];
+        var botaoAtual = ((BotaoTransformacoes)btn.target).btn;
+        botoes.remove(botaoAtual);
+        botoes.add(count-1,botaoAtual);
     }
 
     // trata no reposicionar e o tirar um icone da barra de formulas
-    public function trataMoverExcluir(btn:DragDrop): Void {
+    public void trataMoverExcluir(DragDrop btn) {
         if(btn.estaEm(contornoAreaDeBotoes)){
             calculaPosicaoBotao(btn);
         }else{
-            delete (btn.target as BotaoTransformacoes).btn from botoes;
-            if(sizeof botoes == 1){
-                delete ActionButton.botaoIgual from botoes;
+            botoes.remove(btn.target);;
+            if(botoes.size() == 1){
+                botoes.remove(ActionButton.botaoIgual);
             }
         }
         redesenhaBarra();
