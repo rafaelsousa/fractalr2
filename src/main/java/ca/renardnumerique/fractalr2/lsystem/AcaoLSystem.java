@@ -1,14 +1,19 @@
 package ca.renardnumerique.fractalr2.lsystem;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 /**
  * @author rafael
  */
 
+@Data
+@AllArgsConstructor
 public class AcaoLSystem {
 
-    public Integer tipoAcao;
-	public String simbolo;
-	public Integer cor;
+    private Integer tipoAcao;
+	private String simbolo;
+	private Integer cor;
 
 	public static Integer ACAO_ANDAR = 1;
 	public static Integer ACAO_EXPANDIR = 2;
@@ -17,6 +22,8 @@ public class AcaoLSystem {
 	public static Integer ACAO_GIRAR_ESQUERDA = 5;
 	public static Integer ACAO_MEMORIZAR = 6;
 	public static Integer ACAO_RESTAURAR = 7;
+	public static Integer ACAO_IGUAL = -1;
+
 	@Override
 	public String toString() {
 	    if(tipoAcao == AcaoLSystem.ACAO_ANDAR){
@@ -40,6 +47,9 @@ public class AcaoLSystem {
    		if(tipoAcao == AcaoLSystem.ACAO_RESTAURAR){
    		    return "]";
    		}
+		if(tipoAcao == AcaoLSystem.ACAO_IGUAL){
+			return "=";
+		}
    		return "Unknown action";
 	}
 

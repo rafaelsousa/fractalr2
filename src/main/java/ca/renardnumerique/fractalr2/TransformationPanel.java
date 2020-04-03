@@ -1,6 +1,5 @@
 package ca.renardnumerique.fractalr2;
 
-import javafx.beans.binding.DoubleBinding;
 import javafx.event.Event;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
@@ -28,22 +27,17 @@ public class TransformationPanel extends Group  {
     public static TransformationPanel instanciaAtual;
     private List<ActionButton> botoes = new ArrayList<>();
     private List<ImageView> iconesBotoes = new ArrayList<>();
-    private Integer incrementoY=26;
+    private Integer incrementoY = 26;
     private Integer posicao = quantidadeTransformacoes;
     private Boolean ultimo = Boolean.TRUE;
     private String txtSinal="";
-    private DoubleBinding posY = new DoubleBinding() {
-        @Override
-        protected double computeValue() {
-            return 44+(incrementoY*posicao);
-        }
-    };
+    private Integer posY = incrementoY * posicao;
 
     private Rectangle area = new Rectangle();
 
     {
         area.setX(165);
-        area.setY(posY.getValue());
+        area.setY(posY);
         area.setArcWidth(10);
         area.setArcHeight(10);
         area.setWidth(660);
@@ -56,7 +50,7 @@ public class TransformationPanel extends Group  {
                         1.5,
                         Boolean.TRUE,
                         CycleMethod.NO_CYCLE,
-                        new Stop(0.0, Color.web("#f1ffde")),
+                        new Stop(0.0, Color.web("#F1FFDE")),
                         new Stop(1.0, Color.web("#AAA")));
         area.setFill(linearFill);
         area.setStroke(Color.web("#111"));
@@ -64,7 +58,7 @@ public class TransformationPanel extends Group  {
     public Button btnDpl = new Button();
     { // swing button B
         btnDpl.setTranslateX(813);
-        btnDpl.setTranslateY(posY.getValue());
+        btnDpl.setTranslateY(posY);
         btnDpl.setMaxWidth(10);
         btnDpl.setMaxHeight(22);
         btnDpl.setText("b");
@@ -280,46 +274,43 @@ public class TransformationPanel extends Group  {
         }else{
             botoes.remove(btn.target);;
             if(botoes.size() == 1){
-                botoes.remove(ActionButton.botaoIgual);
+                botoes.remove(ActionButton.BOTAO_IGUAL);
             }
         }
         redesenhaBarra();
     }
 
-    //retorna o bot�o correspondente a um icone
-    public function getBotao(img:ImageView): ActionButton {
-        for(botao in botoes){
-            if(botao.icone.image.url == img.image.url){
+    public ActionButton getBotao(ImageView img){
+        for(ActionButton botao : botoes){
+            if(botao.getIcone().getUrl().equals(img.getImage().getUrl())){
                 return botao;
             }
         }
         return null;
     }
 
-    //trata a adi��o da um bot�o na barra de formulas
-    public function trataArrastar(btn:DragDrop): Void {
+    public void trataArrastar(DragDrop btn) {
         if(btn.estaEm(area)){
-            for(botao in botoes){
-                if(botao == ActionButton.botaoSeparador )
+            for(ActionButton botao : botoes){
+                if(botao.equals(ActionButton.BOTAO_SEPARADOR))
                     return;
             }
-            delete ActionButton.botaoSeparador from FormulaPanel.instanciaAtual.botoes;
-            FormulaPanel.instanciaAtual.redesenhaBarra();
-            insert ActionButton.botaoSeparador into botoes;
+            FormulaPanel.getInstance().getBotoes().remove(ActionButton.BOTAO_SEPARADOR);
+            FormulaPanel.getInstance().redesenhaBarra();
+            botoes.add(ActionButton.BOTAO_SEPARADOR);
         }else{
-            delete ActionButton.botaoSeparador from botoes;
+            botoes.remove(ActionButton.BOTAO_SEPARADOR);
         }
         redesenhaBarra();
     }
 
-    //trata a adi��o da um bot�o na barra de formulas
-    public function trataSoltar(btn:DragDrop): Void {
-        delete ActionButton.botaoSeparador from botoes;
+    public void trataSoltar(DragDrop btn){
+        botoes.remove(ActionButton.BOTAO_SEPARADOR);
         if(btn.estaEm(area)){
-            var novoBtn =(btn.target as ActionButton).duplicar();
-            insert novoBtn into botoes;
-            if((sizeof botoes) ==1){
-                insert  ActionButton.botaoIgual into botoes;
+            ActionButton novoBtn = ((ActionButton)btn.target).duplicar();
+            botoes.add(novoBtn);
+            if(botoes.size()==1){
+                botoes.add(ActionButton.BOTAO_IGUAL);
             }
         }
         redesenhaBarra();
