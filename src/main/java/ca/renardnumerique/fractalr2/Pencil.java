@@ -13,10 +13,11 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.PathElement;
 import javafx.util.Duration;
+import lombok.Data;
 
 import java.util.List;
 
-
+@Data
 public class Pencil extends ImageView {
 
 
@@ -70,8 +71,8 @@ public class Pencil extends ImageView {
     private Path caminho = new Path();
 
     public void escreveFractal() {
-        var inX = MainClass.instance.design.areaDesenho.getX() + 10;
-        var inY = MainClass.instance.design.areaDesenho.getY() + 25;
+        var inX = MainClass.getInstance().getDesign().getAreaDesenho().getX() + 10;
+        var inY = MainClass.getInstance().getDesign().getAreaDesenho().getY() + 25;
         clear();
         Path path = new Path();
         path.setStroke(Color.web("#29345E"));

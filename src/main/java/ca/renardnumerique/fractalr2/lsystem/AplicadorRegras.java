@@ -8,6 +8,8 @@ import ca.renardnumerique.fractalr2.ActionButton;
 import ca.renardnumerique.fractalr2.FormulaPanel;
 import ca.renardnumerique.fractalr2.MainClass;
 import ca.renardnumerique.fractalr2.TransformationPanel;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import lombok.Data;
 
 /**
@@ -37,26 +39,28 @@ public class AplicadorRegras {
         //Atribuir transformacoes aos botoes no painel de formulas
         List<TransformationPanel> pnlTransformacoes = new ArrayList<>();
 
-        for (pnl in MainClass.instanciaAtual.transformacoes) {
+        for (Node pnl : MainClass.getInstance().getTransformacoes().getChildren()) {
             if (pnl instanceof TransformationPanel) {
-                insert pnl as TransformationPanel into pnlTransformacoes;
+                pnlTransformacoes.add((TransformationPanel) pnl);
             }
         }
 
-        iteracao = MainClass.instanciaAtual.pnlControle.iteracoes;
+        iteracao = MainClass.getInstance().getPnlControle().getIteracoes();
         //Fetching coordinates for scaling calculation.
-        var alturaCanvas  :Number = MainClass.instanciaAtual.design.areaDesenho.height;
-        var larguraCanvas :Number = MainClass.instanciaAtual.design.areaDesenho.width;
+        Double alturaCanvas  = MainClass.getInstance().getDesign().getAreaDesenho().getHeight();
+        Double larguraCanvas = MainClass.getInstance().getDesign().getAreaDesenho().getWidth();
 
-        var maximoXFractal :Number = java.lang.Float.NEGATIVE_INFINITY;
-        var maximoYFractal :Number = java.lang.Float.NEGATIVE_INFINITY;
-        var minimoXFractal :Number = java.lang.Float.POSITIVE_INFINITY;
-        var minimoYFractal :Number = java.lang.Float.POSITIVE_INFINITY;
+        Float maximoXFractal = java.lang.Float.NEGATIVE_INFINITY;
+        Float maximoYFractal = java.lang.Float.NEGATIVE_INFINITY;
+        Float minimoXFractal = java.lang.Float.POSITIVE_INFINITY;
+        Float minimoYFractal = java.lang.Float.POSITIVE_INFINITY;
 
-        var count :Integer = 0;
-        var angulo :Number = Math.toRadians(MainClass.instanciaAtual.pnlControle.anguloSlider.value);
-        var anguloIncremento :Number = 0;
-        delete cmds;
+        Integer count = 0;
+        Double angulo = Math.toRadians(MainClass.getInstance().getPnlControle().getAnguloSlider().getValue());
+        Double anguloIncremento = 0.0;
+        cmds.clear();
+        
+
         var primeiroComando = Comando {
             coordenadaInicial:
             Ponto {

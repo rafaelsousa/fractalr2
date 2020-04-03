@@ -1,4 +1,10 @@
 package ca.renardnumerique.fractalr2;
 
-public class ExamplePanel {
+import javafx.scene.Node;
+
+public class ExamplePanel extends Node {
+    @Override
+    public Node getStyleableNode() {
+        return null;
+    }
 }

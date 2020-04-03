@@ -42,7 +42,7 @@ public class DesktopLayout extends Group  {
 	    imgAnterior.setY(INICIO_DESENHO_Y+200);
     }
 		
-    ImageView imgProximo = new ImageView(); 
+    private ImageView imgProximo = new ImageView();
     {
     	imgProximo.setOpacity(0.1);
     	imgProximo.setFocusTraversable(Boolean.TRUE);
@@ -51,7 +51,7 @@ public class DesktopLayout extends Group  {
 		imgProximo.setX(930); 
     };
     
-    Rectangle proximo = new Rectangle();          
+    private Rectangle proximo = new Rectangle();
     // sera usado pela classe Lapis, para limites de desenho.
     {
         proximo.setX(940); 
@@ -115,7 +115,7 @@ public class DesktopLayout extends Group  {
     
     //logomarga do sistema
    
-   ImageView logo = new ImageView();
+   private ImageView logo = new ImageView();
    {
            logo.setFocusTraversable(true);
            logo.setImage(new Image("images/logo.png"));

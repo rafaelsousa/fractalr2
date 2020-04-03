@@ -1,8 +1,9 @@
 package ca.renardnumerique.fractalr2;
 
-public class TransformationPanel {
+import javafx.scene.Group;
+import javafx.scene.Node;
 
-
+public class TransformationPanel extends Node {
 
 
 }

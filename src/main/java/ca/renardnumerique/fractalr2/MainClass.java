@@ -19,32 +19,27 @@ public class MainClass extends Group  {
 		private FormulaPanel pnlFormulas = FormulaPanel.getInstance();
 		private TransformationPanel pnlTransformacoes = new TransformationPanel();
 		private ControlPanel pnlControle = new ControlPanel();
-		private Pencil pencil = Pencil.get();
+		private Pencil pencil = Pencil.instance;
+
 		//path for pencil animation
-		private var transformacoes : Node[]  = [
-									design,
-				               		pnlExemplos,
-				               		pnlFormulas,
-				               		pnlControle,
-				               		pnlTransformacoes,
-				               		pnlBotoes,
-				               		pencil
-				               		];
-	   override public function create(): Node {
-	       	   instanciaAtual=this;
-				pencil.x=127;
-				pencil.y=33;
-		  	var grupo = Group{
-		           	content:bind transformacoes
-		      }
-		      pencil.canvas = MainClass.instanciaAtual.design.canvas;
-		      return grupo;
-	    }
-		
-		
-		private MainClass() {
+		private Group transformacoes = new Group();
+		{
+			transformacoes.getChildren().add(design);
+			transformacoes.getChildren().add(pnlExemplos);
+			transformacoes.getChildren().add(pnlFormulas);
+			transformacoes.getChildren().add(pnlControle);
+			transformacoes.getChildren().add(pnlTransformacoes);
+			transformacoes.getChildren().add(pnlBotoes);
+			transformacoes.getChildren().add(pencil);
+		}
+
+		public MainClass(){
+			Pencil.instance.setX(127);
+			Pencil.instance.setY(33);
+			pencil.setCanvas(design);
 			this.getChildren().addAll(design,pnlControle);
 		}
+
 		
-	   	   
+
 }
