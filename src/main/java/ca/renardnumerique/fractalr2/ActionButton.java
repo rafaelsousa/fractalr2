@@ -4,10 +4,14 @@ import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -18,9 +22,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ActionButton extends Group {
 
-    private Image icone;
     private AcaoLSystem acaoLSystem;
-    private LinearGradient fillNormal;
 
     public static final ActionButton BOTAO_IGUAL = new ActionButton(new Image("images/igual.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL,"+",-1),null);
     public static final ActionButton BOTAO_SEPARADOR = new ActionButton(new Image("imagens/botoes/draw-arrow-back.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL,"+",-2),null);
@@ -31,68 +33,79 @@ public class ActionButton extends Group {
         fillNormal.getStops().add(new Stop(1.0, Color.web("#AAA")));
     }
 
-
-    public ActionButton duplicar() {
-        return null;
+    public ActionButton(ImageView icone, AcaoLSystem acaoLSystem, LinearGradient fillNormal) {
+        this.icone = icone;
+        this.acaoLSystem = acaoLSystem;
+        this.fillNormal = fillNormal;
     }
 
-    private String nome="acao";
-    private Integer width=110;
+
+    private String nome = "acao";
+    private Integer width = 110;
     private Node painelAtual;
     private List<Action> botoes;
 
-    public String iconeUrl="{__DIR__}imagens/botoes/rating.png"; //por padrao aparece uma estrela
+    public String iconeUrl = "{__DIR__}imagens/botoes/rating.png"; //por padrao aparece uma estrela
     public Color coresSeletor:SeletorCores;
 
-    public var fillNormal=LinearGradient {
-        startX: 0.0, startY: 0.7, endX: 0.0, endY: 1.5
-        proportional: true
-        stops: [ Stop { offset: 0.2 color: Color.web("#ffffff") },
-        Stop { offset: 1.0 color: Color.web("#444444") }
-                ]
+
+    private LinearGradient fillNormal =
+            new LinearGradient(
+                    0.0,
+                    0.7,
+                    0.0,
+                    1.5,
+                    Boolean.TRUE,
+                    CycleMethod.NO_CYCLE,
+                    new Stop(0.2, Color.web("#ffffff")),
+                    new Stop(1.0, Color.web("#444444")));
+
+    private Rectangle designRetangulo = new Rectangle();
+
+    private final int numeroBotoes = -2;
+    {
+        designRetangulo.setY(-2);
+        designRetangulo.setWidth(width);
+        designRetangulo.setX(170 + (width+10) * (numeroBotoes));
+        designRetangulo.setHeight(29);
+        designRetangulo.setArcWidth(10);
+        designRetangulo.setArcHeight(10);
+        designRetangulo.setFill(fillNormal);
+        designRetangulo.setOnMouseEntered(e->{
+            designRetangulo.setStroke(Color.web("#444444"));
+        });
+        designRetangulo.setOnMouseExited(e->{
+            designRetangulo.setStroke(Color.web("#f8f8f8"));
+        });
+        designRetangulo.setStroke(Color.web("#f8f8f8"));
     };
-    public var designRetangulo= Rectangle{
-        y:-2
-        width: width
-        x:170+ (width+10)*(numeroBotoes)
-                height: 29
-        arcWidth: 10
-        arcHeight: 10
-        fill:bind fillNormal
-        override public var onMouseEntered= function(e:MouseEvent):Void{
-            stroke=Color.web("#444444")
-        }
-        override public var onMouseExited= function(e:MouseEvent):Void{
-            stroke=Color.web("#f8f8f8")
-        }
-        stroke:Color.web("#f8f8f8")
-    };
-    var dspNome = Text {
-        x:24+designRetangulo.x
-        y:17+designRetangulo.y
-        content: bind nome
-        font: Font { name: "Bitstream Vera Sans Bold", size: 10}
-        fill: Color.web("#000000")
+
+    private Text dspNome = new Text(nome);
+    {
+        dspNome.setX(24+designRetangulo.getX());
+        dspNome.setY(17+designRetangulo.getX());
+        dspNome.setFont( new Font ( "Bitstream Vera Sans Bold",10));
+        dspNome.setFill( Color.web("#000000"));
     }
-    public var icone = ImageView {
-        image: Image{url:iconeUrl}
-        x:1+designRetangulo.x
-        y:5+designRetangulo.y
+    private ImageView icone = new ImageView();
+    {
+        icone.setImage(new Image(iconeUrl));
+        icone.setX(1+designRetangulo.getX());
+        icone.setY(5+designRetangulo.getY());
     };
-    public var duplicar = function():ActionButton{
-        var nova = ActionButton{
-            nome: this.nome;
-            iconeUrl: this.iconeUrl;
-            fillNormal: this.fillNormal;
-            acaoLSystem : GerenciadorLSystem.instanciaAtual.obterAcao(coresSeletor.idSelecionado,this.acaoLSystem.tipoAcao);
-        }
+    public ActionButton duplicar(){
+        ActionButton nova = new ActionButton();
+        nova.setNome( this.nome);
+        nova.setIconeUrl( this.iconeUrl);
+        nova.setFillNormal( this.fillNormal);
+        nova.setAcaoLSystem(GerenciadorLSystem.instanciaAtual.obterAcao(coresSeletor.idSelecionado,this.acaoLSystem.tipoAcao));
         return nova;
     }
-    public var onDrop = function(local:Node){
-        this.painelAtual=local;
+    private function onDrop = new function()(local:Node){
+        this.painelAtual = local;
     }
-    public var drag = DragDrop {
-        target: this
+    private DragDrop drag = new DragDrop() {
+        setTarget( this)
         onChange : function(arrastaSolta:DragDrop){
             FormulaPanel.instanciaAtual.trataArrastar(arrastaSolta);
             for(transformacao in MainClass.instanciaAtual.transformacoes){
@@ -109,15 +122,15 @@ public class ActionButton extends Group {
                 }
             }
         }
-        maxX: 900
-        maxY: 140
+        setMaxX( 900)
+        setMaxY( 140)
     }
     override public function create(): Node {
         numeroBotoes++;
-        coresSeletor.posX=98+designRetangulo.x;
-        coresSeletor.posY= 16+designRetangulo.y;
-        coresSeletor.nodo= designRetangulo;
-        coresSeletor.botaoPai= this;
+        coresSeletor.posX = 98+designRetangulo.x;
+        coresSeletor.posY =  16+designRetangulo.y;
+        coresSeletor.nodo =  designRetangulo;
+        coresSeletor.botaoPai =  this;
 
         Group {
             content: [
@@ -141,8 +154,8 @@ public class ActionButton extends Group {
         };
         insert botao into botoes;
         botao = ActionButton{
-        nome:"Produce"
-        coresSeletor: SeletorCores{}
+        setNome("Produce")
+        setCoresSeletor( SeletorCores{})
         acaoLSystem : AcaoExpansiva {
         tipoAcao : AcaoLSystem.ACAO_EXPANDIR;
         }

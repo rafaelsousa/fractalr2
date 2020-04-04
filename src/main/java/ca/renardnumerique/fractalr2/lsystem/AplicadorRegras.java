@@ -1,13 +1,11 @@
 package ca.renardnumerique.fractalr2.lsystem;
 
-import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.renardnumerique.fractalr2.*;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Aplica as regras que geram os comandos para o lapis criar o desenho do
