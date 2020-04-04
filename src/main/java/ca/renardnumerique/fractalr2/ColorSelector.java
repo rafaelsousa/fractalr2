@@ -5,23 +5,8 @@ import javafx.scene.input.*;
 import javafx.scene.paint.*;
 import javafx.scene.shape.*;
 import javafx.scene.text.*;
- class Seletor extends Rectangle  {
-       public var nodo:Rectangle;
-       public var idCor:Integer;
-	   override public var width= 10; 
-	   override public var height= 10;
-	   override public var arcWidth =5;  
-	   override public var arcHeight =5;
-	   override public var cursor=Cursor.HAND;
-	   override public var fill =Color.web("red");
-	   override public var stroke=Color.web("#888");
-       override public var onMouseClicked= function(e:MouseEvent):Void{
-           cursor=Cursor.HAND;
-           selecionado(this);
-       }
- 	   public var selecionado= function(cor:Seletor){} 
-}
-public class SeletorCores extends CustomNode  {
+
+public class SeletorCores extends Group  {
     public var posX:Number;
     public var posY:Number;
     public var selecionado:Seletor;
@@ -130,10 +115,10 @@ public class SeletorCores extends CustomNode  {
        	   fill :Color.TRANSPARENT;
        	    
            stroke:Color.web("#888")
-           override public var onMouseEntered= function(e:MouseEvent):Void{
+           public var onMouseEntered= function(e:MouseEvent):Void{
     	       stroke=Color.web("#444444");
            }
-           override public var onMouseExited= function(e:MouseEvent):Void{
+           public var onMouseExited= function(e:MouseEvent):Void{
     	       stroke=Color.web("#888");
 	           width =12; 
 	           if(aberto)
@@ -142,7 +127,7 @@ public class SeletorCores extends CustomNode  {
 	           txtMais.content="+";
 	           cursor=Cursor.HAND;
            }
-           override public var onMouseClicked= function(e:MouseEvent):Void{
+           public var onMouseClicked= function(e:MouseEvent):Void{
     	       stroke=Color.web("#1289FF");
 	           width =60;
 	           if(not aberto) 
@@ -153,7 +138,7 @@ public class SeletorCores extends CustomNode  {
            }
        };
     
-    override public function create(): Node {
+    public function create(): Node {
            Group{
            content:[
 	           btnControle,

@@ -1,6 +1,7 @@
 package ca.renardnumerique.fractalr2;
 
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
+import ca.renardnumerique.fractalr2.lsystem.GerenciadorLSystem;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -24,8 +25,18 @@ public class ActionButton extends Group {
 
     private AcaoLSystem acaoLSystem;
 
-    public static final ActionButton BOTAO_IGUAL = new ActionButton(new Image("images/igual.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL,"+",-1),null);
-    public static final ActionButton BOTAO_SEPARADOR = new ActionButton(new Image("imagens/botoes/draw-arrow-back.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL,"+",-2),null);
+    public static final ActionButton BOTAO_IGUAL = new ActionButton(new ImageView("images/igual.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL,"+",-1),null);
+    public static final ActionButton BOTAO_SEPARADOR = new ActionButton(new ImageView("imagens/botoes/draw-arrow-back.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL,"+",-2),null);
+
+    private String nome = "acao";
+    private Integer width = 110;
+    private Node painelAtual;
+    private List<Action> botoes;
+
+    public String iconeUrl = "images/botoes/rating.png"; //por padrao aparece uma estrela
+    public SeletorCores coresSeletor;
+    private LinearGradient fillNormal;
+
 
     public ActionButton() {
         fillNormal = new LinearGradient(0.0, 0.7, 0.0, 1.5, true, CycleMethod.NO_CYCLE);
@@ -39,26 +50,6 @@ public class ActionButton extends Group {
         this.fillNormal = fillNormal;
     }
 
-
-    private String nome = "acao";
-    private Integer width = 110;
-    private Node painelAtual;
-    private List<Action> botoes;
-
-    public String iconeUrl = "{__DIR__}imagens/botoes/rating.png"; //por padrao aparece uma estrela
-    public Color coresSeletor:SeletorCores;
-
-
-    private LinearGradient fillNormal =
-            new LinearGradient(
-                    0.0,
-                    0.7,
-                    0.0,
-                    1.5,
-                    Boolean.TRUE,
-                    CycleMethod.NO_CYCLE,
-                    new Stop(0.2, Color.web("#ffffff")),
-                    new Stop(1.0, Color.web("#444444")));
 
     private Rectangle designRetangulo = new Rectangle();
 
@@ -98,12 +89,13 @@ public class ActionButton extends Group {
         nova.setNome( this.nome);
         nova.setIconeUrl( this.iconeUrl);
         nova.setFillNormal( this.fillNormal);
-        nova.setAcaoLSystem(GerenciadorLSystem.instanciaAtual.obterAcao(coresSeletor.idSelecionado,this.acaoLSystem.tipoAcao));
+        nova.setAcaoLSystem(GerenciadorLSystem.instance.obterAcao(coresSeletor.idSelecionado,this.acaoLSystem.getTipoAcao()));
         return nova;
     }
-    private function onDrop = new function()(local:Node){
+    private void onDrop (Node local){
         this.painelAtual = local;
     }
+
     private DragDrop drag = new DragDrop() {
         setTarget( this)
         onChange : function(arrastaSolta:DragDrop){

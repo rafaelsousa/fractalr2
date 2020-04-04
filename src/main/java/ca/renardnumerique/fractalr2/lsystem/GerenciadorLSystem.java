@@ -12,7 +12,10 @@ import java.util.List;
 
 public class GerenciadorLSystem {
 
-	/**********************************************************
+    public static final GerenciadorLSystem instance = new GerenciadorLSystem();
+
+    private GerenciadorLSystem(){}
+    /**********************************************************
 	* Os LSystems permitem que tenhamos, durante a geracao da gramatica de derivacao
 	* paralela, mais de um tipo de representacao para o Andar ou para o Produzir.
 	* As diferenciacoes serao determinadas pela cor do botao, a ser escolhida pelo
