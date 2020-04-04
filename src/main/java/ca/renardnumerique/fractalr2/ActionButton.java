@@ -34,7 +34,7 @@ public class ActionButton extends Group {
     private List<Action> botoes;
 
     public String iconeUrl = "images/botoes/rating.png"; //por padrao aparece uma estrela
-    public SeletorCores coresSeletor;
+    public ColorSelector coresSeletor;
     private LinearGradient fillNormal;
 
 
@@ -96,18 +96,19 @@ public class ActionButton extends Group {
         this.painelAtual = local;
     }
 
-    private DragDrop drag = new DragDrop() {
-        setTarget( this)
-        onChange : function(arrastaSolta:DragDrop){
-            FormulaPanel.instanciaAtual.trataArrastar(arrastaSolta);
-            for(transformacao in MainClass.instanciaAtual.transformacoes){
+    private DragDrop drag = new DragDrop();
+    {
+        drag.setTarget(this);
+        drag.onChange(arrastaSolta -> {
+            FormulaPanel.getInstance().trataArrastar(arrastaSolta);
+            for(Node transformacao : MainClass.getInstance().getTransformacoes().getChildren()){
                 if(transformacao instanceof TransformationPanel){
-                    (transformacao as TransformationPanel).trataArrastar(arrastaSolta);
+                    ((TransformationPanel) transformacao).trataArrastar(arrastaSolta);
                 }
             }
-        }
-        onSoltar : function(arrastaSolta:DragDrop){
-            FormulaPanel.instanciaAtual.trataSoltar(arrastaSolta);
+        });
+        drag.setOnSoltar(arrastaSolta->{
+            FormulaPanel.getInstance().trataSoltar(arrastaSolta);
             for(transformacao in MainClass.instanciaAtual.transformacoes){
                 if(transformacao instanceof TransformationPanel){
                     (transformacao as TransformationPanel).trataSoltar(arrastaSolta);

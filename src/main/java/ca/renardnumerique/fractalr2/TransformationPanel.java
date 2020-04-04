@@ -205,7 +205,7 @@ public class TransformationPanel extends Group  {
             }
         }
         for(ActionButton botao : botoes){
-            var urlNova=botao.getIcone().getUrl();
+            var urlNova=botao.getIcone().getImage().getUrl();
             var alt=16;
             var larg=24;
 
@@ -282,7 +282,7 @@ public class TransformationPanel extends Group  {
 
     public ActionButton getBotao(ImageView img){
         for(ActionButton botao : botoes){
-            if(botao.getIcone().getUrl().equals(img.getImage().getUrl())){
+            if(botao.getIcone().getImage().equals(img.getImage().getUrl())){
                 return botao;
             }
         }

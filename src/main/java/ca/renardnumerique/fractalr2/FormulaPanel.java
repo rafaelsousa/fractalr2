@@ -2,6 +2,7 @@ package ca.renardnumerique.fractalr2;
 
 import javafx.scene.Cursor;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -13,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import lombok.Data;
 
+import javax.swing.*;
 import java.util.List;
 
 @Data
@@ -85,7 +87,7 @@ public class FormulaPanel extends Group {
         areaDeBotoes.getChildren().clear();
         Integer cont = 0;
         for (ActionButton botao : botoes) {
-            String urlNova = botao.getIcone().getUrl();
+            String urlNova = botao.getIcone().getImage().getUrl();
             Rectangle rect = new Rectangle();
             rect.setCursor(Cursor.MOVE);
             rect.setFocusTraversable(Boolean.TRUE);
@@ -122,23 +124,21 @@ public class FormulaPanel extends Group {
     }
 
 
-    public function calculaPosicaoBotao(btn:DragDrop):Void
-
-    {
-        var zx = btn.tx + (btn.target as BotaoFormula).img.x;
-        var zy = btn.ty;
-        var imgAntes:ImageView;
+    public void calculaPosicaoBotao(DragDrop btn) {
+        double zx = btn.tx + ((BotaoFormula)btn.target).getImg().getX();
+        double zy = btn.ty;
+        ImageView imgAntes;
         var count = 0;
-        for (imagem in areaDeBotoes.content) {
-            if (zx <= (imagem as BotaoFormula).img.x){
-                imgAntes = (imagem as BotaoFormula).img;
+        for (Node imagem : areaDeBotoes.getChildren()) {
+            if (zx <= ((BotaoFormula)imagem).getImg().getX()){
+                imgAntes = ((BotaoFormula)imagem).getImg();
                 break;
             }
             count++;
         }
-        var botaoAtual = (btn.target as BotaoFormula).btn;
-        delete botaoAtual from botoes;
-        insert botaoAtual before botoes[ count];
+        var botaoAtual = ((BotaoFormula)btn.target).getBtn();
+        botoes.remove(botaoAtual);
+        botoes.add(count-1,botaoAtual);;
     }
 
     // trata no reposicionar e o tirar um icone da barra de formulas
@@ -151,43 +151,37 @@ public class FormulaPanel extends Group {
         redesenhaBarra();
     }
 
-    //retorna o bot�o correspondente a um icone
-    public function getBotao(img:ImageView):ActionButton
-
-    {
-        for (botao in botoes) {
-            if (botao.icone.image.url == img.image.url) {
+    //retorna o botao correspondente a um icone
+    public ActionButton getBotao(ImageView img) {
+        for (ActionButton botao : botoes) {
+            if (botao.getIcone().getImage().getUrl().equals(img.getImage().getUrl())) {
                 return botao;
             }
         }
         return null;
     }
 
-    //trata a adi��o da um bot�o na barra de formulas
-    public function trataArrastar(btn:DragDrop):Void
-
-    {
-        delete ActionButton.botaoSeparador from TransformationPanel.instanciaAtual.botoes;
+    //trata a adicao de um botao na barra de formulas
+    public void trataArrastar(DragDrop btn) {
+        TransformationPanel.instanciaAtual.getChildren().remove(ActionButton.BOTAO_SEPARADOR);
         TransformationPanel.instanciaAtual.redesenhaBarra();
         if (btn.estaEm(area)) {
-            for (botao in botoes) {
-                if (botao == ActionButton.botaoSeparador)
+            for (ActionButton botao : botoes) {
+                if (botao == ActionButton.BOTAO_SEPARADOR)
                     return;
             }
-            insert ActionButton.botaoSeparador into botoes;
+            botoes.add(ActionButton.BOTAO_SEPARADOR);
         } else {
-            delete ActionButton.botaoSeparador from botoes;
+            botoes.remove(ActionButton.BOTAO_SEPARADOR);
         }
         redesenhaBarra();
     }
 
-    //trata a adi��o da um bot�o na barra de formulas
-    public function trataSoltar(btn:DragDrop):Void
-
-    {
-        delete ActionButton.botaoSeparador from botoes;
+    //trata a adicao da um botao na barra de formulas
+    public void trataSoltar(DragDrop btn){
+        botoes.remove(ActionButton.BOTAO_SEPARADOR);
         if (btn.estaEm(area)) {
-            insert(btn.target as ActionButton).duplicar() into botoes;
+            botoes.add((ActionButton) btn.target);
         }
         redesenhaBarra();
     }
