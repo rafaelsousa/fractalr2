@@ -2,6 +2,7 @@ package ca.renardnumerique.fractalr2.lsystem;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author rafael
@@ -9,6 +10,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class AcaoLSystem {
 
     private Integer tipoAcao;

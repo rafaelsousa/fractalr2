@@ -4,7 +4,9 @@ import javafx.scene.*;
 import javafx.scene.paint.*;
 import javafx.scene.shape.*;
 import javafx.scene.text.*;
+import lombok.Data;
 
+@Data
 public class ColorSelector extends Group  {
     private Double posX;
     private Double posY;
