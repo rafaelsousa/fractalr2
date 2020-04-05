@@ -2,34 +2,23 @@ package ca.renardnumerique.fractalr2;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-//var mainClass = MainClass{};//para acertar o escopo das variaveis
-//Stage {
-//    title: "Fractal-R Version 0.9 - Beta"
-//    resizable: false
-//    width:  bind mainClass.larguraSistema;
-//    height : bind mainClass.alturaSistema;
-//    scene: Scene {
-//    	content:[
-//    		mainClass
-//    		]
-//		fill:Color.web("#ccc")
-//    }  
-//
-//}
 
 
 public class Start extends Application {
 
     @Override
     public void start(Stage stage) {
+        stage.setTitle("Fractal-R Version 1.9 - Beta");
+        stage.setResizable(Boolean.FALSE);
+        stage.setWidth(MainClass.getInstance().getLarguraSistema());
+        stage.setHeight(MainClass.getInstance().getAlturaSistema());
         String javaVersion = System.getProperty("java.version");
         String javafxVersion = System.getProperty("javafx.version");
-        //Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        Scene scene = new Scene(MainClass.instance);
+        Scene scene = new Scene(MainClass.getInstance());
+        scene.setFill(Color.web("#CCC"));
         stage.setScene(scene);
         stage.show();
     }

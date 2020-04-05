@@ -1,10 +1,36 @@
 package ca.renardnumerique.fractalr2;
+import javafx.scene.*;
+import javafx.scene.paint.*;
+import javafx.scene.shape.*;
+import lombok.Data;
 
-import javafx.scene.Node;
+import java.util.List;
 
-public class ButtonPanel extends Node {
-    @Override
-    public Node getStyleableNode() {
+
+@Data
+public class ButtonPanel extends Group  {
+    public static ButtonPanel instanciaAtual = new ButtonPanel();
+
+    private ButtonPanel(){
+        this.getChildren().addAll(botoes);
+        this.getChildren().add(linhaSuperior);
+    }
+
+    private List<ActionButton> botoes = ActionButton.getBotao();
+
+    private Line linhaSuperior = new Line(0,0,972,0);
+    {
+        linhaSuperior.setStroke(Color.web("#cccccc"));
+        linhaSuperior.setStrokeWidth(1);
+    };
+
+    public static ActionButton getBotao(Integer codigoBotao) {
+        for(ActionButton btn : instanciaAtual.botoes){
+            if(btn.getAcaoLSystem().getTipoAcao().equals(codigoBotao)){
+                return btn;
+            }
+        }
         return null;
     }
+
 }
