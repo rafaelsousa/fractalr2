@@ -26,7 +26,11 @@ public class AcaoLSystem {
 	public static Integer ACAO_RESTAURAR = 7;
 	public static Integer ACAO_IGUAL = -1;
 
-	@Override
+	public AcaoLSystem(Integer tipoAcao) {
+		this.tipoAcao = tipoAcao;
+	}
+
+    @Override
 	public String toString() {
 	    if(tipoAcao == AcaoLSystem.ACAO_ANDAR){
 	        return String.valueOf("abcd".charAt(this.cor));

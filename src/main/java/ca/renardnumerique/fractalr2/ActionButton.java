@@ -1,5 +1,6 @@
 package ca.renardnumerique.fractalr2;
 
+import ca.renardnumerique.fractalr2.lsystem.AcaoExpansiva;
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
 import ca.renardnumerique.fractalr2.lsystem.GerenciadorLSystem;
 import javafx.scene.Group;
@@ -17,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -134,55 +136,42 @@ public class ActionButton extends Group {
         this.getChildren().addAll(designRetangulo, dspNome, icone, coresSeletor);
     }
 
-    public static function getBotao(): ActionButton[] {
+    public static List<ActionButton> getBotao(){
 
-        var botoes:ActionButton[];
-        var botao = ActionButton{
-            nome:"Draw"
-            coresSeletor: SeletorCores{}
-            acaoLSystem : AcaoExpansiva{
-                tipoAcao : AcaoLSystem.ACAO_ANDAR;
-            }
-            iconeUrl:"{__DIR__}imagens/botoes/anda.png"
-        };
-        insert botao into botoes;
-        botao = ActionButton{
-            nome:"Produce"
-            coresSeletor: SeletorCores{}
-            acaoLSystem : AcaoExpansiva {
-                tipoAcao : AcaoLSystem.ACAO_EXPANDIR;
-            }
-            iconeUrl:"{__DIR__}imagens/botoes/legalmoves.png"
-        };
+        List<ActionButton> botoes = new ArrayList<>();
+        ActionButton botao = new ActionButton();
+        botao.setNome("Draw");
+        botao.setCoresSeletor(new ColorSelector());
+        botao.setAcaoLSystem(new AcaoExpansiva(AcaoLSystem.ACAO_ANDAR));
+        botao.setIconeUrl("imagens/botoes/anda.png");
+        botoes.add(botao);
 
-        insert botao into botoes;
-        botao = ActionButton{
-            nome:"Turn Left"
-            acaoLSystem : AcaoLSystem {
-                tipoAcao : AcaoLSystem.ACAO_GIRAR_ESQUERDA;
-            }
-            iconeUrl:"{__DIR__}imagens/botoes/esquerda.png"
-        };
-        insert botao into botoes;
+        ActionButton botaoProduce = new ActionButton();
+        botaoProduce.setNome("Produce");
+        botaoProduce.setCoresSeletor(new ColorSelector());
+        botaoProduce.setAcaoLSystem(new AcaoExpansiva(AcaoLSystem.ACAO_EXPANDIR));
+        botaoProduce.setIconeUrl("images/botoes/legalmoves.png");
+        botoes.add(botaoProduce);
 
-        botao = ActionButton{
-            nome:"Turn Right"
-            acaoLSystem : AcaoLSystem {
-                tipoAcao : AcaoLSystem.ACAO_GIRAR_DIREITA;
-            }
-            iconeUrl:"{__DIR__}imagens/botoes/direita.png"
-        };
-        insert botao into botoes;
+        ActionButton botaoTurnLeft = new ActionButton();
+        botaoTurnLeft.setNome("Turn Left");
+        botaoTurnLeft.setAcaoLSystem(new AcaoLSystem(AcaoLSystem.ACAO_GIRAR_ESQUERDA));
+        botaoTurnLeft.setIconeUrl("images/botoes/esquerda.png");
+        botoes.add(botaoTurnLeft);
 
-        botao = ActionButton{
-            nome:"Do and return";
-            coresSeletor: SeletorCores{}
-            acaoLSystem : AcaoLSystem {
-                tipoAcao : AcaoLSystem.ACAO_FAZER_RETORNAR;
-            }
-            iconeUrl:"{__DIR__}imagens/botoes/fazerRetornar.png"
-        };
-        insert botao into botoes;
+        ActionButton botaoTurnRight = new ActionButton();
+        botaoTurnRight.setNome("Turn Right");
+        botaoTurnRight.setAcaoLSystem(new AcaoLSystem(AcaoLSystem.ACAO_GIRAR_DIREITA));
+        botaoTurnRight.setIconeUrl("images/botoes/direita.png");
+        botoes.add(botaoTurnRight);
+
+        ActionButton doAndReturnButton = new ActionButton();
+        doAndReturnButton.setNome("Do and return");
+        doAndReturnButton.setCoresSeletor(new ColorSelector());
+        doAndReturnButton.setAcaoLSystem(new AcaoLSystem(AcaoLSystem.ACAO_FAZER_RETORNAR));
+        doAndReturnButton.setIconeUrl("images/botoes/fazerRetornar.png");
+        botoes.add(doAndReturnButton);
+        
         return botoes;
     }
 

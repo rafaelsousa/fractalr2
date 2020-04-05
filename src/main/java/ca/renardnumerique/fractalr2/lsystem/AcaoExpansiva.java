@@ -1,5 +1,6 @@
 package ca.renardnumerique.fractalr2.lsystem;
 
+import javafx.beans.NamedArg;
 import lombok.Data;
 
 import java.util.List;
@@ -17,4 +18,7 @@ public class AcaoExpansiva extends AcaoLSystem {
         super(tipoAcao, simbolo, cor);
     }
 
+    public AcaoExpansiva(Integer acaoExpandir) {
+        super(acaoExpandir);
+    }
 }
