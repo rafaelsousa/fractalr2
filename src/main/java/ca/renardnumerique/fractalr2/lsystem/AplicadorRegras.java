@@ -2,6 +2,7 @@ package ca.renardnumerique.fractalr2.lsystem;
 
 import ca.renardnumerique.fractalr2.*;
 import javafx.scene.Node;
+import javafx.util.Duration;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class AplicadorRegras {
     public List<Comando> pilhaComandos;
     private List<AcaoLSystem> pilhaAcoes;
 
-    public void gerarComandos() {
+    public ArrayList<Comando> gerarComandos() {
         pilhaComandos = new ArrayList<Comando>();
         pilhaAcoes = new ArrayList<AcaoLSystem>();
         ArrayList<Comando> cmds = new ArrayList<Comando>();
@@ -42,13 +43,13 @@ public class AplicadorRegras {
 
         iteracao = MainClass.getInstance().getPnlControle().getIteracoes();
         //Fetching coordinates for scaling calculation.
-        Double alturaCanvas  = MainClass.getInstance().getDesign().getAreaDesenho().getHeight();
+        Double alturaCanvas = MainClass.getInstance().getDesign().getAreaDesenho().getHeight();
         Double larguraCanvas = MainClass.getInstance().getDesign().getAreaDesenho().getWidth();
 
-        Float maximoXFractal = java.lang.Float.NEGATIVE_INFINITY;
-        Float maximoYFractal = java.lang.Float.NEGATIVE_INFINITY;
-        Float minimoXFractal = java.lang.Float.POSITIVE_INFINITY;
-        Float minimoYFractal = java.lang.Float.POSITIVE_INFINITY;
+        Double maximoXFractal = java.lang.Double.NEGATIVE_INFINITY;
+        Double maximoYFractal = java.lang.Double.NEGATIVE_INFINITY;
+        Double minimoXFractal = java.lang.Double.POSITIVE_INFINITY;
+        Double minimoYFractal = java.lang.Double.POSITIVE_INFINITY;
 
         Integer count = 0;
         Double angulo = Math.toRadians(MainClass.getInstance().getPnlControle().getAnguloSlider().getValue());
@@ -56,125 +57,104 @@ public class AplicadorRegras {
         cmds.clear();
 
 
-
         Comando primeiroComando = new Comando();
-        primeiroComando.setCoordenadaFinal(new Ponto(0.0,0.0));
+        primeiroComando.setCoordenadaFinal(new Ponto(0.0, 0.0));
         primeiroComando.setTipoComando(Comando.TRANSPORTAR);
 
         //insert primeiroComando into cmds;
         Ponto ultimaCoordenada = primeiroComando.getCoordenadaInicial();
-        for (int i=1;i<=iteracao;i++){
+        for (int i = 1; i <= iteracao; i++) {
             List<ActionButton> botoesExpandidos = new ArrayList<>();
             for (ActionButton botao : botoesFormula) {
                 Boolean encontrou = Boolean.FALSE;
                 for (TransformationPanel transformacao : pnlTransformacoes) {
-                    var botoes = transformacao.getBotoes();
-                    //println("Verificando {botoes[0].acaoLSystem}");
-                    //println("Verificando {botoes[0].acaoLSystem} da transforma��o com {botao.acaoLSystem} da f�rmula");
-                    if (botoes[0].acaoLSystem.equals(botao.acaoLSystem)) {
+                    List<ActionButton> botoes = transformacao.getBotoes();
+                    if (botoes.get(0).getAcaoLSystem().equals(botao.getAcaoLSystem())) {
                         encontrou = true;
-                        for (j in[ 2.. ((sizeof botoes)-1)]){
-                            var b = botoes[j];
-                            if (b.acaoLSystem.tipoAcao == AcaoLSystem.ACAO_FAZER_RETORNAR) {
-                                var expansaoFazerRetornar = expandeFazerRetornar(botoes[0], pnlTransformacoes);
-                                if (sizeof expansaoFazerRetornar > 0){
-                                    insert expansaoFazerRetornar into botoesExpandidos;
+                        for (int j=2; j < botoes.size(); j++) {
+                            ActionButton b = botoes.get(j);
+                            if (b.getAcaoLSystem().getTipoAcao().equals(AcaoLSystem.ACAO_FAZER_RETORNAR)) {
+                                List<ActionButton> expansaoFazerRetornar = expandeFazerRetornar(botoes.get(0), pnlTransformacoes);
+                                if (expansaoFazerRetornar.size() > 0){
+                                    botoesExpandidos.addAll(expansaoFazerRetornar);;
                                 }
                             }
-                            insert b into botoesExpandidos;
+                            botoesExpandidos.add(b);
                         }
                     }
                 }
-                if (not encontrou){
-                    insert botao into botoesExpandidos;
+                if (!encontrou){
+                    botoesExpandidos.add(botao);
                 }
             }
             botoesFormula = botoesExpandidos;
         }
-        //println("Resultado ap�s expans�es");
-        //for(bot in botoesFormula){
-        //    println("{bot.acaoLSystem} ");
-        //}
-        var duracao :Duration = Duration.valueOf(1000);
+
+        Duration duracao = Duration.millis(1000);
+
         if (iteracao > 0) {
-            duracao = Duration.valueOf(1000 / iteracao * 1.5);
+            duracao = Duration.millis(1000 / iteracao * 1.5);
         }
-        //println("Numero transforma��es:{numeroTransformacoes}");
-        //println("Gerando comandos para {botoesFormula.size()} botoes");
-        for (botao in botoesFormula) {
-            var tipoAcao = botao.acaoLSystem.tipoAcao;
-            if (tipoAcao == AcaoLSystem.ACAO_ANDAR) {
-                var novaCoordenada = Ponto {
-                    x:
-                    ultimaCoordenada.x + tamanhoSegmento * Math.cos(anguloIncremento),
-                            y:ultimaCoordenada.y + tamanhoSegmento * Math.sin(anguloIncremento)
-                }
-                var novoComando = Comando {
-                    coordenadaInicial:
-                    Ponto {
-                        x:
-                        ultimaCoordenada.x,
-                                y :ultimaCoordenada.y
-                    },
-                    coordenadaFinal:
-                    novaCoordenada,
-                            tipoComando :Comando.MOVER,
-                            duracao :duracao;
-                }
-                insert novoComando into cmds;
+
+        for (ActionButton botao : botoesFormula) {
+            Integer tipoAcao = botao.getAcaoLSystem().getTipoAcao();
+            if (tipoAcao.equals(AcaoLSystem.ACAO_ANDAR)) {
+                Ponto novaCoordenada = new Ponto(ultimaCoordenada.getX() + tamanhoSegmento * Math.cos(anguloIncremento),
+                                                ultimaCoordenada.getY() + tamanhoSegmento * Math.sin(anguloIncremento));
+                Comando novoComando = new Comando();
+                novoComando.setCoordenadaInicial(new Ponto(ultimaCoordenada.getX(),ultimaCoordenada.getY()));
+                novoComando.setCoordenadaFinal(novaCoordenada);
+                novoComando.setTipoComando(Comando.MOVER);
+                novoComando.setDuracao(duracao);
+                cmds.add(novoComando);
+
+
                 //println("Coordenada: {novaCoordenada}");
-                //atualizando coordenadas m�nimas;
-                if (novoComando.coordenadaInicial.x > maximoXFractal) {
-                    maximoXFractal = novoComando.coordenadaInicial.x;
+                //atualizando coordenadas minimas;
+                if (novoComando.getCoordenadaInicial().getX() > maximoXFractal) {
+                    maximoXFractal = novoComando.getCoordenadaInicial().getX();
                 }
-                if (novoComando.coordenadaInicial.x < minimoXFractal) {
-                    minimoXFractal = novoComando.coordenadaInicial.x;
+                if (novoComando.getCoordenadaInicial().getX() < minimoXFractal) {
+                    minimoXFractal = novoComando.getCoordenadaInicial().getX();
                 }
-                if (novoComando.coordenadaInicial.y > maximoYFractal) {
-                    maximoYFractal = novoComando.coordenadaInicial.y;
+                if (novoComando.getCoordenadaInicial().getY() > maximoYFractal) {
+                    maximoYFractal = novoComando.getCoordenadaInicial().getY();
                 }
-                if (novoComando.coordenadaInicial.y < minimoYFractal) {
-                    minimoYFractal = novoComando.coordenadaInicial.y;
+                if (novoComando.getCoordenadaInicial().getY() < minimoYFractal) {
+                    minimoYFractal = novoComando.getCoordenadaInicial().getY();
                 }
 
-                if (novoComando.coordenadaFinal.x > maximoXFractal) {
-                    maximoXFractal = novoComando.coordenadaFinal.x;
+                if (novoComando.getCoordenadaFinal().getX() > maximoXFractal) {
+                    maximoXFractal = novoComando.getCoordenadaFinal().getX();
                 }
-                if (novoComando.coordenadaFinal.x < minimoXFractal) {
-                    minimoXFractal = novoComando.coordenadaFinal.x;
+                if (novoComando.getCoordenadaFinal().getX() < minimoXFractal) {
+                    minimoXFractal = novoComando.getCoordenadaFinal().getX();
                 }
-                if (novoComando.coordenadaFinal.y > maximoYFractal) {
-                    maximoYFractal = novoComando.coordenadaFinal.y;
+                if (novoComando.getCoordenadaFinal().getY() > maximoYFractal) {
+                    maximoYFractal = novoComando.getCoordenadaFinal().getY();
                 }
-                if (novoComando.coordenadaFinal.y < minimoYFractal) {
-                    minimoYFractal = novoComando.coordenadaFinal.y;
+                if (novoComando.getCoordenadaFinal().getY() < minimoYFractal) {
+                    minimoYFractal = novoComando.getCoordenadaFinal().getY();
                 }
-                //println("maximoXFractal{maximoXFractal}");
-                //println("minimoXFractal{minimoXFractal}");
-                //println("maximoYFractal{maximoYFractal}");
-                //println("minimoYFractal{minimoYFractal}");
                 ultimaCoordenada = novaCoordenada;
             }
-            //print("{botao.acaoLSystem}");
             if (tipoAcao == AcaoLSystem.ACAO_MEMORIZAR) {
-                //println("empilhando:{ultimaCoordenada}");
-                var comando = Comando {
-                    coordenadaFinal:
-                    ultimaCoordenada;
-                    tipoComando:
-                    Comando.TRANSPORTAR,
-                            duracao :duracao,
-                            ultimoAngulo :anguloIncremento;
+                Comando comando = new Comando();
+                {
+                    comando.setCoordenadaFinal(ultimaCoordenada);
+                    comando.setTipoComando(Comando.TRANSPORTAR);
+                    comando.setDuracao(duracao);
+                    comando.setUltimoAngulo(anguloIncremento);
                 }
-                empilhaComando(botao.acaoLSystem, comando);
+                empilhaComando(botao.getAcaoLSystem(), comando);
             }
             if (tipoAcao == AcaoLSystem.ACAO_RESTAURAR) {
                 //println("desempilhando:{ultimaCoordenada}");
-                var comando = desempilhaComando(botao.acaoLSystem);
-                comando.coordenadaInicial = ultimaCoordenada;
-                anguloIncremento = comando.ultimoAngulo;
-                ultimaCoordenada = comando.coordenadaFinal;
-                insert comando into cmds;
+                var comando = desempilhaComando(botao.getAcaoLSystem());
+                comando.setCoordenadaFinal(ultimaCoordenada);
+                anguloIncremento = comando.getUltimoAngulo();
+                ultimaCoordenada = comando.getCoordenadaFinal();
+                cmds.add(comando);
             }
             if (tipoAcao == AcaoLSystem.ACAO_GIRAR_DIREITA) {
                 anguloIncremento += angulo;
@@ -188,31 +168,19 @@ public class AplicadorRegras {
     /*-------------------------------------
     		Ajustar as proporcoes
     --------------------------------------*/
-        var larguraFractal :Number = maximoXFractal - minimoXFractal;
-        var alturaFractal :Number = maximoYFractal - minimoYFractal;
+        Double larguraFractal = maximoXFractal - minimoXFractal;
+        Double alturaFractal = maximoYFractal - minimoYFractal;
 
-        //println("larguraFractal:{larguraFractal}");
-        //println("alturaFractal:{alturaFractal}");
+        Double escalaX = ((larguraCanvas - larguraFractal) / larguraFractal);
+        Double escalaY = ((alturaCanvas - alturaFractal) / alturaFractal);
 
-        var escalaX = ((larguraCanvas - larguraFractal) / larguraFractal);
-        //println("escalaX{escalaX}");
-        var escalaY = ((alturaCanvas - alturaFractal) / alturaFractal);
-        //println("escalaY{escalaY}");
+        Double x1Canvas = MainClass.getInstance().getDesign().getAreaDesenho().getX();
+        Double y1Canvas = MainClass.getInstance().getDesign().getAreaDesenho().getY();
 
+        Double x2Canvas = x1Canvas + MainClass.getInstance().getDesign().getAreaDesenho().getWidth();
+        Double y2Canvas = y1Canvas + MainClass.getInstance().getDesign().getAreaDesenho().getHeight();
 
-        var x1Canvas :Number = MainClass.instanciaAtual.design.areaDesenho.x;
-        var y1Canvas :Number = MainClass.instanciaAtual.design.areaDesenho.y;
-
-        //println("x1Canvas{x1Canvas}");
-        //println("y1Canvas{y1Canvas}");
-
-        var x2Canvas :Number = x1Canvas + MainClass.instanciaAtual.design.areaDesenho.width;
-        var y2Canvas :Number = y1Canvas + MainClass.instanciaAtual.design.areaDesenho.height;
-
-        //println("x2Canvas{x2Canvas}");
-        //println("y2Canvas{y2Canvas}");
-
-        var escala :Number;
+        Double escala;
 
         if (alturaFractal == 0) {
             escala = larguraCanvas / larguraFractal;
@@ -226,25 +194,21 @@ public class AplicadorRegras {
             }
         }
 
+        Ponto firstCorner = new Ponto(0.0,0.0);
 
-        //println("Escala:{escala}");
-
-        var firstCorner :Ponto = null;
-
-        var left :Number = Number.POSITIVE_INFINITY;
-        var right :Number = Number.NEGATIVE_INFINITY;
-        var top  :Number = Number.POSITIVE_INFINITY;
-        var bottom :Number = Number.NEGATIVE_INFINITY;
-
+        Double left = Double.POSITIVE_INFINITY;
+        Double right = Double.NEGATIVE_INFINITY;
+        Double top  = Double.POSITIVE_INFINITY;
+        Double bottom  = Double.NEGATIVE_INFINITY;
 
         //REDIMENSIONA
-        for (comando in cmds) {
-            if (comando.tipoComando == Comando.MOVER) {
+        for (Comando comando : cmds) {
+            if (comando.getTipoComando().equals(Comando.MOVER)) {
 
-                var x1Frac :Number = Math.round(comando.coordenadaInicial.x * escala);
-                var x2Frac :Number = Math.round(comando.coordenadaFinal.x * escala);
-                var y1Frac :Number = Math.round(comando.coordenadaInicial.y * escala);
-                var y2Frac :Number = Math.round(comando.coordenadaFinal.y * escala);
+                Double x1Frac = Double.valueOf(Math.round(comando.getCoordenadaInicial().getX() * escala));
+                Double x2Frac = Double.valueOf(Math.round(comando.getCoordenadaFinal().getX() * escala));
+                Double y1Frac = Double.valueOf(Math.round(comando.getCoordenadaInicial().getY() * escala));
+                Double y2Frac = Double.valueOf(Math.round(comando.getCoordenadaFinal().getY() * escala));
 
                 if (x1Frac < left) {
                     left = x1Frac;
@@ -272,20 +236,15 @@ public class AplicadorRegras {
                 }
                 //println("({x1Frac},{y1Frac}) - ({x2Frac},{y2Frac})");
 
-                comando.coordenadaInicial.x = x1Frac;
-                comando.coordenadaInicial.y = y1Frac;
-                comando.coordenadaFinal.x = x2Frac;
-                comando.coordenadaFinal.y = y2Frac;
-		   	/*println("comando.coordenadaInicial.x{comando.coordenadaInicial.x}");
-		   	println("comando.coordenadaInicial.y{comando.coordenadaInicial.y}");
-		   	println("comando.coordenadaFinal.x{comando.coordenadaFinal.x}");
-		   	println("comando.coordenadaFinal.y{comando.coordenadaFinal.y}");*/
+                comando.getCoordenadaInicial().setX(Double.valueOf(x1Frac));
+                comando.getCoordenadaInicial().setY(Double.valueOf(y1Frac));
+                comando.getCoordenadaFinal().setX(Double.valueOf(x2Frac));
+                comando.getCoordenadaFinal().setY(Double.valueOf(y2Frac));
             }
         }
-        //DESLOCA E CENTRALIZA
 
-        var deslocamentoHorizontal :Number = left - x1Canvas;
-        var deslocamentoVertical   :Number = top - y1Canvas;
+        Double deslocamentoHorizontal = left - x1Canvas;
+        Double deslocamentoVertical = top - y1Canvas;
 
         right += deslocamentoHorizontal;
         bottom += deslocamentoVertical;
@@ -293,68 +252,57 @@ public class AplicadorRegras {
         var centralizacaoHorizontal = deslocamentoHorizontal / 2;
         var centralizacaoVertical = deslocamentoVertical / 2;
 
-        //println("deslocamentoHorizontal{deslocamentoHorizontal}");
-        //println("deslocamentoVertical{deslocamentoVertical}");
-        for (comando in cmds) {
-            if (comando.tipoComando == Comando.MOVER) {
-                comando.coordenadaInicial.x -= deslocamentoHorizontal;
-                comando.coordenadaInicial.y -= deslocamentoVertical;
-                comando.coordenadaFinal.x -= deslocamentoHorizontal;
-                comando.coordenadaFinal.y -= deslocamentoVertical;
+        for (Comando comando : cmds) {
+            if (comando.getTipoComando().equals(Comando.MOVER)) {
+                comando.getCoordenadaInicial().setX(comando.getCoordenadaInicial().getX() - deslocamentoHorizontal);
+                comando.getCoordenadaInicial().setY(comando.getCoordenadaInicial().getY() - deslocamentoVertical);
+                comando.getCoordenadaFinal().setY(comando.getCoordenadaFinal().getY() - deslocamentoVertical);
+                comando.getCoordenadaFinal().setX(comando.getCoordenadaFinal().getX() - deslocamentoHorizontal);
+                comando.getCoordenadaFinal().setY(comando.getCoordenadaFinal().getY() - deslocamentoVertical);
             }
         }
-        System.gc();
-        println("");
         return cmds;
     }
-//
-//public static function expandeFazerRetornar(botao: ActionButton,pnlTransformacoes:TransformationPanel[]) : ActionButton[]{
-//    //println("Entrando recursao fazer retornar");
-//    var botoesExpandidos : ActionButton [];
-//	var botaoMemoria = ActionButton {
-//        nome:"Memorizar"
-//		acaoLSystem : AcaoLSystem{
-//		    tipoAcao : AcaoLSystem.ACAO_MEMORIZAR;
-//		}
-//    }
-//    insert botaoMemoria into botoesExpandidos;
-//    for(transformacao in pnlTransformacoes){
-//        var botoes = transformacao.botoes;
-//        if(botoes[0].acaoLSystem.equals(botao.acaoLSystem)){
-//		    for(j in [2..((sizeof botoes)-1)]){
-//		        var b = botoes[j];
-//		        if(b.acaoLSystem.tipoAcao == AcaoLSystem.ACAO_FAZER_RETORNAR){
-//		            insert expandeFazerRetornar(b,pnlTransformacoes) into botoesExpandidos;
-//		        }else{
-//			        insert b into botoesExpandidos;
-//		        }
-//		    }
-//        }
-//    }
-//    var botaoRestaurar = ActionButton {
-//        nome:"Restaurar"
-//		acaoLSystem : AcaoLSystem{
-//		    tipoAcao : AcaoLSystem.ACAO_RESTAURAR;
-//		}
-//    }
-//    insert botaoRestaurar into botoesExpandidos;
-//    //println("saindo recursao fazer retornar");
-//    return botoesExpandidos;
-//}
-//
-//public static function empilhaComando(acaoLSystem : AcaoLSystem,comando : Comando) : Void{
-//    insert comando into pilhaComandos;
-//}
-//
-//public static function desempilhaComando(acaoLSystem : AcaoLSystem) : Comando{
-//    var tamPilha = sizeof pilhaComandos;
-//    if(tamPilha>=0){
-//        var c : Comando = pilhaComandos[tamPilha-1];
-//        delete c from pilhaComandos;
-//        delete acaoLSystem from pilhaAcoes;
-//        return c;
-//    }
-//    return null;
-//}
+
+    public static List<ActionButton> expandeFazerRetornar(ActionButton button, List<TransformationPanel> pnlTransformacoes) {
+        List<ActionButton> botoesExpandidos = new ArrayList<>();
+        ActionButton botaoMemoria = new ActionButton();
+        botaoMemoria.setNome("Memorizar");
+        botaoMemoria.setAcaoLSystem(new AcaoLSystem(AcaoLSystem.ACAO_MEMORIZAR));
+        botoesExpandidos.add(botaoMemoria);
+        for (TransformationPanel transformacao : pnlTransformacoes) {
+            var botoes = transformacao.getBotoes();
+            if (botoes.get(0).getAcaoLSystem().equals(button.getAcaoLSystem())) {
+                for (int j = 2;j<botoes.size();j++){
+                    ActionButton b = botoes.get(j);
+                    if (b.getAcaoLSystem().getTipoAcao().equals(AcaoLSystem.ACAO_FAZER_RETORNAR)) {
+                        botoesExpandidos.addAll(expandeFazerRetornar(b, pnlTransformacoes));
+                    } else {
+                        botoesExpandidos.add(b);
+                    }
+                }
+            }
+        }
+        ActionButton botaoRestaurar = new ActionButton();
+        botaoRestaurar.setNome("Restaurar");
+        botaoRestaurar.setAcaoLSystem(new AcaoLSystem(AcaoLSystem.ACAO_RESTAURAR));
+        botoesExpandidos.add(botaoRestaurar);
+        return botoesExpandidos;
+    }
+
+    public void empilhaComando(AcaoLSystem acaoLSystem, Comando comando){
+        pilhaComandos.add(comando);
+    }
+
+    public Comando desempilhaComando(AcaoLSystem acaoLSystem){
+        Integer tamPilha = pilhaComandos.size();
+        if (tamPilha >= 0) {
+            Comando c  = pilhaComandos.get(tamPilha - 1);
+            pilhaComandos.remove(c);
+            pilhaAcoes.remove(acaoLSystem);
+            return c;
+        }
+        return null;
+    }
 
 }

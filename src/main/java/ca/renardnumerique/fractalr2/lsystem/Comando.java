@@ -21,7 +21,7 @@ public class Comando {
     private Ponto coordenadaFinal;
     private Integer tipoComando;
     private Duration duracao;
-    private Integer ultimoAngulo;
+    private Double ultimoAngulo;
 
     public String toString() {
         if(tipoComando == Comando.MOVER){
