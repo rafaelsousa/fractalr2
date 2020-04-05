@@ -62,9 +62,8 @@ public class GerenciadorLSystem {
 		    }
 		};
 		AcaoLSystem tempAcao;
-		AcaoExpansiva novaAcao = new AcaoExpansiva();
+		AcaoExpansiva novaAcao = new AcaoExpansiva(AcaoLSystem.ACAO_ANDAR);
         novaAcao.setCor(corAcao);
-        novaAcao.setTipoAcao(AcaoLSystem.ACAO_ANDAR);
 		acoesAndar.add(novaAcao);
 		return novaAcao;
 	}
@@ -78,9 +77,8 @@ public class GerenciadorLSystem {
 		        return acao;
 		    }
 		};
-		AcaoLSystem novaAcao = new AcaoExpansiva();
+		AcaoLSystem novaAcao = new AcaoExpansiva(AcaoLSystem.ACAO_EXPANDIR);
         novaAcao.setCor(corAcao);
-        novaAcao.setTipoAcao(AcaoLSystem.ACAO_EXPANDIR);
         return novaAcao;
 	}
 

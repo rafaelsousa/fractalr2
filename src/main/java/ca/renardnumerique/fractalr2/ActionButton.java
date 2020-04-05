@@ -28,7 +28,7 @@ public class ActionButton extends Group {
     private AcaoLSystem acaoLSystem;
 
     public static final ActionButton BOTAO_IGUAL = new ActionButton(new ImageView("images/igual.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL, "+", -1), null);
-    public static final ActionButton BOTAO_SEPARADOR = new ActionButton(new ImageView("imagens/botoes/draw-arrow-back.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL, "+", -2), null);
+    public static final ActionButton BOTAO_SEPARADOR = new ActionButton(new ImageView("images/botoes/draw-arrow-back.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL, "+", -2), null);
 
     private String nome = "acao";
     private Integer width = 110;
@@ -143,7 +143,7 @@ public class ActionButton extends Group {
         botao.setNome("Draw");
         botao.setCoresSeletor(new ColorSelector());
         botao.setAcaoLSystem(new AcaoExpansiva(AcaoLSystem.ACAO_ANDAR));
-        botao.setIconeUrl("imagens/botoes/anda.png");
+        botao.setIconeUrl("images/botoes/anda.png");
         botoes.add(botao);
 
         ActionButton botaoProduce = new ActionButton();

@@ -60,8 +60,8 @@ public class FractalAnimation {
                 Path caminho = new Path();
                 caminho.getElements().addAll(moveTo, lineTo);
 
-                MoveTo movetoLapis = new MoveTo(x + Pencil.instance.image.getWidth() / 2 - 3, y - Pencil.instance.image.getHeight() / 2);
-                LineTo linetoLapis = new LineTo(endx + Pencil.instance.image.getWidth() / 2 - 3, endy - Pencil.instance.image.getHeight() / 2);
+                MoveTo movetoLapis = new MoveTo(x + Pencil.instance.getImage().getWidth() / 2 - 3, y - Pencil.instance.getImage().getHeight() / 2);
+                LineTo linetoLapis = new LineTo(endx + Pencil.instance.getImage().getWidth() / 2 - 3, endy - Pencil.instance.getImage().getHeight() / 2);
 
                 Path pencilTrack = new Path(movetoLapis, linetoLapis);
 
@@ -125,8 +125,8 @@ public class FractalAnimation {
 
                 Path caminhoLapis = new Path();
                 caminhoLapis.getElements().addAll(
-                        new MoveTo(x + Pencil.instance.image.getWidth() / 2 - 3, y - Pencil.instance.image.getHeight() / 2),
-                        new LineTo(endx + Pencil.instance.image.getWidth() / 2 - 3, endy - Pencil.instance.image.getHeight() / 2)
+                        new MoveTo(x + Pencil.instance.getImage().getWidth() / 2 - 3, y - Pencil.instance.getImage().getHeight() / 2),
+                        new LineTo(endx + Pencil.instance.getImage().getWidth() / 2 - 3, endy - Pencil.instance.getImage().getHeight() / 2)
                 );
 
                 PathTransition transicaoLapis = new PathTransition();

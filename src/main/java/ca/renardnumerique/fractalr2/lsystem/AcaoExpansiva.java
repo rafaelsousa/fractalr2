@@ -14,11 +14,7 @@ public class AcaoExpansiva extends AcaoLSystem {
     
     private List<AcaoLSystem> acoesDerivadas;
 
-    public AcaoExpansiva(Integer tipoAcao, String simbolo, Integer cor) {
-        super(tipoAcao, simbolo, cor);
-    }
-
-    public AcaoExpansiva(Integer acaoExpandir) {
-        super(acaoExpandir);
+    public AcaoExpansiva(Integer acao) {
+        super(acao);
     }
 }

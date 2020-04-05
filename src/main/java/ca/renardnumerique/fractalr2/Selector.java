@@ -11,17 +11,14 @@ public class Selector extends Rectangle {
 
     private Rectangle nodo;
     private Integer idCor;
-    private Integer width = 10;
-    private Integer height = 10;
-    private Integer arcWidth = 5;
-    private Integer arcHeight = 5;
-    private Cursor cursor = Cursor.HAND;
-    private Color fill = Color.web("red");
-    private Color stroke = Color.web("#888");
 
     public Selector() {
-        this.setOnMouseClicked(e -> {
-            cursor = Cursor.HAND;
-        });
+        setCursor(Cursor.HAND);
+        setFill(Color.RED);
+        setStroke(Color.web("#888"));
+        setWidth(10);
+        setHeight(10);
+        setArcHeight(5);
+        setArcWidth(5);
     }
 }

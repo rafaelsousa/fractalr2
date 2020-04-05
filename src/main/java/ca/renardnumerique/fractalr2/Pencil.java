@@ -41,7 +41,6 @@ public class Pencil extends ImageView {
     }
 
     public Boolean focusTraversable = Boolean.TRUE;
-    public Image image = new Image("images/lapis.png");
 
 
     private PathTransition animacao = new PathTransition();
@@ -53,6 +52,7 @@ public class Pencil extends ImageView {
     private ImageView playPauseButton = new ImageView(imgPlay);
 
     private Pencil() {
+        setImage(new Image("images/lapis.png"));
         JavaFxObservable
                 .valuesOf(animacao.statusProperty())
                 .map(this::setPencilImage)
