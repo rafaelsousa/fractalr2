@@ -1,5 +1,8 @@
 package ca.renardnumerique.fractalr2;
 
+import ca.renardnumerique.fractalr2.lsystem.AplicadorRegras;
+import javafx.animation.Animation;
+import javafx.scene.Node;
 import javafx.scene.shape.Line;
 import lombok.Data;
 
@@ -35,27 +38,23 @@ public class Fractal {
             reiniciarDesenho();
         }
         if (!iniciado) {
-            animacaoFractal.inicializar(AplicadorRegras.gerarComandos());
+            animacaoFractal.inicializar(AplicadorRegras.instance.gerarComandos());
             animacaoFractal.playFromStart();
             iniciado = true;
         } else {
             animacaoFractal.play();
         }
-        if (not animacaoFractal.animacao.running){
+        if (!animacaoFractal.animacao.getStatus().equals(Animation.Status.RUNNING)) {
             animacaoFractal.play();
         }
 
     }
 
-    public function pararDesenho() :Void
-
-    {
+    public void pararDesenho() {
         animacaoFractal.pause();
     }
 
-    public function reiniciarDesenho() :Void
-
-    {
+    public void reiniciarDesenho() {
         if (animacaoFractal.running()) {
             animacaoFractal.stop();
         }
@@ -63,15 +62,13 @@ public class Fractal {
         iniciarDesenho();
     }
 
-    public function limpaCanvas() :Void
-
-    {
+    public void limpaCanvas() {
         iniciado = false;
         animacaoFractal = null;
         animacaoFractal = new FractalAnimation();
-        for (content in MainClass.instanciaAtual.design.canvas.content) {
+        for (Node content : MainClass.getInstance().getDesign().getChildren()) {
             if (content instanceof Line) {
-                delete content from MainClass.instanciaAtual.design.canvas.content;
+                MainClass.getInstance().getDesign().getChildren().remove(content);
             }
         }
 

@@ -19,7 +19,7 @@ public class MainClass extends Group  {
 		private DesktopLayout design = new DesktopLayout();
 
 	  	private ExamplePanel pnlExemplos = new ExamplePanel();
-	  	private ButtonPanel pnlBotoes = new ButtonPanel();
+	  	private ButtonPanel pnlBotoes = ButtonPanel.instanciaAtual;
 		private FormulaPanel pnlFormulas = FormulaPanel.getInstance();
 		private TransformationPanel pnlTransformacoes = new TransformationPanel();
 		private ControlPanel pnlControle = new ControlPanel();

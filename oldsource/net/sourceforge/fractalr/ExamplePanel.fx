@@ -201,7 +201,8 @@ public class ExamplePanel extends CustomNode  {
        content: "Exemplos"
        y:100
        x:90
-       font: Font.font("Verdana",FontWeight.BOLD,12) fill: Color.web("#9f4545")
+       font: Font.font("Verdana",FontWeight.BOLD,12)
+       fill: Color.web("#9f4545")
    }
       var rdp = ImageView {
            focusTraversable: true

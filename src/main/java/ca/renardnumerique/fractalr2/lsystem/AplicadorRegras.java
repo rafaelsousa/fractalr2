@@ -18,6 +18,12 @@ import java.util.List;
 @Data
 public class AplicadorRegras {
 
+    public static AplicadorRegras instance = new AplicadorRegras();
+
+    private AplicadorRegras(){
+
+    }
+
     private Integer iteracao;
     private List<ActionButton> botoesFormula;
 
