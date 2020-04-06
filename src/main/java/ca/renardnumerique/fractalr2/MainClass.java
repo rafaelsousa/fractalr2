@@ -34,18 +34,29 @@ public class MainClass extends Group {
 
     public void create() {
         transformations = new Group();
+        pnlExemplos = new ExamplePanel();
         transformations.getChildren().add(pnlExemplos);
+
+        pnlFormulas = FormulaPanel.getInstance();
         transformations.getChildren().add(pnlFormulas);
+
+        pnlControle = new ControlPanel();
         transformations.getChildren().add(pnlControle);
+
+        pnlTransformacoes = new TransformationPanel();
         transformations.getChildren().add(pnlTransformacoes);
+
+        ButtonPanel buttonPanel = ButtonPanel.getInstance();
         transformations.getChildren().add(pnlBotoes);
-        transformations.getChildren().add(pencil);
+
+
         design = new DesktopLayout();
         pencil = Pencil.getInstance();
         pencil.setX(127);
         pencil.setY(33);
         pencil.setCanvas(design);
-        pnlBotoes = ButtonPanel.getInstance();
+
+        transformations.getChildren().add(pencil);
         //createTransformations();
         this.getChildren().addAll(design, pnlControle);
     }

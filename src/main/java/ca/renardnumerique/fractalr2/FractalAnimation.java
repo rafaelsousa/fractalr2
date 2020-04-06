@@ -13,6 +13,7 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,7 +22,7 @@ public class FractalAnimation {
     private Double y;
 
     private Line linha;
-    public List<Transition> transicoesGerais;
+    public List<Transition> transicoesGerais = new ArrayList<>();
 
     public SequentialTransition animacao = new SequentialTransition();
 

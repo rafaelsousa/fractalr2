@@ -131,10 +131,18 @@ public class ActionButton extends Group {
 
     public ActionButton() {
         numeroBotoes++;
-        fillNormal = new LinearGradient(0.0, 0.7, 0.0, 1.5, true, CycleMethod.NO_CYCLE);
-        fillNormal.getStops().add(new Stop(0.2, Color.web("#FFFAC1")));
+        fillNormal = new LinearGradient(
+                0.0,
+                0.7,
+                0.0,
+                1.5,
+                Boolean.TRUE,
+                CycleMethod.NO_CYCLE,
+                new Stop(0.2, Color.web("#FFFAC1")),
+                new Stop(1.0, Color.web("#AAA")));
+
+        coresSeletor = new ColorSelector();
         coresSeletor.setPosX(98 + designRetangulo.getX());
-        fillNormal.getStops().add(new Stop(1.0, Color.web("#AAA")));
         coresSeletor.setPosY(16 + designRetangulo.getY());
         coresSeletor.setNodo(designRetangulo);
         coresSeletor.setBotaoPai(this);
