@@ -4,13 +4,14 @@ import javafx.scene.paint.*;
 import javafx.scene.shape.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Data
 public class ButtonPanel extends Group  {
 
-    private List<ActionButton> botoes;
+    private List<ActionButton> botoes = new ArrayList<>();
 
     public static ButtonPanel instanciaAtual = new ButtonPanel();
 

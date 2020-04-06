@@ -37,18 +37,24 @@ public class ActionButton extends Group {
     public String iconeUrl = "images/botoes/rating.png"; //por padrao aparece uma estrela
     public ColorSelector coresSeletor;
     private LinearGradient fillNormal;
+    private Rectangle designRetangulo;
+    private int numeroBotoes = -2;
+    private Text dspNome;
+    private ImageView icone;
 
     public ActionButton(ImageView icone, AcaoLSystem acaoLSystem, LinearGradient fillNormal) {
         this.icone = icone;
         this.acaoLSystem = acaoLSystem;
         this.fillNormal = fillNormal;
+        buildDesignRectangle();
+        buildDspNome();
+        buildIcone();
     }
 
-    private int numeroBotoes = -2;
 
-    private Rectangle designRetangulo = new Rectangle();
-
-    {
+    
+    private void buildDesignRectangle(){
+    	designRetangulo = new Rectangle();
         designRetangulo.setY(-2);
         designRetangulo.setWidth(width);
         designRetangulo.setX(170 + (width + 10) * (numeroBotoes));
@@ -67,24 +73,25 @@ public class ActionButton extends Group {
 
     ;
 
-    private Text dspNome = new Text(nome);
 
-    {
+    private void buildDspNome(){
+    	dspNome = new Text();
+    	dspNome.setText(nome);
         dspNome.setX(24 + designRetangulo.getX());
         dspNome.setY(17 + designRetangulo.getX());
         dspNome.setFont(new Font("Bitstream Vera Sans Bold", 10));
         dspNome.setFill(Color.web("#000000"));
     }
 
-    private ImageView icone = new ImageView();
-
-    {
+    
+    private void buildIcone(){
+    	icone = new ImageView();
         icone.setImage(new Image(iconeUrl));
         icone.setX(1 + designRetangulo.getX());
         icone.setY(5 + designRetangulo.getY());
     }
 
-    ;
+    
 
     public ActionButton duplicar() {
         ActionButton nova = new ActionButton();
