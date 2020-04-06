@@ -6,4 +6,5 @@ module ca.renardnumerique.fractalr2 {
     requires rxjavafx;
 
     exports ca.renardnumerique.fractalr2 to javafx.graphics;
+    
 }
