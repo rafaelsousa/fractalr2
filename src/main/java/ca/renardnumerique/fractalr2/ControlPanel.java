@@ -37,7 +37,7 @@ public class ControlPanel extends Group {
 	private ImageView limpar = new ImageView();
 	{
 		limpar.setFocusTraversable(Boolean.TRUE);
-		limpar.setImage(new Image("images/limpar.png"));
+		limpar.setImage(new Image("file:/file:images/limpar.png"));
 		limpar.setY(5);
 		limpar.setX(790);
 	};
@@ -157,7 +157,7 @@ public class ControlPanel extends Group {
 	private ImageView imgStop = new ImageView();
 	{
 		imgStop.setFocusTraversable(Boolean.TRUE);
-		imgStop.setImage(new Image("images/pause.png"));
+		imgStop.setImage(new Image("file:images/pause.png"));
 		imgStop.setY(posBotoes + 21);
 		imgStop.setX(885);
 		imgStop.setOnMouseClicked(e -> {
@@ -190,7 +190,7 @@ public class ControlPanel extends Group {
 	private ImageView imgReinicio = new ImageView();
 	{
 		imgReinicio.setFocusTraversable(Boolean.TRUE);
-		imgReinicio.setImage(new Image("images/restart.png"));
+		imgReinicio.setImage(new Image("file:images/restart.png"));
 		imgReinicio.setY(posBotoes + 21);
 		imgReinicio.setX(930);
 		imgReinicio.setOnMouseClicked(e -> {

@@ -13,7 +13,9 @@ public class Start extends Application {
         stage.setResizable(Boolean.FALSE);
         stage.setWidth(MainClass.getInstance().getSystemWidth());
         stage.setHeight(MainClass.getInstance().getSystemHeight());
-        Scene scene = new Scene(MainClass.getInstance());
+        MainClass mainClass = MainClass.getInstance();
+        mainClass.create();
+        Scene scene = new Scene(mainClass);
         scene.setFill(Color.web("#CCC"));
         stage.setScene(scene);
         stage.show();

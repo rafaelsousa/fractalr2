@@ -41,7 +41,7 @@ public abstract class Exemplo extends Group {
 	private void initializeComponents() {
 
 		fundo.setFocusTraversable(true);
-		fundo.setImage(new Image("images/bgexemplo.png"));
+		fundo.setImage(new Image("file:images/bgexemplo.png"));
 		fundo.setY(115 + (ExamplePanel.sequencial * 25));
 		fundo.setX(4);
 

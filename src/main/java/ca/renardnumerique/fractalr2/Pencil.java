@@ -21,7 +21,14 @@ import java.util.List;
 public class Pencil extends ImageView {
 
 
-    public static final Pencil instance = new Pencil();
+    private static Pencil instance;
+
+    public static Pencil getInstance(){
+        if(instance==null){
+            instance = new Pencil();
+        }
+        return instance;
+    }
 
     private Boolean escreve = false;
     private Group canvas;
@@ -46,13 +53,13 @@ public class Pencil extends ImageView {
     private PathTransition animacao = new PathTransition();
 
     private List<PathElement> linhas;
-    private Image imgPlay = new Image("images/play.png");
-    private Image imgPause = new Image("images/pause.png");
+    private Image imgPlay = new Image("file:images/play.png");
+    private Image imgPause = new Image("file:images/pause.png");
 
     private ImageView playPauseButton = new ImageView(imgPlay);
 
     private Pencil() {
-        setImage(new Image("images/lapis.png"));
+        setImage(new Image("file:images/lapis.png"));
         JavaFxObservable
                 .valuesOf(animacao.statusProperty())
                 .map(this::setPencilImage)

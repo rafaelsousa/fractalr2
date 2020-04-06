@@ -26,15 +26,16 @@ public class ActionButton extends Group {
 
     private AcaoLSystem acaoLSystem;
 
-    public static final ActionButton BOTAO_IGUAL = new ActionButton(new ImageView("images/igual.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL, "+", -1), null);
-    public static final ActionButton BOTAO_SEPARADOR = new ActionButton(new ImageView("images/botoes/draw-arrow-back.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL, "+", -2), null);
+    public static final ActionButton BOTAO_IGUAL = new ActionButton(new ImageView("file:images/igual.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL, "+", -1), null);
+    public static final ActionButton BOTAO_SEPARADOR = new ActionButton(new ImageView("file:images/botoes/draw-arrow-back.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL, "+", -2), null);
 
     private String nome = "acao";
     private Integer width = 110;
     private Node painelAtual;
     private List<ActionButton> botoes;
 
-    public String iconeUrl = "images/botoes/rating.png"; //por padrao aparece uma estrela
+    public String iconeUrl = "file:images/botoes/rating.png"; //por padrao aparece uma estrela
+
     public ColorSelector coresSeletor;
     private LinearGradient fillNormal;
     private Rectangle designRetangulo;
@@ -147,33 +148,33 @@ public class ActionButton extends Group {
         botao.setNome("Draw");
         botao.setCoresSeletor(new ColorSelector());
         botao.setAcaoLSystem(new AcaoExpansiva(AcaoLSystem.ACAO_ANDAR));
-        botao.setIconeUrl("images/botoes/anda.png");
+        botao.setIconeUrl("file:images/botoes/anda.png");
         botoes.add(botao);
 
         ActionButton botaoProduce = new ActionButton();
         botaoProduce.setNome("Produce");
         botaoProduce.setCoresSeletor(new ColorSelector());
         botaoProduce.setAcaoLSystem(new AcaoExpansiva(AcaoLSystem.ACAO_EXPANDIR));
-        botaoProduce.setIconeUrl("images/botoes/legalmoves.png");
+        botaoProduce.setIconeUrl("file:images/botoes/legalmoves.png");
         botoes.add(botaoProduce);
 
         ActionButton botaoTurnLeft = new ActionButton();
         botaoTurnLeft.setNome("Turn Left");
         botaoTurnLeft.setAcaoLSystem(new AcaoLSystem(AcaoLSystem.ACAO_GIRAR_ESQUERDA));
-        botaoTurnLeft.setIconeUrl("images/botoes/esquerda.png");
+        botaoTurnLeft.setIconeUrl("file:images/botoes/esquerda.png");
         botoes.add(botaoTurnLeft);
 
         ActionButton botaoTurnRight = new ActionButton();
         botaoTurnRight.setNome("Turn Right");
         botaoTurnRight.setAcaoLSystem(new AcaoLSystem(AcaoLSystem.ACAO_GIRAR_DIREITA));
-        botaoTurnRight.setIconeUrl("images/botoes/direita.png");
+        botaoTurnRight.setIconeUrl("file:images/botoes/direita.png");
         botoes.add(botaoTurnRight);
 
         ActionButton doAndReturnButton = new ActionButton();
         doAndReturnButton.setNome("Do and return");
         doAndReturnButton.setCoresSeletor(new ColorSelector());
         doAndReturnButton.setAcaoLSystem(new AcaoLSystem(AcaoLSystem.ACAO_FAZER_RETORNAR));
-        doAndReturnButton.setIconeUrl("images/botoes/fazerRetornar.png");
+        doAndReturnButton.setIconeUrl("file:images/botoes/fazerRetornar.png");
         botoes.add(doAndReturnButton);
         
         return botoes;

@@ -13,7 +13,7 @@ public class ButtonPanel extends Group  {
 
     private List<ActionButton> botoes = new ArrayList<>();
 
-    public static ButtonPanel instanciaAtual = new ButtonPanel();
+    private static ButtonPanel instanciaAtual = null;
 
     private ButtonPanel(){
         this.getChildren().addAll(botoes);
@@ -21,11 +21,18 @@ public class ButtonPanel extends Group  {
         this.botoes = ActionButton.getBotao();
     }
 
+    public static ButtonPanel getInstance(){
+        if(instanciaAtual==null){
+            instanciaAtual = new ButtonPanel();
+        }
+        return instanciaAtual;
+    }
+
     private Line linhaSuperior = new Line(0,0,972,0);
     {
         linhaSuperior.setStroke(Color.web("#cccccc"));
         linhaSuperior.setStrokeWidth(1);
-    };
+    }
 
     public static ActionButton getBotao(Integer codigoBotao) {
         for(ActionButton btn : instanciaAtual.botoes){

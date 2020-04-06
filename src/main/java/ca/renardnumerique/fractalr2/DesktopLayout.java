@@ -20,7 +20,7 @@ public class DesktopLayout extends Group {
     private ImageView fundoSistema;
 
     {
-        fundoSistema = new ImageView(new Image("images/bg_sistema.png"));
+        fundoSistema = new ImageView(new Image("file:images/bg_sistema.png"));
         fundoSistema.setFocusTraversable(Boolean.TRUE);
         fundoSistema.setY(0.0);
         fundoSistema.setX(0.0);
@@ -46,7 +46,7 @@ public class DesktopLayout extends Group {
     {
         imgAnterior.setOpacity(0.1);
         imgAnterior.setFocusTraversable(Boolean.TRUE);
-        imgAnterior.setImage(new Image("images/anterior.png"));
+        imgAnterior.setImage(new Image("file:file:images/anterior.png"));
         imgAnterior.setX(166);
         imgAnterior.setY(inicioDesenhoY + 200);
     }
@@ -56,7 +56,7 @@ public class DesktopLayout extends Group {
     {
         imgProximo.setOpacity(0.1);
         imgProximo.setFocusTraversable(Boolean.TRUE);
-        imgProximo.setImage(new Image("images/proximo.png"));
+        imgProximo.setImage(new Image("file:images/proximo.png"));
         imgProximo.setY(inicioDesenhoY + 200);
         imgProximo.setX(930);
     }
@@ -137,7 +137,7 @@ public class DesktopLayout extends Group {
 
     {
         logo.setFocusTraversable(true);
-        logo.setImage(new Image("images/logo.png"));
+        logo.setImage(new Image("file:images/logo.png"));
         logo.setY(4);
         logo.setX(10);
     }

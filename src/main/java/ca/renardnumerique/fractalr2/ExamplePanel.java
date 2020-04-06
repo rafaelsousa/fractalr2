@@ -33,7 +33,7 @@ public class ExamplePanel extends Group {
     public static Integer sequencial = qteExemplos++;
 
 
-    private Exemplo exemploRodando = null;
+    public static Exemplo exemploRodando = null;
 
     private Text titulo = new Text("Exemplos");
 
@@ -47,7 +47,7 @@ public class ExamplePanel extends Group {
     private ImageView rdp = new ImageView();
     {
         rdp.setFocusTraversable(Boolean.TRUE);
-        rdp.setImage(new Image("images/bgexemplordp.png"));
+        rdp.setImage(new Image("file:images/bgexemplordp.png"));
         rdp.setY(115 + (qteExemplos * buttonHeight));
         rdp.setX(2);
     }
