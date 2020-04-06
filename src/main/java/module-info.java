@@ -1,4 +1,4 @@
-module fractalr2 {
+module ca.renardnumerique.fractalr2 {
 
     requires javafx.controls;
     requires lombok;
