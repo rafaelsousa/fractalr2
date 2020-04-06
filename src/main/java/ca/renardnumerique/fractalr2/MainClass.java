@@ -16,9 +16,11 @@ public class MainClass extends Group {
 	private ExamplePanel pnlExemplos;
 	private ButtonPanel pnlBotoes;
 	private FormulaPanel pnlFormulas = FormulaPanel.getInstance();
-	private TransformationPanel pnlTransformacoes;
-	private ControlPanel pnlControle;
-	private Pencil pencil;
+    private TransformationPanel pnlTransformacoes;
+    private ControlPanel pnlControle;
+    private Pencil pencil;
+    private Group transformations;
+
 
     public static MainClass getInstance() {
         if(MAINCLASS_INSTANCE == null){
@@ -30,24 +32,22 @@ public class MainClass extends Group {
     private MainClass() {
     }
 
-    private Group transformations;
-
     public void create() {
         transformations = new Group();
         pnlExemplos = new ExamplePanel();
-        transformations.getChildren().add(pnlExemplos);
+        getChildren().add(pnlExemplos);
 
         pnlFormulas = FormulaPanel.getInstance();
-        transformations.getChildren().add(pnlFormulas);
+        getChildren().add(pnlFormulas);
 
         pnlControle = new ControlPanel();
-        transformations.getChildren().add(pnlControle);
+        getChildren().add(pnlControle);
 
         pnlTransformacoes = new TransformationPanel();
-        transformations.getChildren().add(pnlTransformacoes);
+        getChildren().add(pnlTransformacoes);
 
         pnlBotoes = ButtonPanel.getInstance();
-        transformations.getChildren().add(pnlBotoes);
+        getChildren().add(pnlBotoes);
 
 
         design = new DesktopLayout();
@@ -56,9 +56,9 @@ public class MainClass extends Group {
         pencil.setY(33);
         pencil.setCanvas(design);
 
-        transformations.getChildren().add(pencil);
+        getChildren().add(pencil);
         //createTransformations();
-        this.getChildren().addAll(design, pnlControle);
+        this.getChildren().add(design);
     }
 
 

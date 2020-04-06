@@ -39,7 +39,7 @@ public class AcaoLSystem {
 	        return String.valueOf("ABCD".charAt(this.cor));
 	   	}
 	    if(tipoAcao == AcaoLSystem.ACAO_FAZER_RETORNAR){
-			return this.cor.toString();
+			return this.cor!=null?this.cor.toString():"";
 	   	}
    		if(tipoAcao == AcaoLSystem.ACAO_GIRAR_DIREITA){
    		    return "+";
