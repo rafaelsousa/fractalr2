@@ -14,14 +14,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import lombok.Data;
 
-import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 public class FormulaPanel extends Group {
 
 
-    private List<ActionButton> botoes;
+    private List<ActionButton> botoes = new ArrayList<>();
     private List<ImageView> iconesBotoes;
     private Text formula = new Text("Formulas");
 
@@ -110,8 +110,7 @@ public class FormulaPanel extends Group {
             nodo.setImg(img);
             nodo.setBtn(botao);
 
-            DragDrop dragDrop = new DragDrop();
-            dragDrop.setTarget(nodo);
+            DragDrop dragDrop = new DragDrop(nodo);
             dragDrop.setMaxX(780);
             dragDrop.setMaxY(74);
             dragDrop.setOnSoltar(this::trataMoverExcluir);

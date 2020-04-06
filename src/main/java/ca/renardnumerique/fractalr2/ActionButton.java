@@ -17,7 +17,6 @@ import javafx.scene.text.Text;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class ActionButton extends Group {
     private String nome = "acao";
     private Integer width = 110;
     private Node painelAtual;
-    private List<Action> botoes;
+    private List<ActionButton> botoes;
 
     public String iconeUrl = "images/botoes/rating.png"; //por padrao aparece uma estrela
     public ColorSelector coresSeletor;
@@ -100,13 +99,11 @@ public class ActionButton extends Group {
         this.painelAtual = local;
     }
 
-    private DragDrop drag = new DragDrop();
-
+    private DragDrop drag = new DragDrop(this);
     {
-        drag.setTarget(this);
         drag.onChange(arrastaSolta -> {
             FormulaPanel.getInstance().trataArrastar(arrastaSolta);
-            for (Node transformacao : MainClass.getInstance().getTransformacoes().getChildren()) {
+            for (Node transformacao : MainClass.getInstance().getTransformations().getChildren()) {
                 if (transformacao instanceof TransformationPanel) {
                     ((TransformationPanel) transformacao).trataArrastar(arrastaSolta);
                 }
@@ -114,7 +111,7 @@ public class ActionButton extends Group {
         });
         drag.setOnSoltar(arrastaSolta -> {
             FormulaPanel.getInstance().trataSoltar(arrastaSolta);
-            for (Node transformacao : MainClass.getInstance().getTransformacoes().getChildren()) {
+            for (Node transformacao : MainClass.getInstance().getTransformations().getChildren()) {
                 if (transformacao instanceof TransformationPanel) {
                     ((TransformationPanel) transformacao).trataSoltar(arrastaSolta);
                 }

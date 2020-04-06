@@ -11,10 +11,8 @@ public class Start extends Application {
     public void start(Stage stage) {
         stage.setTitle("Fractal-R Version 1.9 - Beta");
         stage.setResizable(Boolean.FALSE);
-        stage.setWidth(MainClass.getInstance().getLarguraSistema());
-        stage.setHeight(MainClass.getInstance().getAlturaSistema());
-        String javaVersion = System.getProperty("java.version");
-        String javafxVersion = System.getProperty("javafx.version");
+        stage.setWidth(MainClass.getInstance().getSystemWidth());
+        stage.setHeight(MainClass.getInstance().getSystemHeight());
         Scene scene = new Scene(MainClass.getInstance());
         scene.setFill(Color.web("#CCC"));
         stage.setScene(scene);

@@ -19,6 +19,11 @@
 			<version>14</version>
 		</dependency>
 		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>1.3.1.Final</version>
+		</dependency>
+		<dependency>
 			<groupId>io.reactivex.rxjava2</groupId>
 			<artifactId>rxjavafx</artifactId>
 			<version>2.2.2</version>
@@ -44,6 +49,14 @@
 				<version>0.0.4</version>
 				<configuration>
 					<mainClass>ca.renardnumerique.fractalr2.Start</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
+				<configuration>
+					<argLine>-Djdk.gtk.version=2</argLine>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -41,7 +41,7 @@ public class AplicadorRegras {
         //Atribuir transformacoes aos botoes no painel de formulas
         List<TransformationPanel> pnlTransformacoes = new ArrayList<>();
 
-        for (Node pnl : MainClass.getInstance().getTransformacoes().getChildren()) {
+        for (Node pnl : MainClass.getInstance().getTransformations().getChildren()) {
             if (pnl instanceof TransformationPanel) {
                 pnlTransformacoes.add((TransformationPanel) pnl);
             }

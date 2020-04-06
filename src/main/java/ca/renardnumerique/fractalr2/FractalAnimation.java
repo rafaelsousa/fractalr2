@@ -6,7 +6,6 @@
 package ca.renardnumerique.fractalr2;
 
 import ca.renardnumerique.fractalr2.lsystem.Comando;
-import com.sun.tools.javac.Main;
 import javafx.animation.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;

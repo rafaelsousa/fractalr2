@@ -24,7 +24,9 @@ import java.util.List;
 public class TransformationPanel extends Group  {
 
     public static Integer quantidadeTransformacoes=1;
-    public static TransformationPanel instanciaAtual;
+
+    public static TransformationPanel instanciaAtual = new TransformationPanel();
+
     private List<ActionButton> botoes = new ArrayList<>();
     private List<ImageView> iconesBotoes = new ArrayList<>();
     private Integer incrementoY = 26;
@@ -65,7 +67,7 @@ public class TransformationPanel extends Group  {
         btnDpl.setOnAction(this::trataAdicaoExclusao);
     }
 
-    public Rectangle btnDuplicar;
+    public Rectangle btnDuplicar = new Rectangle();
     {
         btnDuplicar.setX(813);
         btnDuplicar.setY(posY);
@@ -100,10 +102,10 @@ public class TransformationPanel extends Group  {
     public void adicionarBarra(){
         Integer inicioDesenhoY = MainClass.getInstance().getDesign().getInicioDesenhoY();
         MainClass.getInstance().getDesign().setInicioDesenhoY(inicioDesenhoY+incrementoY);
-        Integer alturaRealSistema = MainClass.getInstance().getAlturaSistema();
-        MainClass.getInstance().setAlturaSistema(alturaRealSistema+incrementoY);
+        Integer alturaRealSistema = MainClass.getInstance().getSystemHeight();
+        MainClass.getInstance().setSystemHeight(alturaRealSistema+incrementoY);
         TransformationPanel aux = new TransformationPanel();
-        MainClass.getInstance().getTransformacoes().getChildren().add(3,aux);
+        MainClass.getInstance().getTransformations().getChildren().add(3,aux);
         txtSinal="-";
         ultimo=false;
         instanciaAtual = aux;
@@ -111,23 +113,23 @@ public class TransformationPanel extends Group  {
         MainClass.getInstance().getPencil().clear();
     }
     public void resetarBarra(){
-        while((MainClass.getInstance().getTransformacoes().getChildren().size() >=8)){
+        while((MainClass.getInstance().getTransformations().getChildren().size() >=8)){
             excluirBarra();
         }
 
     }
     public void excluirBarra(){
-        if((MainClass.getInstance().getTransformacoes().getChildren().size() >=8)){
+        if((MainClass.getInstance().getTransformations().getChildren().size() >=8)){
 
             Integer inicioDesenhoY = MainClass.getInstance().getDesign().getInicioDesenhoY()-incrementoY;
-            Integer alturaRealSistema = MainClass.getInstance().getAlturaSistema()-incrementoY;
+            Integer alturaRealSistema = MainClass.getInstance().getSystemHeight()-incrementoY;
             MainClass.getInstance().getDesign().setInicioDesenhoY(inicioDesenhoY);
-            MainClass.getInstance().setAlturaSistema(alturaRealSistema);
+            MainClass.getInstance().setSystemHeight(alturaRealSistema);
             quantidadeTransformacoes--;
-            MainClass.getInstance().getTransformacoes().getChildren().remove(this);
+            MainClass.getInstance().getTransformations().getChildren().remove(this);
             var i = quantidadeTransformacoes-1;
             TransformationPanel primeiro = null;
-            for(Node pnl : MainClass.getInstance().getTransformacoes().getChildren()){
+            for(Node pnl : MainClass.getInstance().getTransformations().getChildren()){
                 if(pnl instanceof TransformationPanel){
                     if(primeiro == null){
                         primeiro=(TransformationPanel)pnl;
@@ -200,7 +202,7 @@ public class TransformationPanel extends Group  {
         if(ultimo && botoes.size()>2){
             txtSinal="+";
         }else{
-            if((MainClass.getInstance().getTransformacoes().getChildren().size()>6)){
+            if((MainClass.getInstance().getTransformations().getChildren().size()>6)){
                 txtSinal="-";
             }
         }
@@ -237,9 +239,8 @@ public class TransformationPanel extends Group  {
                 nodo.setRect(rect);
                 nodo.setBtn(botao);
             }
-            DragDrop drag = new DragDrop();
+            DragDrop drag = new DragDrop(nodo);
             {
-                drag.setTarget(nodo);
                 drag.setMaxX(900);
                 drag.setMaxY(874);
                 drag.setOnSoltar(this::trataMoverExcluir);

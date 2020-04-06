@@ -23,8 +23,8 @@ public class DragDrop {
     public double ty = 0;
     public double tx = 0;
 
-    public DragDrop(){
-
+    public DragDrop(Group target){
+        this.target = target;
         target.setOnMousePressed(e ->  {
             startX = e.getSceneX()-target.getTranslateX();
             startY = e.getSceneY()-target.getTranslateY();

@@ -9,14 +9,16 @@ import java.util.List;
 
 @Data
 public class ButtonPanel extends Group  {
+
+    private List<ActionButton> botoes;
+
     public static ButtonPanel instanciaAtual = new ButtonPanel();
 
     private ButtonPanel(){
         this.getChildren().addAll(botoes);
         this.getChildren().add(linhaSuperior);
+        this.botoes = ActionButton.getBotao();
     }
-
-    private List<ActionButton> botoes = ActionButton.getBotao();
 
     private Line linhaSuperior = new Line(0,0,972,0);
     {
