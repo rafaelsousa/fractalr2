@@ -13,22 +13,23 @@ import lombok.Data;
 
 @Data
 public class ColorSelector extends Group {
-    private Double posX;
-    private Double posY;
+    private Double posX = 0.0;
+    private Double posY = 0.0;
     private Selector selecionado;
     public Integer idSelecionado;
     private ActionButton botaoPai;
     private Rectangle nodo;
     public Boolean aberto = Boolean.FALSE;
-    private Text txtMais = new Text();
-    private Selector btnVermelho = new Selector();
-    private Selector btnVerde = new Selector();
-    private Selector btnAzul = new Selector();
-    private Selector btnAmarelo = new Selector();
-    public Selector btnBranco = new Selector();
-    public Rectangle btnControle = new Rectangle();
+    private Text txtMais;
+    private Selector btnVermelho;
+    private Selector btnVerde;
+    private Selector btnAzul;
+    private Selector btnAmarelo;
+    public Selector btnBranco;
+    public Rectangle btnControle;
 
     public ColorSelector() {
+        create();
         this.getChildren().addAll(
                 btnControle,
                 txtMais,

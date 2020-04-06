@@ -130,6 +130,10 @@ public class ActionButton extends Group {
     }
 
     public ActionButton() {
+
+    }
+
+    public void create(){
         numeroBotoes++;
         fillNormal = new LinearGradient(
                 0.0,
@@ -140,7 +144,7 @@ public class ActionButton extends Group {
                 CycleMethod.NO_CYCLE,
                 new Stop(0.2, Color.web("#FFFAC1")),
                 new Stop(1.0, Color.web("#AAA")));
-
+        buildDesignRectangle();
         coresSeletor = new ColorSelector();
         coresSeletor.setPosX(98 + designRetangulo.getX());
         coresSeletor.setPosY(16 + designRetangulo.getY());

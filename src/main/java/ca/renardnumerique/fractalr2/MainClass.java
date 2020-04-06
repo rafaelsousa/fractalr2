@@ -46,7 +46,7 @@ public class MainClass extends Group {
         pnlTransformacoes = new TransformationPanel();
         transformations.getChildren().add(pnlTransformacoes);
 
-        ButtonPanel buttonPanel = ButtonPanel.getInstance();
+        pnlBotoes = ButtonPanel.getInstance();
         transformations.getChildren().add(pnlBotoes);
 
 
