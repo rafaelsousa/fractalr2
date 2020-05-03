@@ -1,5 +1,8 @@
 package ca.renardnumerique.fractalr2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -12,31 +15,26 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Data
 public class FormulaPanel extends Group {
-
-
+    
+    
+    private static FormulaPanel instance = new FormulaPanel();
+    public static FormulaPanel getInstance(){return instance;}
+    
     private List<ActionButton> botoes = new ArrayList<>();
-    private List<ImageView> iconesBotoes;
+    private Rectangle area = new Rectangle();
     private Text formula = new Text("Formulas");
-    {
-        formula.setY(2);
-        formula.setX(170);
-        formula.setFont(Font.font("Bitstream Vera Sans Bold", 12));
-        formula.setFill(Color.web("#000"));
+    private Rectangle contornoAreaDeBotoes = new Rectangle();
+    private Group areaDeBotoes = new Group();
+
+    private FormulaPanel() {
+        writeFormulaLabel();
+        drawBoundaries();
+        this.getChildren().addAll(area, formula, contornoAreaDeBotoes, areaDeBotoes);
     }
 
-    /**
-     * Formula panel boundary
-     */
-    public Rectangle area = new Rectangle();
-
-    {
+    private void drawBoundaries() {
         area.setX(165);
         area.setY(1);
         area.setArcWidth(10);
@@ -54,14 +52,7 @@ public class FormulaPanel extends Group {
                         new Stop(1.0, Color.web("#AAA")));
         area.setFill(linearFill);
         area.setStroke(Color.web("#111"));
-    }
 
-    private Group areaDeBotoes = new Group();
-
-    Rectangle contornoAreaDeBotoes = new Rectangle();
-
-    {
-        contornoAreaDeBotoes.setX(243);
         contornoAreaDeBotoes.setY(area.getY() + 3);
         contornoAreaDeBotoes.setWidth(botoes.size() * 32 + 2);
         contornoAreaDeBotoes.setHeight(25);
@@ -78,14 +69,16 @@ public class FormulaPanel extends Group {
         contornoAreaDeBotoes.setStroke(Color.web("#444"));
     }
 
-    private static FormulaPanel instance = new FormulaPanel();
-    public static FormulaPanel getInstance(){return instance;}
-
-    private FormulaPanel() {
-        this.getChildren().addAll(area, formula, contornoAreaDeBotoes, areaDeBotoes);
+    private void writeFormulaLabel(){
+        formula.setY(16);
+        formula.setX(170);
+        formula.setFont(Font.font("Bitstream Vera Sans Bold", 12));
+        formula.setFill(Color.web("#000"));
     }
 
-    public void redesenhaBarra() {
+    
+
+    public void redrawBar() {
         areaDeBotoes.getChildren().clear();
         Integer cont = 0;
         for (ActionButton botao : botoes) {
@@ -149,7 +142,7 @@ public class FormulaPanel extends Group {
         } else {
             botoes.remove(btn.getTarget());
         }
-        redesenhaBarra();
+        redrawBar();
     }
 
     //retorna o botao correspondente a um icone
@@ -175,7 +168,7 @@ public class FormulaPanel extends Group {
         } else {
             botoes.remove(ActionButton.BOTAO_SEPARADOR);
         }
-        redesenhaBarra();
+        redrawBar();
     }
 
     //trata a adicao da um botao na barra de formulas
@@ -184,6 +177,6 @@ public class FormulaPanel extends Group {
         if (btn.estaEm(area)) {
             botoes.add((ActionButton) btn.target);
         }
-        redesenhaBarra();
+        redrawBar();
     }
 }
