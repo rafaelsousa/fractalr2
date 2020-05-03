@@ -13,11 +13,7 @@ public class Start extends Application {
         stage.setResizable(Boolean.FALSE);
         stage.setWidth(MainClass.getInstance().getSystemWidth());
         stage.setHeight(MainClass.getInstance().getSystemHeight());
-        MainClass mainClass = MainClass.getInstance();
-        mainClass.create();
-        Scene scene = new Scene(mainClass);
-        scene.setFill(Color.web("#CCC"));
-        stage.setScene(scene);
+        MainClass.getInstance().create(stage);
         stage.show();
     }
 

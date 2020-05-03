@@ -1,24 +1,27 @@
 package ca.renardnumerique.fractalr2;
-import javafx.scene.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.*;
 import javafx.scene.shape.*;
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 @Data
-public class ButtonPanel extends Group  {
+public class ButtonPanel extends HBox {
 
-    private List<ActionButton> botoes = new ArrayList<>();
-
+    private List<ActionButton> botoes;
     private static ButtonPanel instanciaAtual = null;
+    private Line linhaSuperior;
+
 
     private ButtonPanel(){
+        this.linhaSuperior = new Line(0,0,972,0);
+        linhaSuperior.setStroke(Color.web("#cccccc"));
+        linhaSuperior.setStrokeWidth(1);
+        this.botoes = ActionButton.getAllButtons();
         this.getChildren().addAll(botoes);
         this.getChildren().add(linhaSuperior);
-        this.botoes = ActionButton.getBotao();
     }
 
     public static ButtonPanel getInstance(){
@@ -26,12 +29,6 @@ public class ButtonPanel extends Group  {
             instanciaAtual = new ButtonPanel();
         }
         return instanciaAtual;
-    }
-
-    private Line linhaSuperior = new Line(0,0,972,0);
-    {
-        linhaSuperior.setStroke(Color.web("#cccccc"));
-        linhaSuperior.setStrokeWidth(1);
     }
 
     public static ActionButton getBotao(Integer codigoBotao) {

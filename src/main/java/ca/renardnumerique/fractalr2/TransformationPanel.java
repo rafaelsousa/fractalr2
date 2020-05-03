@@ -297,7 +297,7 @@ public class TransformationPanel extends Group  {
                     return;
             }
             FormulaPanel.getInstance().getBotoes().remove(ActionButton.BOTAO_SEPARADOR);
-            FormulaPanel.getInstance().redesenhaBarra();
+            FormulaPanel.getInstance().redrawBar();
             botoes.add(ActionButton.BOTAO_SEPARADOR);
         }else{
             botoes.remove(ActionButton.BOTAO_SEPARADOR);

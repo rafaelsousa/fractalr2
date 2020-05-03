@@ -117,7 +117,7 @@ public abstract class Exemplo extends Group {
 			}
 			FormulaPanel.getInstance().getBotoes().add(botao.duplicar());
 		}
-		FormulaPanel.getInstance().redesenhaBarra();
+		FormulaPanel.getInstance().redrawBar();
 		TransformationPanel.instanciaAtual.resetarBarra();
 		TransformationPanel.instanciaAtual.getBotoes().clear();
 		var count = 0;
