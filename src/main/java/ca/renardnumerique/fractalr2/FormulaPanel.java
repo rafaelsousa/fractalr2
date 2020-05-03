@@ -24,19 +24,21 @@ public class FormulaPanel extends Group {
     private List<ActionButton> botoes = new ArrayList<>();
     private List<ImageView> iconesBotoes;
     private Text formula = new Text("Formulas");
-
     {
-        formula.setY(55);
+        formula.setY(2);
         formula.setX(170);
         formula.setFont(Font.font("Bitstream Vera Sans Bold", 12));
         formula.setFill(Color.web("#000"));
     }
 
+    /**
+     * Formula panel boundary
+     */
     public Rectangle area = new Rectangle();
 
     {
         area.setX(165);
-        area.setY(33);
+        area.setY(1);
         area.setArcWidth(10);
         area.setArcHeight(10);
         area.setWidth(660);
