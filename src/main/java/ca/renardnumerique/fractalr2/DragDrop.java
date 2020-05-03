@@ -1,13 +1,14 @@
 package ca.renardnumerique.fractalr2;
 
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.shape.Rectangle;
 
 import java.util.function.Consumer;
 
 public class DragDrop {
     
-    public Group target;
+    public Node target;
     private double maxX = 200;
     private double maxY = 200;
     private double iniX = 0;
@@ -23,8 +24,7 @@ public class DragDrop {
     public double ty = 0;
     public double tx = 0;
 
-    public DragDrop(Group target){
-        this.target = target;
+    public DragDrop(Node target){
         target.setOnMousePressed(e ->  {
             startX = e.getSceneX()-target.getTranslateX();
             startY = e.getSceneY()-target.getTranslateY();
@@ -80,7 +80,7 @@ public class DragDrop {
         return nd.getBoundsInLocal().contains(centroXtarget,centroYtarget);
 	}
 
-    public Group getTarget() {
+    public Node getTarget() {
         return target;
     }
 

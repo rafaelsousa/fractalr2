@@ -15,7 +15,9 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import lombok.Data;
 
+@Data
 public class FormulaPanel extends Group {
     
     
@@ -146,7 +148,7 @@ public class FormulaPanel extends Group {
     }
 
     //retorna o botao correspondente a um icone
-    public ActionButton getBotao(ImageView img) {
+    public ActionButton getBotoes(ImageView img) {
         for (ActionButton botao : botoes) {
             if (botao.getIcone().getImage().getUrl().equals(img.getImage().getUrl())) {
                 return botao;

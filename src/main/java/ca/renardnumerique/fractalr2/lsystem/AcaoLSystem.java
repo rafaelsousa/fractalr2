@@ -63,6 +63,44 @@ public class AcaoLSystem {
 	    return (this.tipoAcao == acao.tipoAcao) && (this.cor == acao.cor);
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cor == null) ? 0 : cor.hashCode());
+		result = prime * result + ((simbolo == null) ? 0 : simbolo.hashCode());
+		result = prime * result + ((tipoAcao == null) ? 0 : tipoAcao.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AcaoLSystem other = (AcaoLSystem) obj;
+		if (cor == null) {
+			if (other.cor != null)
+				return false;
+		} else if (!cor.equals(other.cor))
+			return false;
+		if (simbolo == null) {
+			if (other.simbolo != null)
+				return false;
+		} else if (!simbolo.equals(other.simbolo))
+			return false;
+		if (tipoAcao == null) {
+			if (other.tipoAcao != null)
+				return false;
+		} else if (!tipoAcao.equals(other.tipoAcao))
+			return false;
+		return true;
+	}
+	
+
 }
 
 

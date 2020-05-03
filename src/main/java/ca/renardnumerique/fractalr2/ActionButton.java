@@ -5,6 +5,7 @@ import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
 import ca.renardnumerique.fractalr2.lsystem.GerenciadorLSystem;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -22,7 +23,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class ActionButton extends Group {
+public class ActionButton extends Button {
 
     private AcaoLSystem acaoLSystem;
 
@@ -30,7 +31,6 @@ public class ActionButton extends Group {
     public static final ActionButton BOTAO_SEPARADOR = new ActionButton(new ImageView("file:images/botoes/draw-arrow-back.png"), new AcaoLSystem(AcaoLSystem.ACAO_IGUAL, "+", -2), null);
 
     private String nome = "acao";
-    private Integer width = 110;
     private Node painelAtual;
     private List<ActionButton> botoes;
 
@@ -47,6 +47,7 @@ public class ActionButton extends Group {
         this.icone = icone;
         this.acaoLSystem = acaoLSystem;
         this.fillNormal = fillNormal;
+        setWidth(110);
         buildDesignRectangle();
         buildDspNome();
         buildIcone();
@@ -57,8 +58,8 @@ public class ActionButton extends Group {
     private void buildDesignRectangle(){
     	designRetangulo = new Rectangle();
         designRetangulo.setY(-2);
-        designRetangulo.setWidth(width);
-        designRetangulo.setX(170 + (width + 10) * (numeroBotoes));
+        designRetangulo.setWidth(getWidth());
+        designRetangulo.setX(170 + (getWidth() + 10) * (numeroBotoes));
         designRetangulo.setHeight(29);
         designRetangulo.setArcWidth(10);
         designRetangulo.setArcHeight(10);
@@ -153,7 +154,7 @@ public class ActionButton extends Group {
         this.getChildren().addAll(designRetangulo, dspNome, icone, coresSeletor);
     }
 
-    public static List<ActionButton> getBotao(){
+    public static List<ActionButton> getAllButtons(){
 
         List<ActionButton> botoes = new ArrayList<>();
         ActionButton botao = new ActionButton();
