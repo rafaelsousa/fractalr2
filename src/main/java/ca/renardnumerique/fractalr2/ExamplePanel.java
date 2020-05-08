@@ -34,23 +34,27 @@ public class ExamplePanel extends VBox {
 
     private Text titulo;
 
-    private ImageView rdp = new ImageView();
-    {
+    public ExamplePanel() {
+        titulo = new Text("Exemplos");
+        titulo.setFont(new Font("Verdana", 12));
+        titulo.setFill(Color.web("#9f4545"));
+        this.setMaxWidth(Integer.MAX_VALUE);
+                
+        ImageView rdp = new ImageView();
         rdp.setFocusTraversable(Boolean.TRUE);
         rdp.setImage(new Image("file:images/bgexemplordp.png"));
         rdp.setY(115 + (qteExemplos * buttonHeight));
         rdp.setX(2);
-    }
-
-    public ExamplePanel() {
-        titulo = new Text("Exemplos");
-        titulo.setY(100);
-        titulo.setX(90);
-        titulo.setFont(new Font("Verdana", 12));
-        titulo.setFill(Color.web("#9f4545"));
-
-        this.getChildren().addAll(titulo, new FlocoNeve(), new CurvaPeano(), new CurvaGosper(), new FractalGrama(),
-                new CurvaDragao(), new Sierpinski()
+        
+        this.getChildren().addAll(
+            rdp,
+            titulo, 
+            new FlocoNeve(), 
+            new CurvaPeano(), 
+            new CurvaGosper(), 
+            new FractalGrama(),
+            new CurvaDragao(), 
+            new Sierpinski()
 
         );
     }

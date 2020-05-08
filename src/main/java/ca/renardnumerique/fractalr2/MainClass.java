@@ -43,13 +43,9 @@ public class MainClass {
         pnlExemplos = new ExamplePanel();
         pnlControle = new ControlPanel();
         
-        VBox transformationColumn = createTransformationColumn();
-        
-        HBox hbox = new HBox(8);        
+        VBox transformationColumn = createTransformationColumn();        
+        HBox hbox = new HBox(8);                
         hbox.getChildren().addAll(pnlExemplos,transformationColumn);
-
-
-
         design = new DesktopLayout();
         pencil = Pencil.getInstance();
         pencil.setX(127);
