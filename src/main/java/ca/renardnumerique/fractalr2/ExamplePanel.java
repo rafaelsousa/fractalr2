@@ -38,16 +38,10 @@ public class ExamplePanel extends VBox {
         titulo = new Text("Exemplos");
         titulo.setFont(new Font("Verdana", 12));
         titulo.setFill(Color.web("#9f4545"));
-        this.setMaxWidth(Integer.MAX_VALUE);
-                
-        ImageView rdp = new ImageView();
-        rdp.setFocusTraversable(Boolean.TRUE);
-        rdp.setImage(new Image("file:images/bgexemplordp.png"));
-        rdp.setY(115 + (qteExemplos * buttonHeight));
-        rdp.setX(2);
+        this.setMaxWidth(Integer.MAX_VALUE);             
+        this.setWidth(Integer.MAX_VALUE);        
         
-        this.getChildren().addAll(
-            rdp,
+        this.getChildren().addAll(            
             titulo, 
             new FlocoNeve(), 
             new CurvaPeano(), 

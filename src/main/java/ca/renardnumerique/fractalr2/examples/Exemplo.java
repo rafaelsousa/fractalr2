@@ -1,5 +1,10 @@
 package ca.renardnumerique.fractalr2.examples;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import ca.renardnumerique.fractalr2.ActionButton;
 import ca.renardnumerique.fractalr2.ButtonPanel;
 import ca.renardnumerique.fractalr2.ExamplePanel;
@@ -7,23 +12,12 @@ import ca.renardnumerique.fractalr2.FormulaPanel;
 import ca.renardnumerique.fractalr2.MainClass;
 import ca.renardnumerique.fractalr2.TransformationPanel;
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
-import javafx.scene.Cursor;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Data
 public abstract class Exemplo extends Button {
