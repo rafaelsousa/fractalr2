@@ -9,8 +9,11 @@ import ca.renardnumerique.fractalr2.TransformationPanel;
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -23,40 +26,26 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-public abstract class Exemplo extends Group {
+public abstract class Exemplo extends Button {
 
-	private String titulo = new String();
 	private String formula = new String();
 	private List<String> transformacoes = new ArrayList<>();
 	private Integer angulo;
 	private ImageView fundo = new ImageView();
 	private Rectangle contornoRectangle = new Rectangle();
-	private Text txtTitulo = new Text(titulo);
 
 	public Exemplo() {
 		initializeComponents();
-		this.getChildren().addAll(fundo, contornoRectangle, txtTitulo);
 	}
 
 	private void initializeComponents() {
 
-		fundo.setFocusTraversable(true);
-		fundo.setImage(new Image("file:images/bgexemplo.png"));
-		fundo.setY(115 + (ExamplePanel.sequencial * 25));
-		fundo.setX(4);
-
-		contornoRectangle.setX(7);
-		contornoRectangle.setY(115 + (ExamplePanel.sequencial * ExamplePanel.buttonHeight));
-		contornoRectangle.setCursor(Cursor.HAND);
-		contornoRectangle.setWidth(150);
-		contornoRectangle.setHeight(20);
-		contornoRectangle.setFill(Color.TRANSPARENT);
-
-		txtTitulo.setY(132 + (ExamplePanel.sequencial * ExamplePanel.buttonHeight));
-		txtTitulo.setX(10);
-		txtTitulo.setFont(new Font("Verdana", 10));
-		txtTitulo.setFill(Color.web("#1C6AB7"));
-		txtTitulo.setOnMouseClicked(e -> {
+		this.setFocusTraversable(true);
+		this.setGraphic(new ImageView(new Image("file:images/bgexemplo.png")));
+		this.setWidth(Integer.MAX_VALUE);
+		this.setHeight(20);
+		this.setFont(new Font("Verdana", 10));
+		this.setOnMouseClicked(e -> {
 			doFractal();
 		});
 	}

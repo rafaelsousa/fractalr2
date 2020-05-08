@@ -4,6 +4,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -22,7 +23,7 @@ import ca.renardnumerique.fractalr2.examples.Sierpinski;
 
 
 @Data
-public class ExamplePanel extends Group {
+public class ExamplePanel extends VBox {
 
     public static ExamplePanel pnl;
 
@@ -35,14 +36,8 @@ public class ExamplePanel extends Group {
 
     public static Exemplo exemploRodando = null;
 
-    private Text titulo = new Text("Exemplos");
+    private Text titulo ;
 
-    {
-        titulo.setY(100);
-        titulo.setX(90);
-        titulo.setFont(new Font("Verdana", 12));
-        titulo.setFill(Color.web("#9f4545"));
-    }
 
     private ImageView rdp = new ImageView();
     {
@@ -53,6 +48,12 @@ public class ExamplePanel extends Group {
     }
 
     public ExamplePanel() {
+        titulo = new Text("Exemplos");
+        titulo.setY(100);
+        titulo.setX(90);
+        titulo.setFont(new Font("Verdana", 12));
+        titulo.setFill(Color.web("#9f4545"));
+
         this.getChildren().addAll(
                 titulo,
                 new FlocoNeve(),

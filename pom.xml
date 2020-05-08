@@ -46,6 +46,9 @@
                 <version>0.0.4</version>
                 <configuration>
                     <mainClass>ca.renardnumerique.fractalr2.Start</mainClass>
+                    <options>
+                        <option>-Djdk.gtk.version=2</option>
+                    </options>
                 </configuration>
             </plugin>
             <plugin>
