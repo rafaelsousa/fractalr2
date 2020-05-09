@@ -3,6 +3,7 @@ package ca.renardnumerique.fractalr2;
 import com.jfoenix.assets.JFoenixResources;
 
 import ca.renardnumerique.fractalr2.utils.Constants;
+import jakarta.inject.Inject;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -20,7 +21,20 @@ public class MainClass {
     private TransformationPanel pnlTransformacoes;
     private ControlPanel pnlControle;
     private Pencil pencil;
-    private Group transformations;    
+    private Group transformations;
+
+    @Inject
+    public MainClass(DesktopLayout design, ExamplePanel pnlExemplos, ButtonPanel pnlBotoes, FormulaPanel pnlFormulas,
+            TransformationPanel pnlTransformacoes, ControlPanel pnlControle, Pencil pencil) {
+        this.design = design;
+        this.pnlExemplos = pnlExemplos;
+        this.pnlBotoes = pnlBotoes;
+        this.pnlFormulas = pnlFormulas;
+        this.pnlTransformacoes = pnlTransformacoes;
+        this.pnlControle = pnlControle;
+        this.pencil = pencil;
+        this.transformations = new Group();
+    }
 
     public DesktopLayout getDesign() {
         return this.design;

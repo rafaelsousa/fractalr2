@@ -5,17 +5,22 @@
  */
 package ca.renardnumerique.fractalr2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ca.renardnumerique.fractalr2.lsystem.Comando;
-import javafx.animation.*;
-import jakarta.inject.Inject;
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.PathTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.SequentialTransition;
+import javafx.animation.Transition;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class FractalAnimation {

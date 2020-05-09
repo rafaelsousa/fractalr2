@@ -76,30 +76,9 @@ public class ActionButton extends Button {
 
 
     private DragDrop drag = new DragDrop(this);
-    {
-        drag.onChange(arrastaSolta -> {
-            formulaPanel.trataArrastar(arrastaSolta);
-            for (Node transformacao : mainClass.getTransformations().getChildren()) {
-                if (transformacao instanceof TransformationPanel) {
-                    ((TransformationPanel) transformacao).trataArrastar(arrastaSolta);
-                }
-            }
-        });
-        drag.setOnSoltar(arrastaSolta -> {
-            formulaPanel.trataSoltar(arrastaSolta);
-            for (Node transformacao : mainClass.getTransformations().getChildren()) {
-                if (transformacao instanceof TransformationPanel) {
-                    ((TransformationPanel) transformacao).trataSoltar(arrastaSolta);
-                }
-            }
-        });
-        drag.setMaxX(900);
-        drag.setMaxY(140);
-    }
+   
 
-    public ActionButton() {
-
-    }
+    public ActionButton(){}
 
     public void create(){
         numeroBotoes++;
@@ -119,6 +98,26 @@ public class ActionButton extends Button {
         coresSeletor.setNodo(designRetangulo);
         coresSeletor.setBotaoPai(this);
         this.getChildren().addAll(designRetangulo, dspNome, icone, coresSeletor);
+
+
+        drag.onChange(arrastaSolta -> {
+            formulaPanel.trataArrastar(arrastaSolta);
+            for (Node transformacao : mainClass.getTransformations().getChildren()) {
+                if (transformacao instanceof TransformationPanel) {
+                    ((TransformationPanel) transformacao).trataArrastar(arrastaSolta);
+                }
+            }
+        });
+        drag.setOnSoltar(arrastaSolta -> {
+            formulaPanel.trataSoltar(arrastaSolta);
+            for (Node transformacao : mainClass.getTransformations().getChildren()) {
+                if (transformacao instanceof TransformationPanel) {
+                    ((TransformationPanel) transformacao).trataSoltar(arrastaSolta);
+                }
+            }
+        });
+        drag.setMaxX(900);
+        drag.setMaxY(140);
     }
 
     public static List<ActionButton> getAllButtons(){

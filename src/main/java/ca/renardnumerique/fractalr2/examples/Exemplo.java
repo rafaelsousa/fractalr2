@@ -12,7 +12,6 @@ import ca.renardnumerique.fractalr2.FormulaPanel;
 import ca.renardnumerique.fractalr2.MainClass;
 import ca.renardnumerique.fractalr2.TransformationPanel;
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
-import jakarta.inject.Inject;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;

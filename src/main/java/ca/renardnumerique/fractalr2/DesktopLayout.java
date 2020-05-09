@@ -13,12 +13,16 @@ import javafx.scene.shape.Rectangle;
 
 public class DesktopLayout extends Group {
     
+    private Integer inicioDesenhoY = 140;
+    private ImageView fundoSistema;
+    private Rectangle areaDesenho = new Rectangle();
+    private ImageView imgAnterior = new ImageView();
+    private ImageView imgProximo = new ImageView();
+    private Rectangle proximo = new Rectangle();
+    private Rectangle anterior = new Rectangle();
+    private ImageView logo = new ImageView();
     
-    public DesktopLayout() {
-        initComponents();
-        this.getChildren()
-                .addAll(fundoSistema, logo, areaDesenho);
-    }
+    public DesktopLayout(){}
     
     public void initComponents(){
         fundoSistema = new ImageView(new Image("file:images/bg_sistema.png"));
@@ -105,18 +109,14 @@ public class DesktopLayout extends Group {
         logo.setImage(new Image("file:images/logo.png"));
         logo.setY(4);
         logo.setX(10);
+
+        this.getChildren()
+                .addAll(fundoSistema, logo, areaDesenho);
     }
 
 
 
-    private Integer inicioDesenhoY = 140;
-    private ImageView fundoSistema;
-    private Rectangle areaDesenho = new Rectangle();
-    private ImageView imgAnterior = new ImageView();
-    private ImageView imgProximo = new ImageView();
-    private Rectangle proximo = new Rectangle();
-    private Rectangle anterior = new Rectangle();
-    private ImageView logo = new ImageView();
+    
 
     public Integer getInicioDesenhoY() {
         return this.inicioDesenhoY;
