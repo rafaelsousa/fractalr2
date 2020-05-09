@@ -33,12 +33,8 @@ public abstract class Exemplo extends Button {
 	}
 
 	private void initializeComponents() {
-
-		this.setFocusTraversable(true);
-		this.setGraphic(new ImageView(new Image("file:images/bgexemplo.png")));
-		this.setWidth(Integer.MAX_VALUE);
-		this.setHeight(20);
-		this.setFont(new Font("Verdana", 10));
+		this.getStyleClass().add("example-button");
+		this.setFocusTraversable(true);		
 		this.setOnMouseClicked(e -> {
 			doFractal();
 		});
