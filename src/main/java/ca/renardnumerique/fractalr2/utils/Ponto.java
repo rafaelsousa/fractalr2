@@ -1,7 +1,4 @@
-package ca.renardnumerique.fractalr2;
-
-
-
+package ca.renardnumerique.fractalr2.utils;
 public class Ponto {
 
     private Double x;

@@ -1,8 +1,10 @@
-package ca.renardnumerique.fractalr2;
+package ca.renardnumerique.fractalr2.ui;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.renardnumerique.fractalr2.Fractal;
+import ca.renardnumerique.fractalr2.MainClass;
 import javafx.event.Event;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
@@ -10,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
@@ -22,26 +25,22 @@ public class TransformationPanel extends Group {
 
     public static Integer quantidadeTransformacoes = 1;
 
-    private List<ActionButton> botoes = new ArrayList<>();
+    private final List<ActionButton> botoes = new ArrayList<>();
     private List<ImageView> iconesBotoes = new ArrayList<>();
     private Integer incrementoY = 26;
     private Integer posicao = quantidadeTransformacoes;
     private Boolean ultimo = Boolean.TRUE;
-    private String txtSinal = "";
+    private String txtSinal;
     private Integer posY = incrementoY * posicao;
     private Rectangle area = new Rectangle();
     private Button btnDpl = new Button();
-    private Rectangle btnDuplicar = new Rectangle();
-   
-    
     private Fractal fractal;
     private MainClass mainClass;
     private TransformationPanel formulaPanel;
+    private HBox container;
 
     private void initComponents(){
 
-        area.setX(165);
-        area.setY(posY);
         area.setArcWidth(10);
         area.setArcHeight(10);
         area.setWidth(660);
@@ -51,24 +50,16 @@ public class TransformationPanel extends Group {
         area.setFill(linearFill);
         area.setStroke(Color.web("#111"));
 
-        btnDpl.setTranslateX(813);
-        btnDpl.setTranslateY(posY);
-        btnDpl.setMaxWidth(10);
-        btnDpl.setMaxHeight(22);
-        btnDpl.setText("b");
+        this.container = new HBox();
+        this.container.setShape(area);
+
+        btnDpl.setId("duplicate-button");
+        btnDpl.setMinWidth(10);
+        btnDpl.setMinHeight(22);
+        btnDpl.setText("+");
         btnDpl.setOnAction(this::trataAdicaoExclusao);
-        btnDuplicar.setX(813);
-        btnDuplicar.setY(posY);
-        btnDuplicar.setArcWidth(10);
-        btnDuplicar.setArcHeight(10);
-        btnDuplicar.setWidth(10);
-        btnDuplicar.setHeight(22);
-        btnDuplicar.setCursor(Cursor.HAND);
-        LinearGradient linearGradient = new LinearGradient(0.0, 0.0, 0.0, 1.0, Boolean.TRUE, CycleMethod.NO_CYCLE,
-                new Stop(0.0, Color.web("#3F9B2F")), new Stop(1.0, Color.web("#c8eab2")));
-        btnDuplicar.setFill(linearGradient);
-        btnDuplicar.setStroke(Color.web("#f8f8f8"));
-        btnDuplicar.setOnMouseClicked(this::trataAdicaoExclusao);
+
+        this.container.getChildren().addAll(btnDpl);
     }
 
     private void trataAdicaoExclusao(Event mouseEvent) {
@@ -122,14 +113,6 @@ public class TransformationPanel extends Group {
         }
     }
 
-    private Text mais = new Text(txtSinal);
-    {
-        mais.setY(btnDuplicar.getY() + 15);
-        mais.setX(btnDuplicar.getX() + 1);
-        mais.setFont(new Font("Bitstream Vera Sans Bold", 10));
-        mais.setFill(Color.web("#3a5833"));
-    }
-
     private Text transformacao = new Text("Transformations");
     {
         transformacao.setY(area.getY() + 17);
@@ -154,7 +137,7 @@ public class TransformationPanel extends Group {
     public TransformationPanel() {
         initComponents();
         quantidadeTransformacoes++;
-        this.getChildren().addAll(area, transformacao, contornoAreaDeBotoes, areaDeBotoes, btnDuplicar, mais);
+        this.getChildren().addAll(area, transformacao, contornoAreaDeBotoes, areaDeBotoes);
     }
 
     public void redesenhaBarra() {
@@ -232,21 +215,11 @@ public class TransformationPanel extends Group {
             calculaPosicaoBotao(btn);
         } else {
             botoes.remove(btn.target);
-            ;
             if (botoes.size() == 1) {
                 botoes.remove(ActionButton.BOTAO_IGUAL);
             }
         }
         redesenhaBarra();
-    }
-
-    public ActionButton getBotao(ImageView img) {
-        for (ActionButton botao : botoes) {
-            if (botao.getIcone().getImage().getUrl().equals(img.getImage().getUrl())) {
-                return botao;
-            }
-        }
-        return null;
     }
 
     public void trataArrastar(DragDrop btn) {
@@ -279,80 +252,12 @@ public class TransformationPanel extends Group {
     public List<ActionButton> getBotoes() {
         return this.botoes;
     }
-
-    public void setBotoes(List<ActionButton> botoes) {
-        this.botoes = botoes;
-    }
-
-    public List<ImageView> getIconesBotoes() {
-        return this.iconesBotoes;
-    }
-
-    public void setIconesBotoes(List<ImageView> iconesBotoes) {
-        this.iconesBotoes = iconesBotoes;
-    }
-
-    public Integer getIncrementoY() {
-        return this.incrementoY;
-    }
-
-    public void setIncrementoY(Integer incrementoY) {
-        this.incrementoY = incrementoY;
-    }
-
-    public Integer getPosicao() {
-        return this.posicao;
-    }
-
     public void setPosicao(Integer posicao) {
         this.posicao = posicao;
     }
 
-    public Boolean getUltimo() {
-        return this.ultimo;
-    }
 
-    public void setUltimo(Boolean ultimo) {
-        this.ultimo = ultimo;
-    }
 
-    public String getTxtSinal() {
-        return this.txtSinal;
-    }
 
-    public void setTxtSinal(String txtSinal) {
-        this.txtSinal = txtSinal;
-    }
 
-    public Integer getPosY() {
-        return this.posY;
-    }
-
-    public void setPosY(Integer posY) {
-        this.posY = posY;
-    }
-
-    public Rectangle getArea() {
-        return this.area;
-    }
-
-    public void setArea(Rectangle area) {
-        this.area = area;
-    }
-
-    public Button getBtnDpl() {
-        return this.btnDpl;
-    }
-
-    public void setBtnDpl(Button btnDpl) {
-        this.btnDpl = btnDpl;
-    }
-
-    public Rectangle getBtnDuplicar() {
-        return this.btnDuplicar;
-    }
-
-    public void setBtnDuplicar(Rectangle btnDuplicar) {
-        this.btnDuplicar = btnDuplicar;
-    }
 }

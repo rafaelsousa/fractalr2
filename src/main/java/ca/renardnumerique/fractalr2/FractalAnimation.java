@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.renardnumerique.fractalr2.lsystem.Comando;
+import ca.renardnumerique.fractalr2.ui.Pencil;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -45,7 +46,7 @@ public class FractalAnimation {
     public void inicializar(List<Comando> comandos) {
         ParallelTransition transicaoAnterior = null;
         for (int iteracao = 0; iteracao < comandos.size(); iteracao++) {
-            var comando = comandos.get(iteracao);
+            Comando comando = comandos.get(iteracao);
             if (comando.getTipoComando() == Comando.MOVER) {
                 x = comando.getCoordenadaInicial().getX();
                 y = comando.getCoordenadaInicial().getY();

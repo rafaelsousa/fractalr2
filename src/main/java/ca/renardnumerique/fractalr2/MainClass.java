@@ -2,6 +2,13 @@ package ca.renardnumerique.fractalr2;
 
 import com.jfoenix.assets.JFoenixResources;
 
+import ca.renardnumerique.fractalr2.ui.ActionsPanel;
+import ca.renardnumerique.fractalr2.ui.ControlPanel;
+import ca.renardnumerique.fractalr2.ui.DesktopLayout;
+import ca.renardnumerique.fractalr2.ui.ExamplePanel;
+import ca.renardnumerique.fractalr2.ui.FormulaPanel;
+import ca.renardnumerique.fractalr2.ui.Pencil;
+import ca.renardnumerique.fractalr2.ui.TransformationPanel;
 import ca.renardnumerique.fractalr2.utils.Constants;
 import jakarta.inject.Inject;
 import javafx.collections.ObservableList;
@@ -24,13 +31,13 @@ public class MainClass {
     private Group transformations;
 
     @Inject
-    public MainClass(DesktopLayout design, 
-            ExamplePanel pnlExemplos, 
-            ActionsPanel pnlBotoes, 
-            FormulaPanel pnlFormulas,
-            TransformationPanel pnlTransformacoes, 
-            ControlPanel pnlControle, 
-            Pencil pencil) {
+    public MainClass(final DesktopLayout design, 
+            final ExamplePanel pnlExemplos, 
+            final ActionsPanel pnlBotoes, 
+            final FormulaPanel pnlFormulas,
+            final TransformationPanel pnlTransformacoes, 
+            final ControlPanel pnlControle, 
+            final Pencil pencil) {
         this.design = design;
         this.pnlExemplos = pnlExemplos;
         this.pnlBotoes = pnlBotoes;
@@ -43,14 +50,14 @@ public class MainClass {
 
     
 
-    public void create(Stage stage) {
+    public void create(final Stage stage) {
 
         transformations = new Group();
         pnlExemplos = new ExamplePanel();
         pnlControle = new ControlPanel();
 
-        VBox transformationColumn = createTransformationColumn();
-        HBox hbox = new HBox(8);
+        final VBox transformationColumn = createTransformationColumn();
+        final HBox hbox = new HBox(8);
         hbox.getChildren().addAll(pnlExemplos, transformationColumn);
         design = new DesktopLayout();
         pencil = Pencil.getInstance();
@@ -61,7 +68,7 @@ public class MainClass {
         // hbox.getChildren().add(pencil);
         // createTransformations();
 
-        Scene scene = new Scene(hbox);
+        final Scene scene = new Scene(hbox);
         scene.setFill(Color.web("#CCC"));
         final ObservableList<String> stylesheets = scene.getStylesheets();
         stylesheets.addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
@@ -76,7 +83,7 @@ public class MainClass {
     }
 
     private VBox createTransformationColumn() {
-        VBox transformationColumn = new VBox();
+        final VBox transformationColumn = new VBox();
         transformationColumn.getChildren().addAll(pnlBotoes.getContainer(), pnlFormulas, pnlTransformacoes);
         return transformationColumn;
     }
@@ -85,7 +92,7 @@ public class MainClass {
         return this.design;
     }
 
-    public void setDesign(DesktopLayout design) {
+    public void setDesign(final DesktopLayout design) {
         this.design = design;
     }
 
@@ -93,7 +100,7 @@ public class MainClass {
         return this.pnlExemplos;
     }
 
-    public void setPnlExemplos(ExamplePanel pnlExemplos) {
+    public void setPnlExemplos(final ExamplePanel pnlExemplos) {
         this.pnlExemplos = pnlExemplos;
     }
 
@@ -101,7 +108,7 @@ public class MainClass {
         return this.pnlBotoes;
     }
 
-    public void setPnlBotoes(ActionsPanel pnlBotoes) {
+    public void setPnlBotoes(final ActionsPanel pnlBotoes) {
         this.pnlBotoes = pnlBotoes;
     }
 
@@ -109,7 +116,7 @@ public class MainClass {
         return this.pnlFormulas;
     }
 
-    public void setPnlFormulas(FormulaPanel pnlFormulas) {
+    public void setPnlFormulas(final FormulaPanel pnlFormulas) {
         this.pnlFormulas = pnlFormulas;
     }
 
@@ -117,7 +124,7 @@ public class MainClass {
         return this.pnlTransformacoes;
     }
 
-    public void setPnlTransformacoes(TransformationPanel pnlTransformacoes) {
+    public void setPnlTransformacoes(final TransformationPanel pnlTransformacoes) {
         this.pnlTransformacoes = pnlTransformacoes;
     }
 
@@ -125,7 +132,7 @@ public class MainClass {
         return this.pnlControle;
     }
 
-    public void setPnlControle(ControlPanel pnlControle) {
+    public void setPnlControle(final ControlPanel pnlControle) {
         this.pnlControle = pnlControle;
     }
 
@@ -133,7 +140,7 @@ public class MainClass {
         return this.pencil;
     }
 
-    public void setPencil(Pencil pencil) {
+    public void setPencil(final Pencil pencil) {
         this.pencil = pencil;
     }
 
@@ -141,7 +148,7 @@ public class MainClass {
         return this.transformations;
     }
 
-    public void setTransformations(Group transformations) {
+    public void setTransformations(final Group transformations) {
         this.transformations = transformations;
     }
 

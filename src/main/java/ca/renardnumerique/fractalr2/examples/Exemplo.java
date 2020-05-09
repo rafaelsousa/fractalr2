@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ca.renardnumerique.fractalr2.ActionButton;
-import ca.renardnumerique.fractalr2.ActionsPanel;
-import ca.renardnumerique.fractalr2.ExamplePanel;
-import ca.renardnumerique.fractalr2.FormulaPanel;
 import ca.renardnumerique.fractalr2.MainClass;
-import ca.renardnumerique.fractalr2.TransformationPanel;
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
+import ca.renardnumerique.fractalr2.ui.ActionButton;
+import ca.renardnumerique.fractalr2.ui.ActionsPanel;
+import ca.renardnumerique.fractalr2.ui.ExamplePanel;
+import ca.renardnumerique.fractalr2.ui.FormulaPanel;
+import ca.renardnumerique.fractalr2.ui.TransformationPanel;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;

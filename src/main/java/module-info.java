@@ -15,6 +15,7 @@ module ca.renardnumerique.fractalr2 {
     opens ca.renardnumerique.fractalr2.examples;
     opens ca.renardnumerique.fractalr2.lsystem;
     opens ca.renardnumerique.fractalr2.utils;
+    opens ca.renardnumerique.fractalr2.ui;
     
 
 

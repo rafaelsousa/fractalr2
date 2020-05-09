@@ -3,6 +3,9 @@ package ca.renardnumerique.fractalr2;
 import java.util.List;
 
 import ca.renardnumerique.fractalr2.lsystem.AplicadorRegras;
+import ca.renardnumerique.fractalr2.ui.ActionButton;
+import ca.renardnumerique.fractalr2.ui.TransformationPanel;
+import ca.renardnumerique.fractalr2.utils.Ponto;
 import javafx.animation.Animation;
 import javafx.scene.Node;
 import javafx.scene.shape.Line;

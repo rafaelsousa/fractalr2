@@ -1,9 +1,9 @@
-package ca.renardnumerique.fractalr2;
+package ca.renardnumerique.fractalr2.ui;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.inject.Inject;
+import ca.renardnumerique.fractalr2.Fractal;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;

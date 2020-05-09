@@ -1,6 +1,5 @@
 package ca.renardnumerique.fractalr2.lsystem;
-
-import ca.renardnumerique.fractalr2.Ponto;
+import ca.renardnumerique.fractalr2.utils.Ponto;
 import javafx.util.Duration;
 
 /**

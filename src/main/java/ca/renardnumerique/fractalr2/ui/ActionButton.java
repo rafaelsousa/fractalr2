@@ -1,7 +1,8 @@
-package ca.renardnumerique.ui.fractalr2;
+package ca.renardnumerique.fractalr2.ui;
 
 import java.util.List;
 
+import ca.renardnumerique.fractalr2.MainClass;
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
 import ca.renardnumerique.fractalr2.lsystem.GerenciadorLSystem;
 import javafx.scene.Node;

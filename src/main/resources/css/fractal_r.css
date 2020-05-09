@@ -9,3 +9,9 @@
     -fx-min-height: 20;
 }
 
+#duplicate-button{
+    -fx-background-color :
+        linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%)
+
+}
+

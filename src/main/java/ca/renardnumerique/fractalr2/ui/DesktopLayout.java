@@ -1,4 +1,4 @@
-package ca.renardnumerique.fractalr2;
+package ca.renardnumerique.fractalr2.ui;
 
 import javafx.scene.Cursor;
 import javafx.scene.Group;

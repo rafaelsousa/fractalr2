@@ -3,10 +3,10 @@ package ca.renardnumerique.fractalr2.lsystem;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.renardnumerique.fractalr2.ActionButton;
 import ca.renardnumerique.fractalr2.MainClass;
-import ca.renardnumerique.fractalr2.Ponto;
-import ca.renardnumerique.fractalr2.TransformationPanel;
+import ca.renardnumerique.fractalr2.ui.ActionButton;
+import ca.renardnumerique.fractalr2.ui.TransformationPanel;
+import ca.renardnumerique.fractalr2.utils.Ponto;
 import javafx.scene.Node;
 import javafx.util.Duration;
 

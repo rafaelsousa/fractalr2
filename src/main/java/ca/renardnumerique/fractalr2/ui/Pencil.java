@@ -1,7 +1,9 @@
-package ca.renardnumerique.fractalr2;
+package ca.renardnumerique.fractalr2.ui;
 
 import java.util.List;
 
+import ca.renardnumerique.fractalr2.MainClass;
+import ca.renardnumerique.fractalr2.utils.Ponto;
 import io.reactivex.rxjavafx.observables.JavaFxObservable;
 import javafx.animation.Animation;
 import javafx.animation.PathTransition;
