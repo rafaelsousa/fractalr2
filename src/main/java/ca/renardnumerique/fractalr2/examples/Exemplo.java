@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import ca.renardnumerique.fractalr2.ActionButton;
-import ca.renardnumerique.fractalr2.ButtonPanel;
+import ca.renardnumerique.fractalr2.ActionsPanel;
 import ca.renardnumerique.fractalr2.ExamplePanel;
 import ca.renardnumerique.fractalr2.FormulaPanel;
 import ca.renardnumerique.fractalr2.MainClass;
@@ -28,7 +28,7 @@ public abstract class Exemplo extends Button {
 	private FormulaPanel formulaPanel;
 	private MainClass mainClass;
 	private TransformationPanel transformationPanel;
-	private ButtonPanel buttonPanel;
+	private ActionsPanel buttonPanel;
 
 	public Exemplo() {
 		initializeComponents();

@@ -25,9 +25,6 @@ public class ActionButton extends Button {
     private Node painelAtual;
     private List<ActionButton> botoes;
 
-
-    private String iconeUrl = "file:images/botoes/rating.png"; 
-
     private ColorSelector coresSeletor;
     private LinearGradient fillNormal;
     private Rectangle designRetangulo;
@@ -45,29 +42,19 @@ public class ActionButton extends Button {
         this.acaoLSystem = acaoLSystem;
         this.fillNormal = fillNormal;        
         buildDesignRectangle();
-        buildIcone();
+    }
+    
+    public ActionButton() {
     }
 
-
-    
-    private void buildDesignRectangle(){
+    private void buildDesignRectangle() {
     	designRetangulo = new Rectangle();
     }
-
-    
-    private void buildIcone(){
-    	icone = new ImageView();
-        icone.setImage(new Image(iconeUrl));
-        icone.setX(1 + designRetangulo.getX());
-        icone.setY(5 + designRetangulo.getY());
-    }
-
-    
 
     public ActionButton duplicar() {
         ActionButton nova = new ActionButton();
         nova.setNome(this.getNome());
-        nova.setIconeUrl(this.iconeUrl);
+        nova.setIcone(this.getIcone());
         nova.setFillNormal(this.fillNormal);
         nova.setAcaoLSystem(GerenciadorLSystem.instance.obterAcao(coresSeletor.idSelecionado, this.acaoLSystem.getTipoAcao()));
         return nova;
@@ -75,9 +62,7 @@ public class ActionButton extends Button {
 
 
     private DragDrop drag = new DragDrop(this);
-   
 
-    public ActionButton(){}
 
     public void create(){
         numeroBotoes++;
@@ -137,13 +122,6 @@ public class ActionButton extends Button {
         this.botoes = botoes;
     }
 
-    public String getIconeUrl() {
-        return iconeUrl;
-    }
-
-    public void setIconeUrl(String iconeUrl) {
-        this.iconeUrl = iconeUrl;
-    }
 
     public ColorSelector getCoresSeletor() {
         return coresSeletor;
@@ -206,6 +184,7 @@ public class ActionButton extends Button {
     }
 
     public void setIcone(ImageView icone) {
+        this.setGraphic(icone);
         this.icone = icone;
     }
 

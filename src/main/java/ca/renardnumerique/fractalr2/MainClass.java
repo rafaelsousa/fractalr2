@@ -16,7 +16,7 @@ public class MainClass {
 
     private DesktopLayout design;
     private ExamplePanel pnlExemplos;
-    private ButtonPanel pnlBotoes;
+    private ActionsPanel pnlBotoes;
     private FormulaPanel pnlFormulas;
     private TransformationPanel pnlTransformacoes;
     private ControlPanel pnlControle;
@@ -26,7 +26,7 @@ public class MainClass {
     @Inject
     public MainClass(DesktopLayout design, 
             ExamplePanel pnlExemplos, 
-            ButtonPanel pnlBotoes, 
+            ActionsPanel pnlBotoes, 
             FormulaPanel pnlFormulas,
             TransformationPanel pnlTransformacoes, 
             ControlPanel pnlControle, 
@@ -77,7 +77,7 @@ public class MainClass {
 
     private VBox createTransformationColumn() {
         VBox transformationColumn = new VBox();
-        transformationColumn.getChildren().addAll(pnlBotoes, pnlFormulas, pnlTransformacoes);
+        transformationColumn.getChildren().addAll(pnlBotoes.getContainer(), pnlFormulas, pnlTransformacoes);
         return transformationColumn;
     }
 
@@ -97,11 +97,11 @@ public class MainClass {
         this.pnlExemplos = pnlExemplos;
     }
 
-    public ButtonPanel getPnlBotoes() {
+    public ActionsPanel getPnlBotoes() {
         return this.pnlBotoes;
     }
 
-    public void setPnlBotoes(ButtonPanel pnlBotoes) {
+    public void setPnlBotoes(ActionsPanel pnlBotoes) {
         this.pnlBotoes = pnlBotoes;
     }
 

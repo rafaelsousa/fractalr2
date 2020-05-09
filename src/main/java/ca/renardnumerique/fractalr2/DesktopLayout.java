@@ -41,7 +41,7 @@ public class DesktopLayout extends Group {
 
         imgAnterior.setOpacity(0.1);
         imgAnterior.setFocusTraversable(Boolean.TRUE);
-        imgAnterior.setImage(new Image("file:file:images/anterior.png"));
+        imgAnterior.setImage(new Image("file:images/anterior.png"));
         imgAnterior.setX(166);
         imgAnterior.setY(inicioDesenhoY + 200);
 
