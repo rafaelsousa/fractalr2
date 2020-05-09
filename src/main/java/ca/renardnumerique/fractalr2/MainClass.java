@@ -1,6 +1,8 @@
 package ca.renardnumerique.fractalr2;
 
-import javafx.geometry.Insets;
+import com.jfoenix.assets.JFoenixResources;
+
+import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
@@ -42,26 +44,12 @@ public class MainClass {
 
         transformations = new Group();
         pnlExemplos = new ExamplePanel();
-        pnlControle = new ControlPanel();
-        pnlTransformacoes = new TransformationPanel();
-        pnlFormulas = FormulaPanel.getInstance();
-        pnlBotoes = ButtonPanel.getInstance();
-
-
-        VBox middleColumn = new VBox();
-        middleColumn.getChildren().addAll(pnlBotoes,pnlFormulas,pnlTransformacoes);
-
-
-        HBox hbox = new HBox(8);
-        hbox.setSpacing(10);
-
-        hbox.setMargin(transformations, new Insets(20, 20, 20, 20));
-        hbox.setMargin(pnlExemplos, new Insets(20, 20, 20, 20));
-        hbox.setMargin(pnlControle, new Insets(20, 20, 20, 20));
-        hbox.getChildren().addAll(pnlExemplos,middleColumn);
-
-
-
+        pnlControle = new ControlPanel();       
+        
+        
+        VBox transformationColumn = createTransformationColumn();        
+        HBox hbox = new HBox(8);                
+        hbox.getChildren().addAll(pnlExemplos,transformationColumn);
         design = new DesktopLayout();
         pencil = Pencil.getInstance();
         pencil.setX(127);
@@ -73,7 +61,22 @@ public class MainClass {
 
         Scene scene = new Scene(hbox);
         scene.setFill(Color.web("#CCC"));
+        final ObservableList<String> stylesheets = scene.getStylesheets();
+        stylesheets.addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
+                           JFoenixResources.load("css/jfoenix-design.css").toExternalForm(),
+                           "css/fractal_r.css");
+                        
+                           
         stage.setScene(scene);
+    }
+
+    private VBox createTransformationColumn() {
+        pnlTransformacoes = new TransformationPanel();
+        pnlFormulas = FormulaPanel.getInstance();
+        pnlBotoes = ButtonPanel.getInstance();
+        VBox transformationColumn = new VBox();
+        transformationColumn.getChildren().addAll(pnlBotoes,pnlFormulas,pnlTransformacoes);
+        return transformationColumn;
     }
 
 

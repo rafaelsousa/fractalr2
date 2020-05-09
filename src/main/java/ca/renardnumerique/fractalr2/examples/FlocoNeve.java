@@ -6,7 +6,7 @@ public class FlocoNeve extends Exemplo {
 	
 	public FlocoNeve(){
         super();
-		setTitulo("Floco de neve Koch");
+        setText("Floco de neve Koch");
         setFormula("a--a--a");
         setTransformacoes(List.of("a=a+a--a+a"));
         setAngulo(60);
