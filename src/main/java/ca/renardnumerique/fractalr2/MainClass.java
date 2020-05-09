@@ -2,6 +2,7 @@ package ca.renardnumerique.fractalr2;
 
 import com.jfoenix.assets.JFoenixResources;
 
+import ca.renardnumerique.fractalr2.utils.Constants;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -68,6 +69,10 @@ public class MainClass {
                         
                            
         stage.setScene(scene);
+        stage.setTitle("Fractal-R Version 1.9 - Beta");
+        stage.setResizable(Boolean.FALSE);
+        stage.setWidth(Constants.SYSTEM_WIDTH);
+        stage.setHeight(Constants.SYSTEM_HEIGHT);
     }
 
     private VBox createTransformationColumn() {
