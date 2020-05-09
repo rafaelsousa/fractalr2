@@ -1,19 +1,42 @@
 package ca.renardnumerique.fractalr2;
 
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
-import lombok.Data;
 
-@Data
 class BotaoTransformacoes extends Group {
-    public Rectangle rect;
-    public ImageView img;
-    public ActionButton btn;
+    
+    private Rectangle rect;
+    private ImageView img;
+    private ActionButton btn;
+   
 
     public BotaoTransformacoes(){
         this.getChildren().addAll(rect,img);
+    }
+
+    public Rectangle getRect() {
+        return this.rect;
+    }
+
+    public void setRect(Rectangle rect) {
+        this.rect = rect;
+    }
+
+    public ImageView getImg() {
+        return this.img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
+
+    public ActionButton getBtn() {
+        return this.btn;
+    }
+
+    public void setBtn(ActionButton btn) {
+        this.btn = btn;
     }
 
 }

@@ -61,7 +61,6 @@ public class GerenciadorLSystem {
 		        return acao;
 		    }
 		};
-		AcaoLSystem tempAcao;
 		AcaoExpansiva novaAcao = new AcaoExpansiva(AcaoLSystem.ACAO_ANDAR);
         novaAcao.setCor(corAcao);
 		acoesAndar.add(novaAcao);

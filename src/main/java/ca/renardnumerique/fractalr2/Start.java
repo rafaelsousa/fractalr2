@@ -1,20 +1,19 @@
 package ca.renardnumerique.fractalr2;
 
+import jakarta.enterprise.inject.se.SeContainer;
+import jakarta.enterprise.inject.se.SeContainerInitializer;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Start extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setTitle("Fractal-R Version 1.9 - Beta");
-        stage.setResizable(Boolean.FALSE);
-        stage.setWidth(MainClass.getInstance().getSystemWidth());
-        stage.setHeight(MainClass.getInstance().getSystemHeight());
-        MainClass.getInstance().create(stage);
-        stage.show();
+        SeContainer container = SeContainerInitializer.newInstance()
+            .disableDiscovery()
+            .addPackages(Boolean.TRUE,Start.class)
+            .initialize();
+        container.getBeanManager().createInstance().select(MainClass.class).get().create(stage);
     }
 
     public static void main(String[] args) {

@@ -5,38 +5,44 @@
  */
 package ca.renardnumerique.fractalr2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ca.renardnumerique.fractalr2.lsystem.Comando;
-import javafx.animation.*;
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.PathTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.SequentialTransition;
+import javafx.animation.Transition;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class FractalAnimation {
     private Double x;
     private Double y;
 
-    private Line linha;
     public List<Transition> transicoesGerais = new ArrayList<>();
 
     public SequentialTransition animacao = new SequentialTransition();
-
     {
         animacao.getChildren().addAll(transicoesGerais);
     }
 
+    private MainClass mainClass;
+
+
 
     public void acaoConclusaoTimeLine() {
-        MainClass.getInstance().getDesign().requestLayout();
+        mainClass.getDesign().requestLayout();
     }
 
     public void inicializar(List<Comando> comandos) {
-        Integer pos = 0;
         ParallelTransition transicaoAnterior = null;
         for (int iteracao = 0; iteracao < comandos.size(); iteracao++) {
             var comando = comandos.get(iteracao);
@@ -46,9 +52,6 @@ public class FractalAnimation {
 
                 Double endx = comando.getCoordenadaFinal().getX();
                 Double endy = comando.getCoordenadaFinal().getY();
-
-                Double tamanhoX = Math.abs(endx - endy);
-                Double tamanhoY = Math.abs(endx - endy);
 
                 Line linha = new Line(x, y, endx, endy);
                 linha.setStroke(Color.BLACK);
@@ -96,12 +99,12 @@ public class FractalAnimation {
 
                 //Immediate insertion happens only in the first iteration.
                 if (iteracao == 0) {
-                    MainClass.getInstance().getDesign().getChildren().add(transicoesDesenho.getNode());
+                    mainClass.getDesign().getChildren().add(transicoesDesenho.getNode());
                 }
 
                 if (transicaoAnterior != null) {
                     transicaoAnterior.setOnFinished(e ->
-                            MainClass.getInstance().getDesign().getChildren().add(transicoesDesenho.getNode())
+                            mainClass.getDesign().getChildren().add(transicoesDesenho.getNode())
                     );
                 }
                 transicoesGerais.add(transicaoParalela);
@@ -114,9 +117,6 @@ public class FractalAnimation {
 
                 Double endx = comando.getCoordenadaFinal().getX();
                 Double endy = comando.getCoordenadaFinal().getY();
-
-                var tamanhoX = Math.abs(endx - endy);
-                var tamanhoY = Math.abs(endx - endy);
 
                 MoveTo moveTo = new MoveTo(x, y);
                 LineTo lineTo = new LineTo((x + endx) / 2, (y + endy) / 2);
@@ -137,22 +137,6 @@ public class FractalAnimation {
 
             }
         }
-    }
-
-    private void inserirLinhaProximoComando(Comando comando) {
-        x = comando.getCoordenadaInicial().getX();
-        y = comando.getCoordenadaInicial().getY();
-
-        Double endx = comando.getCoordenadaFinal().getX();
-        Double endy = comando.getCoordenadaFinal().getY();
-
-        Double tamanhoX = Math.abs(endx - endy);
-        Double tamanhoY = Math.abs(endx - endy);
-
-        Line linha = new Line(x, y, endx, endy);
-        linha.setStrokeWidth(1);
-        linha.setStroke(Color.BLACK);
-        MainClass.getInstance().getDesign().getChildren().add(linha);
     }
 
     public void play() {
