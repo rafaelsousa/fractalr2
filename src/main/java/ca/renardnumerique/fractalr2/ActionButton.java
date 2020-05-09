@@ -1,9 +1,7 @@
 package ca.renardnumerique.fractalr2;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import ca.renardnumerique.fractalr2.lsystem.AcaoExpansiva;
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
 import ca.renardnumerique.fractalr2.lsystem.GerenciadorLSystem;
 import javafx.scene.Node;
@@ -36,6 +34,7 @@ public class ActionButton extends Button {
     private int numeroBotoes = -2;
     private Text dspNome;
     private ImageView icone;
+    private String nome;
     
     private MainClass mainClass;
 
@@ -47,10 +46,6 @@ public class ActionButton extends Button {
         this.fillNormal = fillNormal;        
         buildDesignRectangle();
         buildIcone();
-    }
-
-    public void setIconeUrl(String iconeUrl){
-        this.setGraphic(new ImageView(new Image(iconeUrl)));
     }
 
 
@@ -71,7 +66,7 @@ public class ActionButton extends Button {
 
     public ActionButton duplicar() {
         ActionButton nova = new ActionButton();
-        nova.setNome(this.nome);
+        nova.setNome(this.getNome());
         nova.setIconeUrl(this.iconeUrl);
         nova.setFillNormal(this.fillNormal);
         nova.setAcaoLSystem(GerenciadorLSystem.instance.obterAcao(coresSeletor.idSelecionado, this.acaoLSystem.getTipoAcao()));
@@ -124,44 +119,7 @@ public class ActionButton extends Button {
         drag.setMaxY(140);
     }
 
-    public static List<ActionButton> getAllButtons(){
-
-        List<ActionButton> botoes = new ArrayList<>();
-        ActionButton botao = new ActionButton();
-        botao.setText("Draw");
-        botao.setCoresSeletor(new ColorSelector());
-        botao.setAcaoLSystem(new AcaoExpansiva(AcaoLSystem.ACAO_ANDAR));
-        botao.setIconeUrl("images/botoes/anda.png");
-        botoes.add(botao);
-
-        ActionButton botaoProduce = new ActionButton();
-        botaoProduce.setText("Produce");
-        botaoProduce.setCoresSeletor(new ColorSelector());
-        botaoProduce.setAcaoLSystem(new AcaoExpansiva(AcaoLSystem.ACAO_EXPANDIR));
-        botaoProduce.setIconeUrl("images/botoes/legalmoves.png");
-        botoes.add(botaoProduce);
-
-        ActionButton botaoTurnLeft = new ActionButton();
-        botaoTurnLeft.setText("Turn Left");
-        botaoTurnLeft.setAcaoLSystem(new AcaoLSystem(AcaoLSystem.ACAO_GIRAR_ESQUERDA));
-        botaoTurnLeft.setIconeUrl("images/botoes/esquerda.png");
-        botoes.add(botaoTurnLeft);
-
-        ActionButton botaoTurnRight = new ActionButton();
-        botaoTurnRight.setText("Turn Right");
-        botaoTurnRight.setAcaoLSystem(new AcaoLSystem(AcaoLSystem.ACAO_GIRAR_DIREITA));
-        botaoTurnRight.setIconeUrl("images/botoes/direita.png");
-        botoes.add(botaoTurnRight);
-
-        ActionButton doAndReturnButton = new ActionButton();
-        doAndReturnButton.setText("Do and return");
-        doAndReturnButton.setCoresSeletor(new ColorSelector());
-        doAndReturnButton.setAcaoLSystem(new AcaoLSystem(AcaoLSystem.ACAO_FAZER_RETORNAR));
-        doAndReturnButton.setIconeUrl("images/botoes/fazerRetornar.png");
-        botoes.add(doAndReturnButton);
-        
-        return botoes;
-    }
+    
 
     public String getNome() {
         return nome;

@@ -24,8 +24,13 @@ public class MainClass {
     private Group transformations;
 
     @Inject
-    public MainClass(DesktopLayout design, ExamplePanel pnlExemplos, ButtonPanel pnlBotoes, FormulaPanel pnlFormulas,
-            TransformationPanel pnlTransformacoes, ControlPanel pnlControle, Pencil pencil) {
+    public MainClass(DesktopLayout design, 
+            ExamplePanel pnlExemplos, 
+            ButtonPanel pnlBotoes, 
+            FormulaPanel pnlFormulas,
+            TransformationPanel pnlTransformacoes, 
+            ControlPanel pnlControle, 
+            Pencil pencil) {
         this.design = design;
         this.pnlExemplos = pnlExemplos;
         this.pnlBotoes = pnlBotoes;
@@ -34,6 +39,46 @@ public class MainClass {
         this.pnlControle = pnlControle;
         this.pencil = pencil;
         this.transformations = new Group();
+    }
+
+    
+
+    public void create(Stage stage) {
+
+        transformations = new Group();
+        pnlExemplos = new ExamplePanel();
+        pnlControle = new ControlPanel();
+
+        VBox transformationColumn = createTransformationColumn();
+        HBox hbox = new HBox(8);
+        hbox.getChildren().addAll(pnlExemplos, transformationColumn);
+        design = new DesktopLayout();
+        pencil = Pencil.getInstance();
+        pencil.setX(127);
+        pencil.setY(33);
+        pencil.setCanvas(design);
+
+        // hbox.getChildren().add(pencil);
+        // createTransformations();
+
+        Scene scene = new Scene(hbox);
+        scene.setFill(Color.web("#CCC"));
+        final ObservableList<String> stylesheets = scene.getStylesheets();
+        stylesheets.addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
+                JFoenixResources.load("css/jfoenix-design.css").toExternalForm(), "css/fractal_r.css");
+
+        stage.setScene(scene);
+        stage.setTitle("Fractal-R Version 1.9 - Beta");
+        stage.setResizable(Boolean.FALSE);
+        stage.setWidth(Constants.SYSTEM_WIDTH);
+        stage.setHeight(Constants.SYSTEM_HEIGHT);
+        stage.show();
+    }
+
+    private VBox createTransformationColumn() {
+        VBox transformationColumn = new VBox();
+        transformationColumn.getChildren().addAll(pnlBotoes, pnlFormulas, pnlTransformacoes);
+        return transformationColumn;
     }
 
     public DesktopLayout getDesign() {
@@ -98,44 +143,6 @@ public class MainClass {
 
     public void setTransformations(Group transformations) {
         this.transformations = transformations;
-    }
-
-    public void create(Stage stage) {
-
-        transformations = new Group();
-        pnlExemplos = new ExamplePanel();
-        pnlControle = new ControlPanel();
-
-        VBox transformationColumn = createTransformationColumn();
-        HBox hbox = new HBox(8);
-        hbox.getChildren().addAll(pnlExemplos, transformationColumn);
-        design = new DesktopLayout();
-        pencil = Pencil.getInstance();
-        pencil.setX(127);
-        pencil.setY(33);
-        pencil.setCanvas(design);
-
-        // hbox.getChildren().add(pencil);
-        // createTransformations();
-
-        Scene scene = new Scene(hbox);
-        scene.setFill(Color.web("#CCC"));
-        final ObservableList<String> stylesheets = scene.getStylesheets();
-        stylesheets.addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
-                JFoenixResources.load("css/jfoenix-design.css").toExternalForm(), "css/fractal_r.css");
-
-        stage.setScene(scene);
-        stage.setTitle("Fractal-R Version 1.9 - Beta");
-        stage.setResizable(Boolean.FALSE);
-        stage.setWidth(Constants.SYSTEM_WIDTH);
-        stage.setHeight(Constants.SYSTEM_HEIGHT);
-        stage.show();
-    }
-
-    private VBox createTransformationColumn() {
-        VBox transformationColumn = new VBox();
-        transformationColumn.getChildren().addAll(pnlBotoes, pnlFormulas, pnlTransformacoes);
-        return transformationColumn;
     }
 
 }

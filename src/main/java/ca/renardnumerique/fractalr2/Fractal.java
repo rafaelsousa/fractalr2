@@ -3,7 +3,6 @@ package ca.renardnumerique.fractalr2;
 import java.util.List;
 
 import ca.renardnumerique.fractalr2.lsystem.AplicadorRegras;
-import jakarta.inject.Inject;
 import javafx.animation.Animation;
 import javafx.scene.Node;
 import javafx.scene.shape.Line;

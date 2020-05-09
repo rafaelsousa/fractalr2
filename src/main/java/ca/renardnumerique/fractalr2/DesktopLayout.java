@@ -22,7 +22,9 @@ public class DesktopLayout extends Group {
     private Rectangle anterior = new Rectangle();
     private ImageView logo = new ImageView();
     
-    public DesktopLayout(){}
+    public DesktopLayout(){
+        
+    }
     
     public void initComponents(){
         fundoSistema = new ImageView(new Image("file:images/bg_sistema.png"));
