@@ -34,7 +34,7 @@ public class ExamplePanel extends VBox {
 
     private Text titulo;
 
-    public ExamplePanel() {
+    public ExamplePanel() {        
         titulo = new Text("Exemplos");
         titulo.setFont(new Font("Verdana", 12));
         titulo.setFill(Color.web("#9f4545"));

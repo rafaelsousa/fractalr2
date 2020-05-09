@@ -44,8 +44,7 @@ public class MainClass {
 
         transformations = new Group();
         pnlExemplos = new ExamplePanel();
-        pnlControle = new ControlPanel();
-        
+        pnlControle = new ControlPanel();       
         
         
         VBox transformationColumn = createTransformationColumn();        
@@ -64,7 +63,9 @@ public class MainClass {
         scene.setFill(Color.web("#CCC"));
         final ObservableList<String> stylesheets = scene.getStylesheets();
         stylesheets.addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
-                           JFoenixResources.load("css/jfoenix-design.css").toExternalForm());
+                           JFoenixResources.load("css/jfoenix-design.css").toExternalForm(),
+                           "css/fractal_r.css");
+                        
                            
         stage.setScene(scene);
     }
