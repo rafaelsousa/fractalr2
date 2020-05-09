@@ -7,8 +7,7 @@ public class Start extends Application {
 
     @Override
     public void start(Stage stage) {
-        MainClass.getInstance().create(stage);        
-        stage.show();
+        MainClass.getInstance().create(stage);                
     }
 
     public static void main(String[] args) {

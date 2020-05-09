@@ -73,6 +73,7 @@ public class MainClass {
         stage.setResizable(Boolean.FALSE);
         stage.setWidth(Constants.SYSTEM_WIDTH);
         stage.setHeight(Constants.SYSTEM_HEIGHT);
+        stage.show();
     }
 
     private VBox createTransformationColumn() {

@@ -15,7 +15,6 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,7 +32,7 @@ public class ActionButton extends Button {
     private Node painelAtual;
     private List<ActionButton> botoes;
 
-    public String iconeUrl = "file:images/botoes/rating.png"; //por padrao aparece uma estrela
+    public String iconeUrl = "file:images/botoes/rating.png"; 
 
     public ColorSelector coresSeletor;
     private LinearGradient fillNormal;
