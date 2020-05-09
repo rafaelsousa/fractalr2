@@ -1,7 +1,5 @@
 package ca.renardnumerique.fractalr2;
 
-import java.net.URL;
-
 import com.jfoenix.assets.JFoenixResources;
 
 import javafx.collections.ObservableList;
@@ -48,6 +46,8 @@ public class MainClass {
         pnlExemplos = new ExamplePanel();
         pnlControle = new ControlPanel();
         
+        
+        
         VBox transformationColumn = createTransformationColumn();        
         HBox hbox = new HBox(8);                
         hbox.getChildren().addAll(pnlExemplos,transformationColumn);
@@ -64,7 +64,8 @@ public class MainClass {
         scene.setFill(Color.web("#CCC"));
         final ObservableList<String> stylesheets = scene.getStylesheets();
         stylesheets.addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
-                           JFoenixResources.load("css/jfoenix-design.css").toExternalForm());                           
+                           JFoenixResources.load("css/jfoenix-design.css").toExternalForm());
+                           
         stage.setScene(scene);
     }
 

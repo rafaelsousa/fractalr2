@@ -1,9 +1,11 @@
 package ca.renardnumerique.fractalr2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ca.renardnumerique.fractalr2.lsystem.AcaoExpansiva;
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
 import ca.renardnumerique.fractalr2.lsystem.GerenciadorLSystem;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -17,9 +19,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -47,7 +46,7 @@ public class ActionButton extends Button {
         this.icone = icone;
         this.acaoLSystem = acaoLSystem;
         this.fillNormal = fillNormal;
-        setWidth(110);
+        // setWidth(110);
         buildDesignRectangle();
         buildDspNome();
         buildIcone();
@@ -57,32 +56,32 @@ public class ActionButton extends Button {
     
     private void buildDesignRectangle(){
     	designRetangulo = new Rectangle();
-        designRetangulo.setY(-2);
-        designRetangulo.setWidth(getWidth());
-        designRetangulo.setX(170 + (getWidth() + 10) * (numeroBotoes));
-        designRetangulo.setHeight(29);
-        designRetangulo.setArcWidth(10);
-        designRetangulo.setArcHeight(10);
-        designRetangulo.setFill(fillNormal);
-        designRetangulo.setOnMouseEntered(e -> {
-            designRetangulo.setStroke(Color.web("#444444"));
-        });
-        designRetangulo.setOnMouseExited(e -> {
-            designRetangulo.setStroke(Color.web("#f8f8f8"));
-        });
-        designRetangulo.setStroke(Color.web("#f8f8f8"));
+        // designRetangulo.setY(-2);
+        // designRetangulo.setWidth(getWidth());
+        // designRetangulo.setX(170 + (getWidth() + 10) * (numeroBotoes));
+        // designRetangulo.setHeight(29);
+        // designRetangulo.setArcWidth(10);
+        // designRetangulo.setArcHeight(10);
+        // designRetangulo.setFill(fillNormal);
+        // designRetangulo.setOnMouseEntered(e -> {
+        //     designRetangulo.setStroke(Color.web("#444444"));
+        // });
+        // designRetangulo.setOnMouseExited(e -> {
+        //     designRetangulo.setStroke(Color.web("#f8f8f8"));
+        // });
+        // designRetangulo.setStroke(Color.web("#f8f8f8"));
     }
 
     ;
 
 
     private void buildDspNome(){
-    	dspNome = new Text();
-    	dspNome.setText(nome);
-        dspNome.setX(24 + designRetangulo.getX());
-        dspNome.setY(17 + designRetangulo.getX());
-        dspNome.setFont(new Font("Bitstream Vera Sans Bold", 10));
-        dspNome.setFill(Color.web("#000000"));
+    	// dspNome = new Text();
+    	// dspNome.setText(nome);
+        // dspNome.setX(24 + designRetangulo.getX());
+        // dspNome.setY(17 + designRetangulo.getX());
+        // dspNome.setFont(new Font("Bitstream Vera Sans Bold", 10));
+        // dspNome.setFill(Color.web("#000000"));
     }
 
     

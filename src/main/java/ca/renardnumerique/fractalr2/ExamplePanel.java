@@ -40,6 +40,13 @@ public class ExamplePanel extends VBox {
         titulo.setFill(Color.web("#9f4545"));
         this.setMaxWidth(Integer.MAX_VALUE);             
         this.setWidth(Integer.MAX_VALUE);        
+
+        ImageView systemLogo = new ImageView();
+        systemLogo.setImage(new Image("images/logo.png"));        
+        systemLogo.setPreserveRatio(true);
+        systemLogo.setSmooth(true);
+        systemLogo.setCache(true);        
+        this.getChildren().add(systemLogo);
         
         this.getChildren().addAll(            
             titulo, 
