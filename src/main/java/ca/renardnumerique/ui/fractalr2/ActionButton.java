@@ -1,4 +1,4 @@
-package ca.renardnumerique.fractalr2;
+package ca.renardnumerique.ui.fractalr2;
 
 import java.util.List;
 
