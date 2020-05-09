@@ -10,64 +10,106 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import lombok.Data;
 
-
-@Data
 public class MainClass {
 
-    private Integer systemHeight = 768;
-    private Integer systemWidth = 1024;
-
-    private static MainClass MAINCLASS_INSTANCE;
-
     private DesktopLayout design;
-	private ExamplePanel pnlExemplos;
-	private ButtonPanel pnlBotoes;
-	private FormulaPanel pnlFormulas = FormulaPanel.getInstance();
+    private ExamplePanel pnlExemplos;
+    private ButtonPanel pnlBotoes;
+    private FormulaPanel pnlFormulas;
     private TransformationPanel pnlTransformacoes;
     private ControlPanel pnlControle;
     private Pencil pencil;
-    private Group transformations;
+    private Group transformations;    
 
-
-    public static MainClass getInstance() {
-        if(MAINCLASS_INSTANCE == null){
-            MAINCLASS_INSTANCE = new MainClass();
-        }
-        return MAINCLASS_INSTANCE;
+    public DesktopLayout getDesign() {
+        return this.design;
     }
 
-    private MainClass() {
+    public void setDesign(DesktopLayout design) {
+        this.design = design;
+    }
+
+    public ExamplePanel getPnlExemplos() {
+        return this.pnlExemplos;
+    }
+
+    public void setPnlExemplos(ExamplePanel pnlExemplos) {
+        this.pnlExemplos = pnlExemplos;
+    }
+
+    public ButtonPanel getPnlBotoes() {
+        return this.pnlBotoes;
+    }
+
+    public void setPnlBotoes(ButtonPanel pnlBotoes) {
+        this.pnlBotoes = pnlBotoes;
+    }
+
+    public FormulaPanel getPnlFormulas() {
+        return this.pnlFormulas;
+    }
+
+    public void setPnlFormulas(FormulaPanel pnlFormulas) {
+        this.pnlFormulas = pnlFormulas;
+    }
+
+    public TransformationPanel getPnlTransformacoes() {
+        return this.pnlTransformacoes;
+    }
+
+    public void setPnlTransformacoes(TransformationPanel pnlTransformacoes) {
+        this.pnlTransformacoes = pnlTransformacoes;
+    }
+
+    public ControlPanel getPnlControle() {
+        return this.pnlControle;
+    }
+
+    public void setPnlControle(ControlPanel pnlControle) {
+        this.pnlControle = pnlControle;
+    }
+
+    public Pencil getPencil() {
+        return this.pencil;
+    }
+
+    public void setPencil(Pencil pencil) {
+        this.pencil = pencil;
+    }
+
+    public Group getTransformations() {
+        return this.transformations;
+    }
+
+    public void setTransformations(Group transformations) {
+        this.transformations = transformations;
     }
 
     public void create(Stage stage) {
 
         transformations = new Group();
         pnlExemplos = new ExamplePanel();
-        pnlControle = new ControlPanel();       
-        
-        
-        VBox transformationColumn = createTransformationColumn();        
-        HBox hbox = new HBox(8);                
-        hbox.getChildren().addAll(pnlExemplos,transformationColumn);
+        pnlControle = new ControlPanel();
+
+        VBox transformationColumn = createTransformationColumn();
+        HBox hbox = new HBox(8);
+        hbox.getChildren().addAll(pnlExemplos, transformationColumn);
         design = new DesktopLayout();
         pencil = Pencil.getInstance();
         pencil.setX(127);
         pencil.setY(33);
         pencil.setCanvas(design);
 
-        //hbox.getChildren().add(pencil);
-        //createTransformations();
+        // hbox.getChildren().add(pencil);
+        // createTransformations();
 
         Scene scene = new Scene(hbox);
         scene.setFill(Color.web("#CCC"));
         final ObservableList<String> stylesheets = scene.getStylesheets();
         stylesheets.addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
-                           JFoenixResources.load("css/jfoenix-design.css").toExternalForm(),
-                           "css/fractal_r.css");
-                        
-                           
+                JFoenixResources.load("css/jfoenix-design.css").toExternalForm(), "css/fractal_r.css");
+
         stage.setScene(scene);
         stage.setTitle("Fractal-R Version 1.9 - Beta");
         stage.setResizable(Boolean.FALSE);
@@ -77,13 +119,9 @@ public class MainClass {
     }
 
     private VBox createTransformationColumn() {
-        pnlTransformacoes = new TransformationPanel();
-        pnlFormulas = FormulaPanel.getInstance();
-        pnlBotoes = ButtonPanel.getInstance();
         VBox transformationColumn = new VBox();
-        transformationColumn.getChildren().addAll(pnlBotoes,pnlFormulas,pnlTransformacoes);
+        transformationColumn.getChildren().addAll(pnlBotoes, pnlFormulas, pnlTransformacoes);
         return transformationColumn;
     }
-
 
 }

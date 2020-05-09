@@ -1,21 +1,17 @@
 package ca.renardnumerique.fractalr2.lsystem;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * @author rafael
  */
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class AcaoLSystem {
 
     private Integer tipoAcao;
 	private String simbolo;
 	private Integer cor;
+
+	
 
 	public static Integer ACAO_ANDAR = 1;
 	public static Integer ACAO_EXPANDIR = 2;
@@ -30,7 +26,13 @@ public class AcaoLSystem {
 		this.tipoAcao = tipoAcao;
 	}
 
-    @Override
+	public AcaoLSystem(Integer lSystemAction, String symbol, Integer cor) {
+		this.tipoAcao = lSystemAction;
+		this.simbolo = symbol;
+		this.cor = cor;
+	}
+
+	@Override
 	public String toString() {
 	    if(tipoAcao == AcaoLSystem.ACAO_ANDAR){
 	        return String.valueOf("abcd".charAt(this.cor));
@@ -98,6 +100,30 @@ public class AcaoLSystem {
 		} else if (!tipoAcao.equals(other.tipoAcao))
 			return false;
 		return true;
+	}
+
+	public Integer getTipoAcao() {
+		return this.tipoAcao;
+	}
+
+	public void setTipoAcao(Integer tipoAcao) {
+		this.tipoAcao = tipoAcao;
+	}
+
+	public String getSimbolo() {
+		return this.simbolo;
+	}
+
+	public void setSimbolo(String simbolo) {
+		this.simbolo = simbolo;
+	}
+
+	public Integer getCor() {
+		return this.cor;
+	}
+
+	public void setCor(Integer cor) {
+		this.cor = cor;
 	}
 	
 

@@ -16,11 +16,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
-@Data
-@AllArgsConstructor
 public class ActionButton extends Button {
 
     private AcaoLSystem acaoLSystem;
@@ -32,22 +28,24 @@ public class ActionButton extends Button {
     private Node painelAtual;
     private List<ActionButton> botoes;
 
-    public String iconeUrl = "file:images/botoes/rating.png"; 
+    private String iconeUrl = "file:images/botoes/rating.png"; 
 
-    public ColorSelector coresSeletor;
+    private ColorSelector coresSeletor;
     private LinearGradient fillNormal;
     private Rectangle designRetangulo;
     private int numeroBotoes = -2;
     private Text dspNome;
     private ImageView icone;
+    
+    private MainClass mainClass;
+
+    private FormulaPanel formulaPanel;
 
     public ActionButton(ImageView icone, AcaoLSystem acaoLSystem, LinearGradient fillNormal) {
         this.icone = icone;
         this.acaoLSystem = acaoLSystem;
-        this.fillNormal = fillNormal;
-        // setWidth(110);
+        this.fillNormal = fillNormal;        
         buildDesignRectangle();
-        buildDspNome();
         buildIcone();
     }
 
@@ -55,32 +53,6 @@ public class ActionButton extends Button {
     
     private void buildDesignRectangle(){
     	designRetangulo = new Rectangle();
-        // designRetangulo.setY(-2);
-        // designRetangulo.setWidth(getWidth());
-        // designRetangulo.setX(170 + (getWidth() + 10) * (numeroBotoes));
-        // designRetangulo.setHeight(29);
-        // designRetangulo.setArcWidth(10);
-        // designRetangulo.setArcHeight(10);
-        // designRetangulo.setFill(fillNormal);
-        // designRetangulo.setOnMouseEntered(e -> {
-        //     designRetangulo.setStroke(Color.web("#444444"));
-        // });
-        // designRetangulo.setOnMouseExited(e -> {
-        //     designRetangulo.setStroke(Color.web("#f8f8f8"));
-        // });
-        // designRetangulo.setStroke(Color.web("#f8f8f8"));
-    }
-
-    ;
-
-
-    private void buildDspNome(){
-    	// dspNome = new Text();
-    	// dspNome.setText(nome);
-        // dspNome.setX(24 + designRetangulo.getX());
-        // dspNome.setY(17 + designRetangulo.getX());
-        // dspNome.setFont(new Font("Bitstream Vera Sans Bold", 10));
-        // dspNome.setFill(Color.web("#000000"));
     }
 
     
@@ -102,23 +74,20 @@ public class ActionButton extends Button {
         return nova;
     }
 
-    private void onDrop(Node local) {
-        this.painelAtual = local;
-    }
 
     private DragDrop drag = new DragDrop(this);
     {
         drag.onChange(arrastaSolta -> {
-            FormulaPanel.getInstance().trataArrastar(arrastaSolta);
-            for (Node transformacao : MainClass.getInstance().getTransformations().getChildren()) {
+            formulaPanel.trataArrastar(arrastaSolta);
+            for (Node transformacao : mainClass.getTransformations().getChildren()) {
                 if (transformacao instanceof TransformationPanel) {
                     ((TransformationPanel) transformacao).trataArrastar(arrastaSolta);
                 }
             }
         });
         drag.setOnSoltar(arrastaSolta -> {
-            FormulaPanel.getInstance().trataSoltar(arrastaSolta);
-            for (Node transformacao : MainClass.getInstance().getTransformations().getChildren()) {
+            formulaPanel.trataSoltar(arrastaSolta);
+            for (Node transformacao : mainClass.getTransformations().getChildren()) {
                 if (transformacao instanceof TransformationPanel) {
                     ((TransformationPanel) transformacao).trataSoltar(arrastaSolta);
                 }
@@ -190,6 +159,97 @@ public class ActionButton extends Button {
         
         return botoes;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<ActionButton> getBotoes() {
+        return botoes;
+    }
+
+    public void setBotoes(List<ActionButton> botoes) {
+        this.botoes = botoes;
+    }
+
+    public String getIconeUrl() {
+        return iconeUrl;
+    }
+
+    public void setIconeUrl(String iconeUrl) {
+        this.iconeUrl = iconeUrl;
+    }
+
+    public ColorSelector getCoresSeletor() {
+        return coresSeletor;
+    }
+
+    public void setCoresSeletor(ColorSelector coresSeletor) {
+        this.coresSeletor = coresSeletor;
+    }
+
+    public AcaoLSystem getAcaoLSystem() {
+        return acaoLSystem;
+    }
+
+    public void setAcaoLSystem(AcaoLSystem acaoLSystem) {
+        this.acaoLSystem = acaoLSystem;
+    }
+
+    public LinearGradient getFillNormal() {
+        return fillNormal;
+    }
+
+    public void setFillNormal(LinearGradient fillNormal) {
+        this.fillNormal = fillNormal;
+    }
+
+    public Node getPainelAtual() {
+        return painelAtual;
+    }
+
+    public void setPainelAtual(Node painelAtual) {
+        this.painelAtual = painelAtual;
+    }
+
+    public Rectangle getDesignRetangulo() {
+        return designRetangulo;
+    }
+
+    public void setDesignRetangulo(Rectangle designRetangulo) {
+        this.designRetangulo = designRetangulo;
+    }
+
+    public int getNumeroBotoes() {
+        return numeroBotoes;
+    }
+
+    public void setNumeroBotoes(int numeroBotoes) {
+        this.numeroBotoes = numeroBotoes;
+    }
+
+    public Text getDspNome() {
+        return dspNome;
+    }
+
+    public void setDspNome(Text dspNome) {
+        this.dspNome = dspNome;
+    }
+
+    public ImageView getIcone() {
+        return icone;
+    }
+
+    public void setIcone(ImageView icone) {
+        this.icone = icone;
+    }
+
+    
+
 
 }
 

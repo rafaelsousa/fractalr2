@@ -1,15 +1,11 @@
 package ca.renardnumerique.fractalr2.lsystem;
 
-import javafx.beans.NamedArg;
-import lombok.Data;
-
 import java.util.List;
 
 /**
  * @author rafael
  */
 
-@Data
 public class AcaoExpansiva extends AcaoLSystem {
     
     private List<AcaoLSystem> acoesDerivadas;
@@ -17,4 +13,14 @@ public class AcaoExpansiva extends AcaoLSystem {
     public AcaoExpansiva(Integer acao) {
         super(acao);
     }
+
+    public List<AcaoLSystem> getAcoesDerivadas() {
+        return this.acoesDerivadas;
+    }
+
+    public void setAcoesDerivadas(List<AcaoLSystem> acoesDerivadas) {
+        this.acoesDerivadas = acoesDerivadas;
+    }
+
+    
 }

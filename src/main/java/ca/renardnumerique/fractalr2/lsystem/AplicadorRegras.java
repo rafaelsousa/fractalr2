@@ -1,12 +1,14 @@
 package ca.renardnumerique.fractalr2.lsystem;
 
-import ca.renardnumerique.fractalr2.*;
-import javafx.scene.Node;
-import javafx.util.Duration;
-import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import ca.renardnumerique.fractalr2.ActionButton;
+import ca.renardnumerique.fractalr2.MainClass;
+import ca.renardnumerique.fractalr2.Ponto;
+import ca.renardnumerique.fractalr2.TransformationPanel;
+import javafx.scene.Node;
+import javafx.util.Duration;
 
 /**
  * Aplica as regras que geram os comandos para o lapis criar o desenho do
@@ -15,8 +17,9 @@ import java.util.List;
  * @author Rafael de Andrade Sousa : rafael.and@gmail.com
  */
 
-@Data
-public class AplicadorRegras {
+
+
+ public class AplicadorRegras {
 
     public static AplicadorRegras instance = new AplicadorRegras();
 
@@ -27,38 +30,39 @@ public class AplicadorRegras {
     private Integer iteracao;
     private List<ActionButton> botoesFormula;
 
-    public List<Comando> pilhaComandos;
-    private List<AcaoLSystem> pilhaAcoes;
+    private List<Comando> pilhaComandos;
+    private List<AcaoLSystem> pilhaAcoes;    
+    private MainClass mainClass;
+    private ActionButton formulaPanel;
 
     public ArrayList<Comando> gerarComandos() {
         pilhaComandos = new ArrayList<Comando>();
         pilhaAcoes = new ArrayList<AcaoLSystem>();
         ArrayList<Comando> cmds = new ArrayList<Comando>();
-        botoesFormula = FormulaPanel.getInstance().getBotoes();
+        botoesFormula = formulaPanel.getBotoes();
 
         var tamanhoSegmento = 1;// Tamanho das linhas
 
         //Atribuir transformacoes aos botoes no painel de formulas
         List<TransformationPanel> pnlTransformacoes = new ArrayList<>();
 
-        for (Node pnl : MainClass.getInstance().getTransformations().getChildren()) {
+        for (Node pnl : mainClass.getTransformations().getChildren()) {
             if (pnl instanceof TransformationPanel) {
                 pnlTransformacoes.add((TransformationPanel) pnl);
             }
         }
 
-        iteracao = MainClass.getInstance().getPnlControle().getIteracoes();
+        iteracao = mainClass.getPnlControle().getIteracoes();
         //Fetching coordinates for scaling calculation.
-        Double alturaCanvas = MainClass.getInstance().getDesign().getAreaDesenho().getHeight();
-        Double larguraCanvas = MainClass.getInstance().getDesign().getAreaDesenho().getWidth();
+        Double alturaCanvas = mainClass.getDesign().getAreaDesenho().getHeight();
+        Double larguraCanvas = mainClass.getDesign().getAreaDesenho().getWidth();
 
         Double maximoXFractal = java.lang.Double.NEGATIVE_INFINITY;
         Double maximoYFractal = java.lang.Double.NEGATIVE_INFINITY;
         Double minimoXFractal = java.lang.Double.POSITIVE_INFINITY;
         Double minimoYFractal = java.lang.Double.POSITIVE_INFINITY;
 
-        Integer count = 0;
-        Double angulo = Math.toRadians(MainClass.getInstance().getPnlControle().getAnguloSlider().getValue());
+        Double angulo = Math.toRadians(mainClass.getPnlControle().getAnguloSlider().getValue());
         Double anguloIncremento = 0.0;
         cmds.clear();
 
@@ -177,14 +181,10 @@ public class AplicadorRegras {
         Double larguraFractal = maximoXFractal - minimoXFractal;
         Double alturaFractal = maximoYFractal - minimoYFractal;
 
-        Double escalaX = ((larguraCanvas - larguraFractal) / larguraFractal);
-        Double escalaY = ((alturaCanvas - alturaFractal) / alturaFractal);
 
-        Double x1Canvas = MainClass.getInstance().getDesign().getAreaDesenho().getX();
-        Double y1Canvas = MainClass.getInstance().getDesign().getAreaDesenho().getY();
+        Double x1Canvas = mainClass.getDesign().getAreaDesenho().getX();
+        Double y1Canvas = mainClass.getDesign().getAreaDesenho().getY();
 
-        Double x2Canvas = x1Canvas + MainClass.getInstance().getDesign().getAreaDesenho().getWidth();
-        Double y2Canvas = y1Canvas + MainClass.getInstance().getDesign().getAreaDesenho().getHeight();
 
         Double escala;
 
@@ -199,8 +199,6 @@ public class AplicadorRegras {
                 escala = larguraCanvas / larguraFractal;
             }
         }
-
-        Ponto firstCorner = new Ponto(0.0,0.0);
 
         Double left = Double.POSITIVE_INFINITY;
         Double right = Double.NEGATIVE_INFINITY;
@@ -254,9 +252,6 @@ public class AplicadorRegras {
 
         right += deslocamentoHorizontal;
         bottom += deslocamentoVertical;
-
-        var centralizacaoHorizontal = deslocamentoHorizontal / 2;
-        var centralizacaoVertical = deslocamentoVertical / 2;
 
         for (Comando comando : cmds) {
             if (comando.getTipoComando().equals(Comando.MOVER)) {

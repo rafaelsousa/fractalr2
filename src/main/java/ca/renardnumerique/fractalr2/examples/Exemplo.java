@@ -12,14 +12,11 @@ import ca.renardnumerique.fractalr2.FormulaPanel;
 import ca.renardnumerique.fractalr2.MainClass;
 import ca.renardnumerique.fractalr2.TransformationPanel;
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
+import jakarta.inject.Inject;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import lombok.Data;
 
-@Data
 public abstract class Exemplo extends Button {
 
 	private String formula = new String();
@@ -27,6 +24,12 @@ public abstract class Exemplo extends Button {
 	private Integer angulo;
 	private ImageView fundo = new ImageView();
 	private Rectangle contornoRectangle = new Rectangle();
+	
+	
+	private FormulaPanel formulaPanel;
+	private MainClass mainClass;
+	private TransformationPanel transformationPanel;
+	private ButtonPanel buttonPanel;
 
 	public Exemplo() {
 		initializeComponents();
@@ -46,9 +49,8 @@ public abstract class Exemplo extends Button {
 		Map<Character, Integer> mapAndar = new HashMap<>();
 		Map<Character, Integer> mapProduzir = new HashMap<>();
 		Map<Character, Integer> mapFazerRetornar = new HashMap<>();
-		FormulaPanel.getInstance().getBotoes().clear();
-		MainClass.getInstance().getPnlControle().setAngulo(angulo);
-		String controle = "";
+		formulaPanel.getBotoes().clear();
+		mainClass.getPnlControle().setAngulo(angulo);
 		for (char btn : formula.toCharArray()) {
 			if (btn == ' ')
 				continue;
@@ -75,35 +77,35 @@ public abstract class Exemplo extends Button {
 					cor = fazerRetornar.indexOf(btn);
 				}
 			}
-			ActionButton botao = ButtonPanel.getBotao(cod);
+			ActionButton botao = buttonPanel.findButton(cod);
 			if (cod == AcaoLSystem.ACAO_ANDAR) {
 				if (mapAndar.get(btn) == null) {
 					mapAndar.put(btn, cor);
 				}
-				botao.coresSeletor.setCor(mapAndar.get(btn));
+				botao.getCoresSeletor().setCor(mapAndar.get(btn));
 			}
 			if (cod == AcaoLSystem.ACAO_EXPANDIR) {
 				if (mapProduzir.get(btn) == null) {
 					mapProduzir.put(btn, cor);
 				}
-				botao.coresSeletor.setCor(mapProduzir.get(btn));
+				botao.getCoresSeletor().setCor(mapProduzir.get(btn));
 			}
 			if (cod == AcaoLSystem.ACAO_FAZER_RETORNAR) {
 				if (mapFazerRetornar.get(btn) == null) {
 					mapFazerRetornar.put(btn, cor);
 				}
-				botao.coresSeletor.setCor(mapFazerRetornar.get(btn));
+				botao.getCoresSeletor().setCor(mapFazerRetornar.get(btn));
 			}
-			FormulaPanel.getInstance().getBotoes().add(botao.duplicar());
+			formulaPanel.getBotoes().add(botao.duplicar());
 		}
-		FormulaPanel.getInstance().redrawBar();
-		TransformationPanel.instanciaAtual.resetarBarra();
-		TransformationPanel.instanciaAtual.getBotoes().clear();
+		formulaPanel.redrawBar();
+		transformationPanel.resetarBarra();
+		transformationPanel.getBotoes().clear();
 		var count = 0;
 		for (String transformacao : transformacoes) {
 			count++;
 			if (count > 1) {
-				TransformationPanel.instanciaAtual.adicionarBarra();
+				transformationPanel.adicionarBarra();
 			}
 			for (Character btn : transformacao.toCharArray()) {
 				if (btn.toString() == " ") {
@@ -116,7 +118,7 @@ public abstract class Exemplo extends Button {
 				} else if (btn.toString() == "+") {
 					cod = AcaoLSystem.ACAO_GIRAR_DIREITA;
 				} else if (btn.toString() == "=") {
-					TransformationPanel.instanciaAtual.getBotoes().add(ActionButton.BOTAO_IGUAL.duplicar());
+					transformationPanel.getBotoes().add(ActionButton.BOTAO_IGUAL.duplicar());
 					continue;
 				} else {
 					String minusculas = new String("abcdefghikjlmnopqrstuvxyz");
@@ -135,29 +137,29 @@ public abstract class Exemplo extends Button {
 						cor = fazerRetornar.indexOf(btn.toString());
 					}
 				}
-				ActionButton botao = ButtonPanel.getBotao(cod);
+				ActionButton botao = buttonPanel.findButton(cod);
+				
 				if (cod == AcaoLSystem.ACAO_ANDAR) {
 					if (mapAndar.get(btn) == null) {
 						mapAndar.put(btn, cor);
 						// println("id cor{nroCor} simbolo{btn} {map}");
 					}
-					botao.coresSeletor.setCor(mapAndar.get(btn));
+					botao.getCoresSeletor().setCor(mapAndar.get(btn));
 				}
 				if (cod == AcaoLSystem.ACAO_EXPANDIR) {
 					if (mapProduzir.get(btn) == null) {
 						mapProduzir.put(btn, cor);
 					}
-					botao.coresSeletor.setCor(mapProduzir.get(btn));
+					botao.getCoresSeletor().setCor(mapProduzir.get(btn));
 				}
 				if (cod == AcaoLSystem.ACAO_FAZER_RETORNAR) {
 					if (mapFazerRetornar.get(btn) == null) {
 						mapFazerRetornar.put(btn, cor);
 					}
-					botao.coresSeletor.setCor(mapFazerRetornar.get(btn));
+					botao.getCoresSeletor().setCor(mapFazerRetornar.get(btn));
 				}
-				TransformationPanel.instanciaAtual.getBotoes().add(botao.duplicar());
 			}
-			TransformationPanel.instanciaAtual.redesenhaBarra();
+			transformationPanel.redesenhaBarra();
 		}
 	}
 
@@ -168,4 +170,48 @@ public abstract class Exemplo extends Button {
 	public static void rodarExemplo(Exemplo exemplo) {
 		exemplo.doFractal();
 	}
+
+	
+
+	public String getFormula() {
+		return this.formula;
+	}
+
+	public void setFormula(String formula) {
+		this.formula = formula;
+	}
+
+	public List<String> getTransformacoes() {
+		return this.transformacoes;
+	}
+
+	public void setTransformacoes(List<String> transformacoes) {
+		this.transformacoes = transformacoes;
+	}
+
+	public Integer getAngulo() {
+		return this.angulo;
+	}
+
+	public void setAngulo(Integer angulo) {
+		this.angulo = angulo;
+	}
+
+	public ImageView getFundo() {
+		return this.fundo;
+	}
+
+	public void setFundo(ImageView fundo) {
+		this.fundo = fundo;
+	}
+
+	public Rectangle getContornoRectangle() {
+		return this.contornoRectangle;
+	}
+
+	public void setContornoRectangle(Rectangle contornoRectangle) {
+		this.contornoRectangle = contornoRectangle;
+	}
+
+	
 }

@@ -3,10 +3,7 @@ package ca.renardnumerique.fractalr2;
 import javafx.scene.Cursor;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import lombok.Data;
 
-
-@Data
 public class Selector extends Rectangle {
 
     private Rectangle nodo;
@@ -21,4 +18,21 @@ public class Selector extends Rectangle {
         setArcHeight(5);
         setArcWidth(5);
     }
+
+    public Rectangle getNodo() {
+        return this.nodo;
+    }
+
+    public void setNodo(Rectangle nodo) {
+        this.nodo = nodo;
+    }
+
+    public Integer getIdCor() {
+        return this.idCor;
+    }
+
+    public void setIdCor(Integer idCor) {
+        this.idCor = idCor;
+    }
+
 }

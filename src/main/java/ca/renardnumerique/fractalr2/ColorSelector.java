@@ -9,9 +9,7 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import lombok.Data;
 
-@Data
 public class ColorSelector extends Group {
     private Double posX = 0.0;
     private Double posY = 0.0;
@@ -30,14 +28,7 @@ public class ColorSelector extends Group {
 
     public ColorSelector() {
         create();
-        this.getChildren().addAll(
-                btnControle,
-                txtMais,
-                btnVermelho,
-                btnVerde,
-                btnAzul,
-                btnAmarelo,
-                btnBranco);
+        this.getChildren().addAll(btnControle, txtMais, btnVermelho, btnVerde, btnAzul, btnAmarelo, btnBranco);
     }
 
     public void setCor(Integer id) {
@@ -58,18 +49,10 @@ public class ColorSelector extends Group {
     }
 
     public void corGradiente() {
-        botaoPai.setFillNormal(new LinearGradient(
-                0.0,
-                0.7,
-                0.0,
-                1.5,
-                Boolean.TRUE,
-                CycleMethod.NO_CYCLE,
-                new Stop(0.0, Color.web("#c8eab2")),
-                new Stop(1.0, Color.web("#aaa"))));
+        botaoPai.setFillNormal(new LinearGradient(0.0, 0.7, 0.0, 1.5, Boolean.TRUE, CycleMethod.NO_CYCLE,
+                new Stop(0.0, Color.web("#c8eab2")), new Stop(1.0, Color.web("#aaa"))));
 
     }
-
 
     private void create() {
 
@@ -87,7 +70,6 @@ public class ColorSelector extends Group {
         btnVermelho.setFill(Color.web("#D7AEFF"));
         btnVermelho.setVisible(aberto);
 
-
         btnVerde = new Selector();
         btnVerde.setIdCor(2);
         btnVerde.setNodo(nodo);
@@ -96,7 +78,6 @@ public class ColorSelector extends Group {
         btnVerde.setFill(Color.web("#2EFF9E"));
         btnVerde.setVisible(aberto);
 
-
         btnAzul = new Selector();
         btnAzul.setIdCor(3);
         btnAzul.setNodo(nodo);
@@ -104,7 +85,6 @@ public class ColorSelector extends Group {
         btnAzul.setY(posY);
         btnAzul.setFill(Color.web("#A7FFEC"));
         btnAzul.setVisible(aberto);
-
 
         btnAmarelo = new Selector();
         btnAmarelo.setIdCor(4);
@@ -158,8 +138,111 @@ public class ColorSelector extends Group {
         });
     }
 
-    ;
+    public Double getPosX() {
+        return posX;
+    }
+
+    public void setPosX(Double posX) {
+        this.posX = posX;
+    }
+
+    public Double getPosY() {
+        return posY;
+    }
+
+    public void setPosY(Double posY) {
+        this.posY = posY;
+    }
+
+    public Selector getSelecionado() {
+        return selecionado;
+    }
+
+    public void setSelecionado(Selector selecionado) {
+        this.selecionado = selecionado;
+    }
+
+    public Integer getIdSelecionado() {
+        return idSelecionado;
+    }
+
+    public void setIdSelecionado(Integer idSelecionado) {
+        this.idSelecionado = idSelecionado;
+    }
+
+    public ActionButton getBotaoPai() {
+        return botaoPai;
+    }
+
+    public void setBotaoPai(ActionButton botaoPai) {
+        this.botaoPai = botaoPai;
+    }
+
+    public Rectangle getNodo() {
+        return nodo;
+    }
+
+    public void setNodo(Rectangle nodo) {
+        this.nodo = nodo;
+    }
+
+    public Boolean getAberto() {
+        return aberto;
+    }
+
+    public void setAberto(Boolean aberto) {
+        this.aberto = aberto;
+    }
+
+    public Text getTxtMais() {
+        return txtMais;
+    }
+
+    public void setTxtMais(Text txtMais) {
+        this.txtMais = txtMais;
+    }
+
+    public Selector getBtnVermelho() {
+        return btnVermelho;
+    }
+
+    public void setBtnVermelho(Selector btnVermelho) {
+        this.btnVermelho = btnVermelho;
+    }
+
+    public Selector getBtnVerde() {
+        return btnVerde;
+    }
+
+    public void setBtnVerde(Selector btnVerde) {
+        this.btnVerde = btnVerde;
+    }
+
+    public Selector getBtnAzul() {
+        return btnAzul;
+    }
+
+    public void setBtnAzul(Selector btnAzul) {
+        this.btnAzul = btnAzul;
+    }
+
+    public Selector getBtnBranco() {
+        return btnBranco;
+    }
+
+    public void setBtnBranco(Selector btnBranco) {
+        this.btnBranco = btnBranco;
+    }
+
+    public Rectangle getBtnControle() {
+        return btnControle;
+    }
+
+    public void setBtnControle(Rectangle btnControle) {
+        this.btnControle = btnControle;
+    }
+
+    
+
 
 }
-
- 

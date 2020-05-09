@@ -17,9 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import lombok.Data;
 
-@Data
 public class ExamplePanel extends VBox {
 
     public static ExamplePanel pnl;
