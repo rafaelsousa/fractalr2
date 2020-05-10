@@ -6,11 +6,10 @@ import java.util.List;
 import ca.renardnumerique.fractalr2.ApplicationLayout;
 import ca.renardnumerique.fractalr2.ui.ActionButton;
 import ca.renardnumerique.fractalr2.ui.ControlPanel;
-import ca.renardnumerique.fractalr2.ui.DesktopLayout;
+import ca.renardnumerique.fractalr2.ui.ApplicationCanvas;
 import ca.renardnumerique.fractalr2.ui.TransformationPanel;
 import ca.renardnumerique.fractalr2.utils.Ponto;
 import jakarta.inject.Inject;
-import javafx.scene.Node;
 import javafx.util.Duration;
 
 /**
@@ -30,7 +29,7 @@ import javafx.util.Duration;
     private ControlPanel controlPanel;
 
     @Inject
-    private DesktopLayout desktopLayout;
+    private ApplicationCanvas applicationCanvas;
 
     private AplicadorRegras(){}
 
@@ -59,8 +58,8 @@ import javafx.util.Duration;
 
         iteracao = controlPanel.getIteracoes();
         //Fetching coordinates for scaling calculation.
-        Double alturaCanvas = desktopLayout.getAreaDesenho().getHeight();
-        Double larguraCanvas = desktopLayout.getAreaDesenho().getWidth();
+        Double alturaCanvas = applicationCanvas.getAreaDesenho().getHeight();
+        Double larguraCanvas = applicationCanvas.getAreaDesenho().getWidth();
 
         Double maximoXFractal = java.lang.Double.NEGATIVE_INFINITY;
         Double maximoYFractal = java.lang.Double.NEGATIVE_INFINITY;
@@ -187,8 +186,8 @@ import javafx.util.Duration;
         Double alturaFractal = maximoYFractal - minimoYFractal;
 
 
-        Double x1Canvas = desktopLayout.getAreaDesenho().getX();
-        Double y1Canvas = desktopLayout.getAreaDesenho().getY();
+        Double x1Canvas = applicationCanvas.getAreaDesenho().getX();
+        Double y1Canvas = applicationCanvas.getAreaDesenho().getY();
 
 
         Double escala;

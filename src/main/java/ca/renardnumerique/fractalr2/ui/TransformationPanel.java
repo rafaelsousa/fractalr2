@@ -44,7 +44,7 @@ public class TransformationPanel extends Group {
     private Text transformacao = new Text("Transformations");
 
     @Inject
-    private DesktopLayout desktopLayout;
+    private ApplicationCanvas applicationCanvas;
 
     @Inject
     private Pencil pencil;
@@ -95,8 +95,8 @@ public class TransformationPanel extends Group {
     }
 
     public void adicionarBarra() {
-        Integer inicioDesenhoY = desktopLayout.getInicioDesenhoY();
-        desktopLayout.setInicioDesenhoY(inicioDesenhoY + incrementoY);
+        Integer inicioDesenhoY = applicationCanvas.getInicioDesenhoY();
+        applicationCanvas.setInicioDesenhoY(inicioDesenhoY + incrementoY);
         TransformationPanel aux = new TransformationPanel();
         applicationLayout.addTransformationPanel(aux);
         txtSinal = "-";

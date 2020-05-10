@@ -2,7 +2,7 @@ package ca.renardnumerique.fractalr2;
 
 import ca.renardnumerique.fractalr2.ui.ActionButtonsBar;
 import ca.renardnumerique.fractalr2.ui.ControlPanel;
-import ca.renardnumerique.fractalr2.ui.DesktopLayout;
+import ca.renardnumerique.fractalr2.ui.ApplicationCanvas;
 import ca.renardnumerique.fractalr2.ui.ExamplesPanel;
 import ca.renardnumerique.fractalr2.ui.FormulaPanel;
 import ca.renardnumerique.fractalr2.ui.Pencil;
@@ -22,16 +22,14 @@ import java.util.List;
 
 public class ApplicationLayout {
 
-    private DesktopLayout design;
-
     @Inject
     private ExamplesPanel pnlExemplos;
 
     @Inject
-    private ActionButtonsBar pnlBotoes;
+    private ActionButtonsBar actionButtonsBar;
 
     @Inject
-    private FormulaPanel pnlFormulas;
+    private FormulaPanel formulaPanel;
 
     private List<TransformationPanel> pnlTransformacoes;
 
@@ -40,6 +38,10 @@ public class ApplicationLayout {
 
     @Inject
     private Pencil pencil;
+
+    @Inject
+    private ApplicationCanvas applicationCanvas;
+
 
     private VBox transformations;
 
@@ -56,9 +58,9 @@ public class ApplicationLayout {
         //Left size components, the example panel.
         applicationLayoutContainer.getChildren().add(pnlExemplos);
 
-        // Components of the middle column : the ActionButton Panel, the formula panel and the transformation
-        // Panel.
-        applicationLayoutContainer.getChildren().add(createTransformationColumn());
+        // Components of the middle column : the ActionButton Panel, the formula panel, the transformation
+        // Panel and the canvas.
+        applicationLayoutContainer.getChildren().add(createMiddleColumn());
 
         // Components of the right column : the ActionButton Panel, the formula panel and the transformation
         // Panel.
@@ -80,13 +82,18 @@ public class ApplicationLayout {
         stage.show();
     }
 
-    private VBox createTransformationColumn() {
-        final VBox transformationColumn = new VBox();
-        transformationColumn.getChildren().add(pnlBotoes.getContainer());
-        transformationColumn.getChildren().add(pnlFormulas);
+    private VBox createMiddleColumn() {
+        final VBox middleColumn = new VBox();
+        middleColumn.getChildren().add(actionButtonsBar.getContainer());
+        middleColumn.getChildren().add(formulaPanel);
+
         transformations.getChildren().add(new TransformationPanel());
-        transformationColumn.getChildren().add(transformations);
-        return transformationColumn;
+        middleColumn.getChildren().add(transformations);
+        middleColumn.getChildren().add(applicationCanvas);
+
+
+
+        return middleColumn;
     }
 
     public void addTransformationPanel(TransformationPanel transformationPanel){

@@ -21,7 +21,7 @@ import java.util.List;
 
 public class Pencil{
 
-    private DesktopLayout desktopLayout;
+    private ApplicationCanvas applicationCanvas;
     private ApplicationLayout applicationLayout;
 
     private DropShadow writtingEffect;
@@ -89,8 +89,8 @@ public class Pencil{
 
 
     public void escreveFractal() {
-        var inX = desktopLayout.getAreaDesenho().getX() + 10;
-        var inY = desktopLayout.getAreaDesenho().getY() + 25;
+        var inX = applicationCanvas.getAreaDesenho().getX() + 10;
+        var inY = applicationCanvas.getAreaDesenho().getY() + 25;
         clear();
         Path path = new Path();
         path.setStroke(Color.web("#29345E"));

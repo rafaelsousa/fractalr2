@@ -6,7 +6,7 @@
 package ca.renardnumerique.fractalr2;
 
 import ca.renardnumerique.fractalr2.lsystem.Comando;
-import ca.renardnumerique.fractalr2.ui.DesktopLayout;
+import ca.renardnumerique.fractalr2.ui.ApplicationCanvas;
 import ca.renardnumerique.fractalr2.ui.Pencil;
 import jakarta.inject.Inject;
 import javafx.animation.Animation;
@@ -32,7 +32,7 @@ public class FractalAnimation {
     private Double y;
 
     @Inject
-    private DesktopLayout desktopLayout;
+    private ApplicationCanvas applicationCanvas;
 
     @Inject
     private Pencil pencil;
@@ -52,7 +52,7 @@ public class FractalAnimation {
 
 
     public void acaoConclusaoTimeLine() {
-        desktopLayout.requestLayout();
+        applicationCanvas.requestLayout();
     }
 
     public void inicializar(List<Comando> comandos) {
@@ -112,12 +112,12 @@ public class FractalAnimation {
 
                 //Immediate insertion happens only in the first iteration.
                 if (iteracao == 0) {
-                    desktopLayout.getChildren().add(transicoesDesenho.getNode());
+                    applicationCanvas.getChildren().add(transicoesDesenho.getNode());
                 }
 
                 if (transicaoAnterior != null) {
                     transicaoAnterior.setOnFinished(e ->
-                            desktopLayout.getChildren().add(transicoesDesenho.getNode())
+                            applicationCanvas.getChildren().add(transicoesDesenho.getNode())
                     );
                 }
                 transicoesGerais.add(transicaoParalela);

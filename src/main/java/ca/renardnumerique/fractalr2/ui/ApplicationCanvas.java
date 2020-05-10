@@ -1,5 +1,7 @@
 package ca.renardnumerique.fractalr2.ui;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.ApplicationScoped;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
@@ -10,8 +12,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 
-
-public class DesktopLayout extends Group {
+public class ApplicationCanvas extends Group {
     
     private Integer inicioDesenhoY = 140;
     private ImageView fundoSistema;
@@ -22,8 +23,10 @@ public class DesktopLayout extends Group {
     private Rectangle anterior = new Rectangle();
     private ImageView logo = new ImageView();
     
-    public DesktopLayout(){}
-    
+    public ApplicationCanvas(){}
+
+
+    @PostConstruct
     public void initComponents(){
         fundoSistema = new ImageView(new Image("images/bg_sistema.png"));
         fundoSistema.setFocusTraversable(Boolean.TRUE);

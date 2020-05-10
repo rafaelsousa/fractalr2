@@ -1,12 +1,11 @@
 package ca.renardnumerique.fractalr2;
 
-import java.security.cert.PolicyNode;
 import java.util.List;
 
 import ca.renardnumerique.fractalr2.lsystem.AplicadorRegras;
 import ca.renardnumerique.fractalr2.ui.ActionButton;
 import ca.renardnumerique.fractalr2.ui.ControlPanel;
-import ca.renardnumerique.fractalr2.ui.DesktopLayout;
+import ca.renardnumerique.fractalr2.ui.ApplicationCanvas;
 import ca.renardnumerique.fractalr2.ui.TransformationPanel;
 import ca.renardnumerique.fractalr2.utils.Ponto;
 import jakarta.inject.Inject;
@@ -31,7 +30,7 @@ public class Fractal {
     private ControlPanel controlPanel;
 
     @Inject
-    private DesktopLayout desktopLayout;
+    private ApplicationCanvas applicationCanvas;
 
     public void iniciarDesenho() {
         if (iteracao != controlPanel.getIteracoes() || desenhoModificado) {
@@ -69,9 +68,9 @@ public class Fractal {
         iniciado = false;
         animacaoFractal = null;
         animacaoFractal = new FractalAnimation();
-        for (Node content : desktopLayout.getChildren()) {
+        for (Node content : applicationCanvas.getChildren()) {
             if (content instanceof Line) {
-                desktopLayout.getChildren().remove(content);
+                applicationCanvas.getChildren().remove(content);
             }
         }
     }
