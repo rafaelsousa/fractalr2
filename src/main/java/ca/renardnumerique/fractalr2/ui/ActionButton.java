@@ -2,7 +2,7 @@ package ca.renardnumerique.fractalr2.ui;
 
 import java.util.List;
 
-import ca.renardnumerique.fractalr2.MainClass;
+import ca.renardnumerique.fractalr2.ApplicationLayout;
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
 import ca.renardnumerique.fractalr2.lsystem.GerenciadorLSystem;
 import javafx.scene.Node;
@@ -33,23 +33,23 @@ public class ActionButton extends Button {
     private Text dspNome;
     private ImageView icone;
     private String nome;
-    
-    private MainClass mainClass;
+
+    private ApplicationLayout applicationLayout;
 
     private FormulaPanel formulaPanel;
 
     public ActionButton(ImageView icone, AcaoLSystem acaoLSystem, LinearGradient fillNormal) {
         this.icone = icone;
         this.acaoLSystem = acaoLSystem;
-        this.fillNormal = fillNormal;        
+        this.fillNormal = fillNormal;
         buildDesignRectangle();
     }
-    
+
     public ActionButton() {
     }
 
     private void buildDesignRectangle() {
-    	designRetangulo = new Rectangle();
+        designRetangulo = new Rectangle();
     }
 
     public ActionButton duplicar() {
@@ -65,7 +65,7 @@ public class ActionButton extends Button {
     private DragDrop drag = new DragDrop(this);
 
 
-    public void create(){
+    public void create() {
         numeroBotoes++;
         fillNormal = new LinearGradient(
                 0.0,
@@ -87,25 +87,20 @@ public class ActionButton extends Button {
 
         drag.onChange(arrastaSolta -> {
             formulaPanel.trataArrastar(arrastaSolta);
-            for (Node transformacao : mainClass.getTransformations().getChildren()) {
-                if (transformacao instanceof TransformationPanel) {
-                    ((TransformationPanel) transformacao).trataArrastar(arrastaSolta);
-                }
+            for (TransformationPanel transformacao : applicationLayout.getTransformations()) {
+                transformacao.trataArrastar(arrastaSolta);
             }
         });
         drag.setOnSoltar(arrastaSolta -> {
             formulaPanel.trataSoltar(arrastaSolta);
-            for (Node transformacao : mainClass.getTransformations().getChildren()) {
-                if (transformacao instanceof TransformationPanel) {
-                    ((TransformationPanel) transformacao).trataSoltar(arrastaSolta);
-                }
+            for (TransformationPanel transformacao : applicationLayout.getTransformations()) {
+                transformacao.trataSoltar(arrastaSolta);
             }
         });
         drag.setMaxX(900);
         drag.setMaxY(140);
     }
 
-    
 
     public String getNome() {
         return nome;
@@ -188,8 +183,6 @@ public class ActionButton extends Button {
         this.setGraphic(icone);
         this.icone = icone;
     }
-
-    
 
 
 }

@@ -3,10 +3,13 @@ package ca.renardnumerique.fractalr2.lsystem;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.renardnumerique.fractalr2.MainClass;
+import ca.renardnumerique.fractalr2.ApplicationLayout;
 import ca.renardnumerique.fractalr2.ui.ActionButton;
+import ca.renardnumerique.fractalr2.ui.ControlPanel;
+import ca.renardnumerique.fractalr2.ui.DesktopLayout;
 import ca.renardnumerique.fractalr2.ui.TransformationPanel;
 import ca.renardnumerique.fractalr2.utils.Ponto;
+import jakarta.inject.Inject;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
@@ -23,16 +26,20 @@ import javafx.util.Duration;
 
     public static AplicadorRegras instance = new AplicadorRegras();
 
-    private AplicadorRegras(){
+    @Inject
+    private ControlPanel controlPanel;
 
-    }
+    @Inject
+    private DesktopLayout desktopLayout;
+
+    private AplicadorRegras(){}
 
     private Integer iteracao;
     private List<ActionButton> botoesFormula;
 
     private List<Comando> pilhaComandos;
     private List<AcaoLSystem> pilhaAcoes;    
-    private MainClass mainClass;
+    private ApplicationLayout applicationLayout;
     private ActionButton formulaPanel;
 
     public ArrayList<Comando> gerarComandos() {
@@ -46,23 +53,21 @@ import javafx.util.Duration;
         //Atribuir transformacoes aos botoes no painel de formulas
         List<TransformationPanel> pnlTransformacoes = new ArrayList<>();
 
-        for (Node pnl : mainClass.getTransformations().getChildren()) {
-            if (pnl instanceof TransformationPanel) {
-                pnlTransformacoes.add((TransformationPanel) pnl);
-            }
+        for (TransformationPanel pnl : applicationLayout.getTransformations()) {
+            pnlTransformacoes.add(pnl);
         }
 
-        iteracao = mainClass.getPnlControle().getIteracoes();
+        iteracao = controlPanel.getIteracoes();
         //Fetching coordinates for scaling calculation.
-        Double alturaCanvas = mainClass.getDesign().getAreaDesenho().getHeight();
-        Double larguraCanvas = mainClass.getDesign().getAreaDesenho().getWidth();
+        Double alturaCanvas = desktopLayout.getAreaDesenho().getHeight();
+        Double larguraCanvas = desktopLayout.getAreaDesenho().getWidth();
 
         Double maximoXFractal = java.lang.Double.NEGATIVE_INFINITY;
         Double maximoYFractal = java.lang.Double.NEGATIVE_INFINITY;
         Double minimoXFractal = java.lang.Double.POSITIVE_INFINITY;
         Double minimoYFractal = java.lang.Double.POSITIVE_INFINITY;
 
-        Double angulo = Math.toRadians(mainClass.getPnlControle().getAnguloSlider().getValue());
+        Double angulo = Math.toRadians(controlPanel.getAnguloSlider().getValue());
         Double anguloIncremento = 0.0;
         cmds.clear();
 
@@ -182,8 +187,8 @@ import javafx.util.Duration;
         Double alturaFractal = maximoYFractal - minimoYFractal;
 
 
-        Double x1Canvas = mainClass.getDesign().getAreaDesenho().getX();
-        Double y1Canvas = mainClass.getDesign().getAreaDesenho().getY();
+        Double x1Canvas = desktopLayout.getAreaDesenho().getX();
+        Double y1Canvas = desktopLayout.getAreaDesenho().getY();
 
 
         Double escala;

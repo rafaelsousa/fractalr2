@@ -1,23 +1,42 @@
 package ca.renardnumerique.fractalr2;
 
+import java.security.cert.PolicyNode;
 import java.util.List;
 
 import ca.renardnumerique.fractalr2.lsystem.AplicadorRegras;
 import ca.renardnumerique.fractalr2.ui.ActionButton;
+import ca.renardnumerique.fractalr2.ui.ControlPanel;
+import ca.renardnumerique.fractalr2.ui.DesktopLayout;
 import ca.renardnumerique.fractalr2.ui.TransformationPanel;
 import ca.renardnumerique.fractalr2.utils.Ponto;
+import jakarta.inject.Inject;
 import javafx.animation.Animation;
 import javafx.scene.Node;
 import javafx.scene.shape.Line;
 
-public class Fractal {         
+public class Fractal {
 
-    MainClass mainClass;
+    private List<TransformationPanel> pnlTransformacoes;
+    private List<ActionButton> botoesTransformacoes;
+    private List<ActionButton> botoesFormula;
+    private List<Ponto> cood;
+    private Boolean desenhoModificado = Boolean.FALSE;
+    private FractalAnimation animacaoFractal = new FractalAnimation();
+    private Boolean iniciado = Boolean.FALSE;
+    private Integer iteracao = -1;
+
+    ApplicationLayout applicationLayout;
+
+    @Inject
+    private ControlPanel controlPanel;
+
+    @Inject
+    private DesktopLayout desktopLayout;
 
     public void iniciarDesenho() {
-        if (iteracao != mainClass.getPnlControle().getIteracoes() || desenhoModificado) {
+        if (iteracao != controlPanel.getIteracoes() || desenhoModificado) {
             animacaoFractal.pause();
-            iteracao = mainClass.getPnlControle().getIteracoes();
+            iteracao = controlPanel.getIteracoes();
             desenhoModificado = false;
             reiniciarDesenho();
         }
@@ -50,23 +69,15 @@ public class Fractal {
         iniciado = false;
         animacaoFractal = null;
         animacaoFractal = new FractalAnimation();
-        for (Node content : mainClass.getDesign().getChildren()) {
+        for (Node content : desktopLayout.getChildren()) {
             if (content instanceof Line) {
-                mainClass.getDesign().getChildren().remove(content);
+                desktopLayout.getChildren().remove(content);
             }
         }
-
     }
 
 
-    private List<TransformationPanel> pnlTransformacoes;
-    private List<ActionButton> botoesTransformacoes;
-    private List<ActionButton> botoesFormula;
-    private List<Ponto> cood;
-    private Boolean desenhoModificado = Boolean.FALSE;
-    private FractalAnimation animacaoFractal = new FractalAnimation();
-    private Boolean iniciado = Boolean.FALSE;
-    private Integer iteracao = -1;
+
 
     public List<TransformationPanel> getPnlTransformacoes() {
         return this.pnlTransformacoes;

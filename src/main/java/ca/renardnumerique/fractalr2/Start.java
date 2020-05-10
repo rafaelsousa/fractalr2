@@ -13,7 +13,7 @@ public class Start extends Application {
             .disableDiscovery()
             .addPackages(Boolean.TRUE,Start.class)
             .initialize();
-        container.getBeanManager().createInstance().select(MainClass.class).get().create(stage);
+        container.getBeanManager().createInstance().select(ApplicationLayout.class).get().create(stage);
     }
 
     public static void main(String[] args) {

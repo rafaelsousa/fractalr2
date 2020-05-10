@@ -22,12 +22,10 @@ public class DesktopLayout extends Group {
     private Rectangle anterior = new Rectangle();
     private ImageView logo = new ImageView();
     
-    public DesktopLayout(){
-        
-    }
+    public DesktopLayout(){}
     
     public void initComponents(){
-        fundoSistema = new ImageView(new Image("file:images/bg_sistema.png"));
+        fundoSistema = new ImageView(new Image("images/bg_sistema.png"));
         fundoSistema.setFocusTraversable(Boolean.TRUE);
         fundoSistema.setY(0.0);
         fundoSistema.setX(0.0);

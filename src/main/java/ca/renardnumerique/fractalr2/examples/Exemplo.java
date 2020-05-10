@@ -5,13 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ca.renardnumerique.fractalr2.MainClass;
+import ca.renardnumerique.fractalr2.ApplicationLayout;
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
 import ca.renardnumerique.fractalr2.ui.ActionButton;
-import ca.renardnumerique.fractalr2.ui.ActionsPanel;
-import ca.renardnumerique.fractalr2.ui.ExamplePanel;
+import ca.renardnumerique.fractalr2.ui.ActionButtonsBar;
+import ca.renardnumerique.fractalr2.ui.ControlPanel;
+import ca.renardnumerique.fractalr2.ui.ExamplesPanel;
 import ca.renardnumerique.fractalr2.ui.FormulaPanel;
 import ca.renardnumerique.fractalr2.ui.TransformationPanel;
+import jakarta.inject.Inject;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -26,9 +28,12 @@ public abstract class Exemplo extends Button {
 	
 	
 	private FormulaPanel formulaPanel;
-	private MainClass mainClass;
+	private ApplicationLayout applicationLayout;
 	private TransformationPanel transformationPanel;
-	private ActionsPanel buttonPanel;
+	private ActionButtonsBar buttonPanel;
+
+	@Inject
+	private ControlPanel controlPanel;
 
 	public Exemplo() {
 		initializeComponents();
@@ -43,13 +48,13 @@ public abstract class Exemplo extends Button {
 	}
 
 	public void doFractal() {
-		ExamplePanel.exemploRodando = this;
+		ExamplesPanel.exemploRodando = this;
 		Integer cod;
 		Map<Character, Integer> mapAndar = new HashMap<>();
 		Map<Character, Integer> mapProduzir = new HashMap<>();
 		Map<Character, Integer> mapFazerRetornar = new HashMap<>();
 		formulaPanel.getBotoes().clear();
-		mainClass.getPnlControle().setAngulo(angulo);
+		controlPanel.setAngulo(angulo);
 		for (char btn : formula.toCharArray()) {
 			if (btn == ' ')
 				continue;

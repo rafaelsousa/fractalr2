@@ -1,16 +1,12 @@
 package ca.renardnumerique.fractalr2.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import ca.renardnumerique.fractalr2.ApplicationLayout;
 import ca.renardnumerique.fractalr2.Fractal;
-import ca.renardnumerique.fractalr2.MainClass;
+import jakarta.inject.Inject;
 import javafx.event.Event;
-import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -20,6 +16,9 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransformationPanel extends Group {
 
@@ -35,9 +34,21 @@ public class TransformationPanel extends Group {
     private Rectangle area = new Rectangle();
     private Button btnDpl = new Button();
     private Fractal fractal;
-    private MainClass mainClass;
+    private ApplicationLayout applicationLayout;
     private TransformationPanel formulaPanel;
     private HBox container;
+    private Group areaDeBotoes = new Group();
+    private Rectangle contornoAreaDeBotoes = new Rectangle();
+
+
+    private Text transformacao = new Text("Transformations");
+
+    @Inject
+    private DesktopLayout desktopLayout;
+
+    @Inject
+    private Pencil pencil;
+
 
     private void initComponents(){
 
@@ -60,6 +71,19 @@ public class TransformationPanel extends Group {
         btnDpl.setOnAction(this::trataAdicaoExclusao);
 
         this.container.getChildren().addAll(btnDpl);
+
+        transformacao.setY(area.getY() + 17);
+        transformacao.setX(area.getX() + 5);
+        transformacao.setFont(new Font("Bitstream Vera Sans Bold", 10));
+        transformacao.setFill(Color.web("#3a5833"));
+
+        contornoAreaDeBotoes.setX(area.getX() + 100);
+        contornoAreaDeBotoes.setY(area.getY() + 1);
+        contornoAreaDeBotoes.setWidth(botoes.size() * 26 + 10);
+        contornoAreaDeBotoes.setHeight(20);
+        contornoAreaDeBotoes.setVisible(botoes.size() > 0);
+        contornoAreaDeBotoes.setStroke(Color.web("#444"));
+
     }
 
     private void trataAdicaoExclusao(Event mouseEvent) {
@@ -71,67 +95,51 @@ public class TransformationPanel extends Group {
     }
 
     public void adicionarBarra() {
-        Integer inicioDesenhoY = mainClass.getDesign().getInicioDesenhoY();
-        mainClass.getDesign().setInicioDesenhoY(inicioDesenhoY + incrementoY);
+        Integer inicioDesenhoY = desktopLayout.getInicioDesenhoY();
+        desktopLayout.setInicioDesenhoY(inicioDesenhoY + incrementoY);
         TransformationPanel aux = new TransformationPanel();
-        mainClass.getTransformations().getChildren().add(3, aux);
+        applicationLayout.addTransformationPanel(aux);
         txtSinal = "-";
         ultimo = false;
         fractal.limpaCanvas();
-        mainClass.getPencil().clear();
+        pencil.clear();
     }
 
     public void resetarBarra() {
-        while ((mainClass.getTransformations().getChildren().size() >= 8)) {
-            excluirBarra();
-        }
+//        while ((applicationLayout.getTransformations().getChildren().size() >= 8)) {
+//            excluirBarra();
+//        }
 
     }
 
     public void excluirBarra() {
-        if ((mainClass.getTransformations().getChildren().size() >= 8)) {
-
-            Integer inicioDesenhoY = mainClass.getDesign().getInicioDesenhoY() - incrementoY;            
-            mainClass.getDesign().setInicioDesenhoY(inicioDesenhoY);            
-            quantidadeTransformacoes--;
-            mainClass.getTransformations().getChildren().remove(this);
-            var i = quantidadeTransformacoes - 1;
-            TransformationPanel primeiro = null;
-            for (Node pnl : mainClass.getTransformations().getChildren()) {
-                if (pnl instanceof TransformationPanel) {
-                    if (primeiro == null) {
-                        primeiro = (TransformationPanel) pnl;
-                    }
-                    ((TransformationPanel) pnl).setPosicao(i--);
-                }
-            }
-            if (primeiro != null) {
-                primeiro.txtSinal = "+";
-                primeiro.ultimo = true;
-                //instanciaAtual = primeiro;
-            }
-        }
+//        if ((applicationLayout.getTransformations().getChildren().size() >= 8)) {
+//
+//            Integer inicioDesenhoY = applicationLayout.getDesign().getInicioDesenhoY() - incrementoY;
+//            applicationLayout.getDesign().setInicioDesenhoY(inicioDesenhoY);
+//            quantidadeTransformacoes--;
+//            applicationLayout.getTransformations().getChildren().remove(this);
+//            var i = quantidadeTransformacoes - 1;
+//            TransformationPanel primeiro = null;
+//            for (Node pnl : applicationLayout.getTransformations().getChildren()) {
+//                if (pnl instanceof TransformationPanel) {
+//                    if (primeiro == null) {
+//                        primeiro = (TransformationPanel) pnl;
+//                    }
+//                    ((TransformationPanel) pnl).setPosicao(i--);
+//                }
+//            }
+//            if (primeiro != null) {
+//                primeiro.txtSinal = "+";
+//                primeiro.ultimo = true;
+//                //instanciaAtual = primeiro;
+//            }
+//        }
     }
-
-    private Text transformacao = new Text("Transformations");
     {
-        transformacao.setY(area.getY() + 17);
-        transformacao.setX(area.getX() + 5);
-        transformacao.setFont(new Font("Bitstream Vera Sans Bold", 10));
-        transformacao.setFill(Color.web("#3a5833"));
+
     }
 
-    private Group areaDeBotoes = new Group();
-
-    private Rectangle contornoAreaDeBotoes = new Rectangle();
-    {
-        contornoAreaDeBotoes.setX(area.getX() + 100);
-        contornoAreaDeBotoes.setY(area.getY() + 1);
-        contornoAreaDeBotoes.setWidth(botoes.size() * 26 + 10);
-        contornoAreaDeBotoes.setHeight(20);
-        contornoAreaDeBotoes.setVisible(botoes.size() > 0);
-        contornoAreaDeBotoes.setStroke(Color.web("#444"));
-    }
 
 
     public TransformationPanel() {
@@ -141,58 +149,58 @@ public class TransformationPanel extends Group {
     }
 
     public void redesenhaBarra() {
-        areaDeBotoes.getChildren().clear();
-        var cont = 0;
-        if (ultimo && botoes.size() > 2) {
-            txtSinal = "+";
-        } else {
-            if ((mainClass.getTransformations().getChildren().size() > 6)) {
-                txtSinal = "-";
-            }
-        }
-        for (ActionButton botao : botoes) {
-            var urlNova = botao.getIcone().getImage().getUrl();
-            var alt = 16;
-            var larg = 24;
-
-            ImageView img = new ImageView();
-            {
-                img.setCursor(Cursor.MOVE);
-                img.setFocusTraversable(Boolean.TRUE);
-                img.setImage(new Image(urlNova, larg, alt, Boolean.TRUE, Boolean.TRUE));
-                img.setY(area.getY() + 3);
-                img.setX(contornoAreaDeBotoes.getX() + 5 + (26 * cont));
-
-            }
-            Rectangle rect = new Rectangle();
-            {
-                rect.setCursor(Cursor.MOVE);
-                rect.setFocusTraversable(true);
-                rect.setY(area.getY() + 3);
-                rect.setX(contornoAreaDeBotoes.getX() + 5 + (26 * cont));
-                rect.setWidth(larg);
-                rect.setHeight(alt);
-                rect.setArcWidth(10);
-                rect.setArcHeight(10);
-                rect.setFill(botao.getFillNormal());
-                rect.setStroke(Color.web("#aaa"));
-            }
-            BotaoTransformacoes nodo = new BotaoTransformacoes();
-            {
-                nodo.setImg(img);
-                nodo.setRect(rect);
-                nodo.setBtn(botao);
-            }
-            DragDrop drag = new DragDrop(nodo);
-            {
-                drag.setMaxX(900);
-                drag.setMaxY(874);
-                drag.setOnSoltar(this::trataMoverExcluir);
-            }
-            areaDeBotoes.getChildren().add(nodo);
-            cont++;
-        }
-        fractal.setDesenhoModificado(true);
+//        areaDeBotoes.getChildren().clear();
+//        var cont = 0;
+//        if (ultimo && botoes.size() > 2) {
+//            txtSinal = "+";
+//        } else {
+//            if ((applicationLayout.getTransformations().getChildren().size() > 6)) {
+//                txtSinal = "-";
+//            }
+//        }
+//        for (ActionButton botao : botoes) {
+//            var urlNova = botao.getIcone().getImage().getUrl();
+//            var alt = 16;
+//            var larg = 24;
+//
+//            ImageView img = new ImageView();
+//            {
+//                img.setCursor(Cursor.MOVE);
+//                img.setFocusTraversable(Boolean.TRUE);
+//                img.setImage(new Image(urlNova, larg, alt, Boolean.TRUE, Boolean.TRUE));
+//                img.setY(area.getY() + 3);
+//                img.setX(contornoAreaDeBotoes.getX() + 5 + (26 * cont));
+//
+//            }
+//            Rectangle rect = new Rectangle();
+//            {
+//                rect.setCursor(Cursor.MOVE);
+//                rect.setFocusTraversable(true);
+//                rect.setY(area.getY() + 3);
+//                rect.setX(contornoAreaDeBotoes.getX() + 5 + (26 * cont));
+//                rect.setWidth(larg);
+//                rect.setHeight(alt);
+//                rect.setArcWidth(10);
+//                rect.setArcHeight(10);
+//                rect.setFill(botao.getFillNormal());
+//                rect.setStroke(Color.web("#aaa"));
+//            }
+//            BotaoTransformacoes nodo = new BotaoTransformacoes();
+//            {
+//                nodo.setImg(img);
+//                nodo.setRect(rect);
+//                nodo.setBtn(botao);
+//            }
+//            DragDrop drag = new DragDrop(nodo);
+//            {
+//                drag.setMaxX(900);
+//                drag.setMaxY(874);
+//                drag.setOnSoltar(this::trataMoverExcluir);
+//            }
+//            areaDeBotoes.getChildren().add(nodo);
+//            cont++;
+//        }
+//        fractal.setDesenhoModificado(true);
     }
 
     public void calculaPosicaoBotao(DragDrop btn) {

@@ -5,11 +5,10 @@
  */
 package ca.renardnumerique.fractalr2;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.renardnumerique.fractalr2.lsystem.Comando;
+import ca.renardnumerique.fractalr2.ui.DesktopLayout;
 import ca.renardnumerique.fractalr2.ui.Pencil;
+import jakarta.inject.Inject;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -23,24 +22,37 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class FractalAnimation {
+
     private Double x;
     private Double y;
 
-    public List<Transition> transicoesGerais = new ArrayList<>();
+    @Inject
+    private DesktopLayout desktopLayout;
 
+    @Inject
+    private Pencil pencil;
+
+    public List<Transition> transicoesGerais = new ArrayList<>();
     public SequentialTransition animacao = new SequentialTransition();
-    {
+
+    public FractalAnimation() {
+        initializeComponents();
+    }
+
+    private void initializeComponents() {
         animacao.getChildren().addAll(transicoesGerais);
     }
 
-    private MainClass mainClass;
-
+    private ApplicationLayout applicationLayout;
 
 
     public void acaoConclusaoTimeLine() {
-        mainClass.getDesign().requestLayout();
+        desktopLayout.requestLayout();
     }
 
     public void inicializar(List<Comando> comandos) {
@@ -64,8 +76,8 @@ public class FractalAnimation {
                 Path caminho = new Path();
                 caminho.getElements().addAll(moveTo, lineTo);
 
-                MoveTo movetoLapis = new MoveTo(x + Pencil.getInstance().getImage().getWidth() / 2 - 3, y - Pencil.getInstance().getImage().getHeight() / 2);
-                LineTo linetoLapis = new LineTo(endx + Pencil.getInstance().getImage().getWidth() / 2 - 3, endy - Pencil.getInstance().getImage().getHeight() / 2);
+                MoveTo movetoLapis = new MoveTo(x + pencil.getPencilImage().getImage().getWidth() / 2 - 3, y - pencil.getPencilImage().getImage().getHeight() / 2);
+                LineTo linetoLapis = new LineTo(endx + pencil.getPencilImage().getImage().getWidth() / 2 - 3, endy - pencil.getPencilImage().getImage().getHeight() / 2);
 
                 Path pencilTrack = new Path(movetoLapis, linetoLapis);
 
@@ -92,7 +104,7 @@ public class FractalAnimation {
 
                 PathTransition transicaoLapis = new PathTransition();
                 transicaoLapis.setPath(pencilTrack);
-                transicaoLapis.setNode(Pencil.getInstance());
+                transicaoLapis.setNode(pencil.getPencilImage());
                 transicaoLapis.setDuration(comando.getDuracao());
 
                 ParallelTransition transicaoParalela = new ParallelTransition();
@@ -100,12 +112,12 @@ public class FractalAnimation {
 
                 //Immediate insertion happens only in the first iteration.
                 if (iteracao == 0) {
-                    mainClass.getDesign().getChildren().add(transicoesDesenho.getNode());
+                    desktopLayout.getChildren().add(transicoesDesenho.getNode());
                 }
 
                 if (transicaoAnterior != null) {
                     transicaoAnterior.setOnFinished(e ->
-                            mainClass.getDesign().getChildren().add(transicoesDesenho.getNode())
+                            desktopLayout.getChildren().add(transicoesDesenho.getNode())
                     );
                 }
                 transicoesGerais.add(transicaoParalela);
@@ -126,13 +138,13 @@ public class FractalAnimation {
 
                 Path caminhoLapis = new Path();
                 caminhoLapis.getElements().addAll(
-                        new MoveTo(x + Pencil.getInstance().getImage().getWidth() / 2 - 3, y - Pencil.getInstance().getImage().getHeight() / 2),
-                        new LineTo(endx + Pencil.getInstance().getImage().getWidth() / 2 - 3, endy - Pencil.getInstance().getImage().getHeight() / 2)
+                        new MoveTo(x + pencil.getPencilImage().getImage().getWidth() / 2 - 3, y - pencil.getPencilImage().getImage().getHeight() / 2),
+                        new LineTo(endx + pencil.getPencilImage().getImage().getWidth() / 2 - 3, endy - pencil.getPencilImage().getImage().getHeight() / 2)
                 );
 
                 PathTransition transicaoLapis = new PathTransition();
                 transicaoLapis.setPath(caminhoLapis);
-                transicaoLapis.setNode(Pencil.getInstance());
+                transicaoLapis.setNode(pencil.getPencilImage());
 
                 transicoesGerais.add(transicaoLapis);
 

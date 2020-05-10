@@ -9,13 +9,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-public class ActionsPanel {
+public class ActionButtonsBar {
 
     private List<ActionButton> botoes;
     private HBox container = null;
     private ImageView clean;
 
-    public ActionsPanel(){        
+    public ActionButtonsBar(){
     }
 
     public HBox getContainer() {
