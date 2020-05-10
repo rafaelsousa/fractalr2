@@ -3,6 +3,7 @@ package ca.renardnumerique.fractalr2.ui;
 
 import ca.renardnumerique.fractalr2.Fractal;
 import ca.renardnumerique.fractalr2.MainClass;
+import jakarta.inject.Inject;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -16,8 +17,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class ControlPanel extends FlowPane {
@@ -48,16 +47,23 @@ public class ControlPanel extends FlowPane {
 	private MainClass mainClass;
 	private Fractal fractal;
 
+	public ControlPanel(FormulaPanel formulaPanel, MainClass mainClass, Fractal fractal) {
+		this();
+		this.formulaPanel = formulaPanel;
+		this.mainClass = mainClass;
+		this.fractal = fractal;
+	}
 
 	public ControlPanel() {
 		initComponents();
 	}
 
 	public void initComponents(){
+
 		this.getStyleClass().add("control-panel");
 
-
 		txtAngulo = new Text("Turning Angle: " + angulo);
+
 		anguloSlider = new Slider(0,360,angulo);
 		anguloSlider.setOrientation(Orientation.HORIZONTAL);
 		anguloSlider.valueProperty().addListener(e->{
@@ -66,7 +72,6 @@ public class ControlPanel extends FlowPane {
 		});
 
 		iterationSpinner.setValueFactory(spinnerValueFactory);
-
 
 		final DropShadow shadow = new DropShadow();
 		shadow.setRadius(30);
@@ -99,73 +104,42 @@ public class ControlPanel extends FlowPane {
              		   fractal.limpaCanvas();
 		});
 		designRetangulo.setStroke(Color.web("#f8f8f8"));
-		iterationSpinnerCaption.setY(81);
-		iterationSpinnerCaption.setX(840);
-		iterationSpinnerCaption.setFont(Font.font("Verdana", 10));
-		txtAngulo.setY(13);
-		txtAngulo.setY(840);
-		txtAngulo.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
-
 
 		TilePane animationControlGrid = new TilePane(Orientation.VERTICAL);
 		animationControlGrid.setTileAlignment(Pos.CENTER_LEFT);
 		animationControlGrid.setPrefRows(2);
 
 		playText = new Text("Start");
-		playText.setFont(Font.font("Verdana", 8));
 		animationControlGrid.getChildren().add(playText);
-
-		playImage = new ImageView("images/play.png");
-		playImage.setFocusTraversable(Boolean.TRUE);
-		playImage.setOnMouseClicked(e -> fractal.iniciarDesenho());
-		playImage.setOnMouseEntered(e -> {
-			DropShadow effect = new DropShadow();
-			effect.setRadius(50);
-			effect.setSpread(0.65);
-			effect.setColor(Color.web("#A1FF6E"));
-			playImage.setEffect(effect);
-		});
-		playImage.setOnMouseExited(e -> playImage.setEffect(null));
-
-		animationControlGrid.getChildren().add(playImage);
-
-
+		animationControlGrid.getChildren().add(generatePlayImage());
 
 		pauseCaption = new Text("Pause");
-		pauseCaption.setY(posBotoes + 50);
-		pauseCaption.setX(885);
-		pauseCaption.setFont(Font.font("Verdana", 8));
 		animationControlGrid.getChildren().add(pauseCaption);
 
 		pauseImage = new ImageView(new Image("images/pause.png"));
-		pauseImage.setFocusTraversable(Boolean.TRUE);
 		pauseImage.setOnMouseClicked(e -> {
 			fractal.pararDesenho();
 		});
+
 		pauseImage.setOnMouseEntered(e -> {
 			DropShadow dropShadow = new DropShadow();
 			dropShadow.setRadius(50);
 			dropShadow.setSpread(0.65);
 			dropShadow.setColor(Color.web("#FF2828"));
 		});
+
 		pauseImage.setOnMouseExited(e -> pauseImage.setEffect(null));
 		animationControlGrid.getChildren().add(pauseImage);
 
 		restartCaption = new Text("Restart");
-		restartCaption.setY(posBotoes + 50);
-		restartCaption.setX(925);
-		restartCaption.setFont(Font.font("Verdana", 8));
-		restartCaption.setFill(Color.web("#222"));
 		restartCaption.setOnMouseClicked(e -> fractal.reiniciarDesenho());
 		animationControlGrid.getChildren().add(restartCaption);
 
 		restartImage = new ImageView("images/restart.png");
-		restartImage.setFocusTraversable(Boolean.TRUE);
-		restartImage.setY(posBotoes + 21);
-		restartImage.setX(930);
 		restartImage.setOnMouseClicked(e -> {
 			fractal.reiniciarDesenho();
 		});
+
 		DropShadow effect = new DropShadow(50, Color.web("#7197FF"));
 		effect.setSpread(0.65);
 		restartImage.setOnMouseEntered(e -> restartImage.setEffect(effect));
@@ -178,6 +152,20 @@ public class ControlPanel extends FlowPane {
 				iterationSpinnerCaption,
 				iterationSpinner,
 				animationControlGrid);
+	}
+
+	private ImageView generatePlayImage() {
+		ImageView playImage = new ImageView("images/play.png");
+		playImage.setOnMouseClicked(e -> fractal.iniciarDesenho());
+		playImage.setOnMouseEntered(e -> {
+			DropShadow effect = new DropShadow();
+			effect.setRadius(50);
+			effect.setSpread(0.65);
+			effect.setColor(Color.web("#A1FF6E"));
+			playImage.setEffect(effect);
+		});
+		playImage.setOnMouseExited(e -> playImage.setEffect(null));
+		return playImage;
 	}
 
 
