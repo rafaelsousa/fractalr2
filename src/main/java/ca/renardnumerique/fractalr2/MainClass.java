@@ -52,13 +52,9 @@ public class MainClass {
 
     public void create(final Stage stage) {
 
-        transformations = new Group();
-        pnlExemplos = new ExamplePanel();
-        pnlControle = new ControlPanel();
-
         final VBox transformationColumn = createTransformationColumn();
         final HBox hbox = new HBox(8);
-        hbox.getChildren().addAll(pnlExemplos, transformationColumn);
+        hbox.getChildren().addAll(pnlExemplos, transformationColumn, pnlControle);
         design = new DesktopLayout();
         pencil = Pencil.getInstance();
         pencil.setX(127);

@@ -1,57 +1,85 @@
 package ca.renardnumerique.fractalr2.ui;
 
-import javafx.scene.Cursor;
-import javafx.scene.Group;
+
+import ca.renardnumerique.fractalr2.Fractal;
+import ca.renardnumerique.fractalr2.MainClass;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class ControlPanel extends Group {
+public class ControlPanel extends FlowPane {
 
 
+	public Text txtAngulo;
+	public Rectangle contorno = new Rectangle();
+	private final ImageView imgPlay = new ImageView();
+	private Text ttPlay = new Text("Start");
+	private Text ttStop = new Text("Pause");
+	private ImageView imgStop = new ImageView();
+	private Text ttReinicio = new Text("Restart");
+	private ImageView imgReinicio = new ImageView();
 
 	private Spinner<Integer> spinner = new Spinner<>();
-	{
-		spinner.setTranslateY(68);
-		spinner.setTranslateX(890);
-	}
-
-	private SpinnerValueFactory<Integer> spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20,
-			1);
-	{
-		spinner.setValueFactory(spinnerValueFactory);
-	}
+	private SpinnerValueFactory<Integer> spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20,1);
 
 	private Integer angulo = 90;
+
 	private Integer iteracoes = 0;
 	private Integer posBotoes = 75;
-
 	private ImageView limpar = new ImageView();
-	{
-		limpar.setFocusTraversable(Boolean.TRUE);
-		limpar.setImage(new Image("file:/file:images/limpar.png"));
-		limpar.setY(5);
-		limpar.setX(790);
-	};
-
 	private Rectangle designRetangulo = new Rectangle();
-	{
-		designRetangulo.setY(-2);
-		designRetangulo.setWidth(30);
-		designRetangulo.setX(785);
-		designRetangulo.setHeight(29);
-		designRetangulo.setArcWidth(10);
-		designRetangulo.setCursor(Cursor.HAND);
-		designRetangulo.setArcHeight(10);
-		designRetangulo.setFill(Color.web("#aaa"));
+
+	private Text titulo = new Text("Iteration");
+
+	public Slider anguloSlider;
+	private FormulaPanel formulaPanel;
+	private MainClass mainClass;
+	private Fractal fractal;
+
+
+	public ControlPanel() {
+		initComponents();
+		this.getChildren().addAll(txtAngulo, anguloSlider, titulo, imgPlay, ttPlay,
+				imgStop, ttStop, imgReinicio, ttReinicio, spinner);
+	}
+
+	public void initComponents(){
+
+		this.getStyleClass().add("control-panel");
+
+		txtAngulo = new Text("Turning Angle: "+angulo);
+
+		anguloSlider = new Slider(0,360,angulo);
+		anguloSlider.setOrientation(Orientation.HORIZONTAL);
+
+		anguloSlider.valueProperty().addListener(e->{
+			String sliderNewCaption = String.format("Turning Angle: %s",String.valueOf((int)anguloSlider.getValue()));
+			txtAngulo.setText(sliderNewCaption);
+		});
+
+		spinner.setValueFactory(spinnerValueFactory);
+		limpar.setFocusTraversable(Boolean.TRUE);
+		limpar.setImage(new Image("images/limpar.png"));
+		//limpar.setY(5);
+		//limpar.setX(790);
+		//designRetangulo.setY(-2);
+		//designRetangulo.setX(785);
+
 		final DropShadow shadow = new DropShadow();
 		shadow.setRadius(30);
 		shadow.setSpread(0.45f);
@@ -68,59 +96,29 @@ public class ControlPanel extends Group {
 			designRetangulo.setEffect(null);
 			designRetangulo.setStroke(Color.web("#f8f8f8"));
 			this.angulo = 0;
-//                	   delete FormulaPanel.instanciaAtual.botoes;
-//                	   FormulaPanel.instanciaAtual.redesenhaBarra();
-//                	   for(t in MainClass.instanciaAtual.transformacoes){
-//     		    		    if(t instanceof TransformationPanel){
-//     		    		        var transformacao : TransformationPanel = t as TransformationPanel;
-//	      		    			delete transformacao.botoes;
-//	      		    			transformacao.redesenhaBarra();
-//	      		    			transformacao.resetarBarra();
-//	      		    			
-//     		    		    }      		    		    
-//     		    		}
-//                	   MainClass.instanciaAtual.pencil.clear();
-//             		   Fractal.limpaCanvas();
+		   formulaPanel.getBotoes().clear();
+		   formulaPanel.redrawBar();
+		   for(Node transformation : mainClass.getTransformations().getChildren()){
+				if(transformation instanceof TransformationPanel){
+					TransformationPanel t  = (TransformationPanel) transformation;
+					t.getBotoes().clear();
+					t.redesenhaBarra();
+					t.resetarBarra();
+
+				}
+			}
+            mainClass.getPencil().clear();
+             		   fractal.limpaCanvas();
 		});
 		designRetangulo.setStroke(Color.web("#f8f8f8"));
-	}
-
-	private Text titulo = new Text("Iteration");
-	{
 		titulo.setY(81);
 		titulo.setX(840);
 		titulo.setFont(Font.font("Verdana", 10));
-	}
-
-	public Slider anguloSlider = new Slider();
-	{
-		anguloSlider.setTranslateX(835);
-		anguloSlider.setTranslateY(15);
-		anguloSlider.setMin(0);
-		anguloSlider.setMax(359);
-		anguloSlider.setMaxWidth(120);
-		anguloSlider.setValue(angulo);
-	}
-	public Text txtAngulo = new Text("Turn Angle: {angulo}");
-	{
 		txtAngulo.setY(13);
 		txtAngulo.setY(840);
 		txtAngulo.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
-	}
-	public Rectangle contorno = new Rectangle();
-	{
-		contorno.setY(0);
-		contorno.setX(830);
-		contorno.setArcWidth(10);
-		contorno.setArcHeight(10);
-		contorno.setWidth(130);
-		contorno.setHeight(134);
-		contorno.setFill(Color.web("#eee"));
-		contorno.setStroke(Color.web("#666"));
-	};
 
-	private ImageView imgPlay = new ImageView();
-	{
+
 		imgPlay.setFocusTraversable(Boolean.TRUE);
 		// imgPlay.setImage: bind Pencil.get().img;
 		imgPlay.setY(posBotoes + 21);
@@ -136,26 +134,15 @@ public class ControlPanel extends Group {
 			imgPlay.setEffect(effect);
 		});
 		imgPlay.setOnMouseExited(e -> imgPlay.setEffect(null));
-	}
 
-	private Text ttPlay = new Text("Start");
-	{
-		// content: bind if(imgPlay.image.url.contains("play")) then "Start" else
-		// "Suspend";
 		ttPlay.setY(posBotoes + 50);
 		ttPlay.setX(840);
 		ttPlay.setFont(Font.font("Verdana", 8));
-	}
 
-	private Text ttStop = new Text("Pause");
-	{
 		ttStop.setY(posBotoes + 50);
 		ttStop.setX(885);
 		ttStop.setFont(Font.font("Verdana", 8));
-	}
 
-	private ImageView imgStop = new ImageView();
-	{
 		imgStop.setFocusTraversable(Boolean.TRUE);
 		imgStop.setImage(new Image("file:images/pause.png"));
 		imgStop.setY(posBotoes + 21);
@@ -170,25 +157,13 @@ public class ControlPanel extends Group {
 			dropShadow.setSpread(0.65);
 			dropShadow.setColor(Color.web("#FF2828"));
 		});
-		imgStop.setOnMouseExited(e -> {
-			imgStop.setEffect(null);
-		});
-	}
+		imgStop.setOnMouseExited(e -> imgStop.setEffect(null));
 
-	private Text ttReinicio = new Text("Restart");
-	{
 		ttReinicio.setY(posBotoes + 50);
 		ttReinicio.setX(925);
 		ttReinicio.setFont(Font.font("Verdana", 8));
 		ttReinicio.setFill(Color.web("#222"));
-
-		ttReinicio.setOnMouseClicked(e -> {
-			// Fractal.reiniciarDesenho();
-		});
-	}
-
-	private ImageView imgReinicio = new ImageView();
-	{
+		ttReinicio.setOnMouseClicked(e -> fractal.reiniciarDesenho());
 		imgReinicio.setFocusTraversable(Boolean.TRUE);
 		imgReinicio.setImage(new Image("file:images/restart.png"));
 		imgReinicio.setY(posBotoes + 21);
@@ -203,26 +178,9 @@ public class ControlPanel extends Group {
 		imgReinicio.setOnMouseExited(e -> imgReinicio.setEffect(null));
 	}
 
-	public ControlPanel() {
-		this.getChildren().addAll(designRetangulo, limpar, contorno, anguloSlider, txtAngulo, titulo, imgPlay, ttPlay,
-				imgStop, ttStop, imgReinicio, ttReinicio, spinner);
-	}
 
-
-	public Spinner<Integer> getSpinner() {
-		return spinner;
-	}
-
-	public void setSpinner(Spinner<Integer> spinner) {
-		this.spinner = spinner;
-	}
-
-	public SpinnerValueFactory<Integer> getSpinnerValueFactory() {
-		return spinnerValueFactory;
-	}
-
-	public void setSpinnerValueFactory(SpinnerValueFactory<Integer> spinnerValueFactory) {
-		this.spinnerValueFactory = spinnerValueFactory;
+	public Integer getIteracoes() {
+		return iteracoes;
 	}
 
 	public Integer getAngulo() {
@@ -233,115 +191,7 @@ public class ControlPanel extends Group {
 		this.angulo = angulo;
 	}
 
-	public Integer getIteracoes() {
-		return iteracoes;
-	}
-
-	public void setIteracoes(Integer iteracoes) {
-		this.iteracoes = iteracoes;
-	}
-
-	public Integer getPosBotoes() {
-		return posBotoes;
-	}
-
-	public void setPosBotoes(Integer posBotoes) {
-		this.posBotoes = posBotoes;
-	}
-
-	public ImageView getLimpar() {
-		return limpar;
-	}
-
-	public void setLimpar(ImageView limpar) {
-		this.limpar = limpar;
-	}
-
-	public Rectangle getDesignRetangulo() {
-		return designRetangulo;
-	}
-
-	public void setDesignRetangulo(Rectangle designRetangulo) {
-		this.designRetangulo = designRetangulo;
-	}
-
-	public Text getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(Text titulo) {
-		this.titulo = titulo;
-	}
-
 	public Slider getAnguloSlider() {
 		return anguloSlider;
-	}
-
-	public void setAnguloSlider(Slider anguloSlider) {
-		this.anguloSlider = anguloSlider;
-	}
-
-	public Text getTxtAngulo() {
-		return txtAngulo;
-	}
-
-	public void setTxtAngulo(Text txtAngulo) {
-		this.txtAngulo = txtAngulo;
-	}
-
-	public Rectangle getContorno() {
-		return contorno;
-	}
-
-	public void setContorno(Rectangle contorno) {
-		this.contorno = contorno;
-	}
-
-	public ImageView getImgPlay() {
-		return imgPlay;
-	}
-
-	public void setImgPlay(ImageView imgPlay) {
-		this.imgPlay = imgPlay;
-	}
-
-	public Text getTtPlay() {
-		return ttPlay;
-	}
-
-	public void setTtPlay(Text ttPlay) {
-		this.ttPlay = ttPlay;
-	}
-
-	public Text getTtStop() {
-		return ttStop;
-	}
-
-	public void setTtStop(Text ttStop) {
-		this.ttStop = ttStop;
-	}
-
-	public ImageView getImgStop() {
-		return imgStop;
-	}
-
-	public void setImgStop(ImageView imgStop) {
-		this.imgStop = imgStop;
-	}
-
-	public Text getTtReinicio() {
-		return ttReinicio;
-	}
-
-	public void setTtReinicio(Text ttReinicio) {
-		this.ttReinicio = ttReinicio;
-	}
-
-	public ImageView getImgReinicio() {
-		return imgReinicio;
-	}
-
-	public void setImgReinicio(ImageView imgReinicio) {
-		this.imgReinicio = imgReinicio;
 	}
 }

@@ -12,6 +12,13 @@
 #duplicate-button{
     -fx-background-color :
         linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%)
+}
 
+.control-panel{
+    -fx-background-color : rgb(218,218,218);
+    -fx-arc-width: 10;
+    -fx-max-height: 200;
+    -fx-max-width: 200;
+    -fx-padding: 10;
 }
 
