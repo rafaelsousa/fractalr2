@@ -15,5 +15,8 @@ It is a working progress so for now, just the layout will work. The logic will b
 ## To run
 
     $ mvn clean package javafx:run
+    
+## To execute in debug mode
 
+    $ mvn clean package javafx:run@debug
 

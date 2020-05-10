@@ -1,4 +1,4 @@
-.root{            
+.root{
     -fx-background: rgb(238, 238, 238);
 }
 
@@ -22,6 +22,6 @@
     -fx-padding: 10;
 }
 
-
-
-
+#canvas-container{
+    -fx-alignment: center;
+}

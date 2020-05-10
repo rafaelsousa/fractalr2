@@ -76,8 +76,8 @@ public class FractalAnimation {
                 Path caminho = new Path();
                 caminho.getElements().addAll(moveTo, lineTo);
 
-                MoveTo movetoLapis = new MoveTo(x + pencil.getPencilImage().getImage().getWidth() / 2 - 3, y - pencil.getPencilImage().getImage().getHeight() / 2);
-                LineTo linetoLapis = new LineTo(endx + pencil.getPencilImage().getImage().getWidth() / 2 - 3, endy - pencil.getPencilImage().getImage().getHeight() / 2);
+                MoveTo movetoLapis = new MoveTo(x + pencil.getWidth() / 2 - 3, y - pencil.getHeight() / 2);
+                LineTo linetoLapis = new LineTo(endx + pencil.getWidth() / 2 - 3, endy - pencil.getHeight() / 2);
 
                 Path pencilTrack = new Path(movetoLapis, linetoLapis);
 
@@ -104,7 +104,7 @@ public class FractalAnimation {
 
                 PathTransition transicaoLapis = new PathTransition();
                 transicaoLapis.setPath(pencilTrack);
-                transicaoLapis.setNode(pencil.getPencilImage());
+                transicaoLapis.setNode(pencil.getPencilContainer());
                 transicaoLapis.setDuration(comando.getDuracao());
 
                 ParallelTransition transicaoParalela = new ParallelTransition();
@@ -138,13 +138,13 @@ public class FractalAnimation {
 
                 Path caminhoLapis = new Path();
                 caminhoLapis.getElements().addAll(
-                        new MoveTo(x + pencil.getPencilImage().getImage().getWidth() / 2 - 3, y - pencil.getPencilImage().getImage().getHeight() / 2),
-                        new LineTo(endx + pencil.getPencilImage().getImage().getWidth() / 2 - 3, endy - pencil.getPencilImage().getImage().getHeight() / 2)
+                        new MoveTo(x + pencil.getWidth() / 2 - 3, y - pencil.getHeight() / 2),
+                        new LineTo(endx + pencil.getWidth() / 2 - 3, endy - pencil.getHeight() / 2)
                 );
 
                 PathTransition transicaoLapis = new PathTransition();
                 transicaoLapis.setPath(caminhoLapis);
-                transicaoLapis.setNode(pencil.getPencilImage());
+                transicaoLapis.setNode(pencil.getPencilContainer());
 
                 transicoesGerais.add(transicaoLapis);
 

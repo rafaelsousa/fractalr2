@@ -7,6 +7,7 @@ import jakarta.annotation.PostConstruct;
 import javafx.animation.Animation;
 import javafx.animation.PathTransition;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,6 +42,9 @@ public class Pencil{
 
     private ImageView playPauseButton;
     private ImageView pencilImage;
+    private Group pencilContainer;
+    private Integer x;
+    private Integer y;
 
     private Pencil() {
         writtingEffect = new DropShadow();
@@ -72,7 +76,11 @@ public class Pencil{
 
 
     private void setImage(Image image) {
-        this.pencilImage = new ImageView(image);
+        pencilImage = new ImageView(image);
+        pencilImage.setY(0);
+        pencilImage.setX(0);
+        this.pencilContainer = new Group();
+        this.pencilContainer.getChildren().add(pencilImage);
     }
 
     private Image setPencilImage(Animation.Status status) {
@@ -110,11 +118,11 @@ public class Pencil{
     }
 
     public void clear() {
-        contadorLinhas = 0;
-        this.pencilImage.setTranslateX(0);
-        this.pencilImage.setTranslateY(0);
-        posicionaInicio();
-        linhas.clear();
+//        contadorLinhas = 0;
+//        this.pencilContainer.getChildren().get(0).setTranslateX(0);
+//        this.pencilContainer.getChildren().get(0).setTranslateY(0);
+//        posicionaInicio();
+//        linhas.clear();
     }
 
     public void processaCoordenadas(List<Ponto> coordenadas) {
@@ -153,8 +161,27 @@ public class Pencil{
         this.clear();
     }
 
+    public void setX(int x) {
+        pencilImage.setX(x);
+    }
+    public void setY(int y) {
+        pencilImage.setY(y);
+    }
 
-    public ImageView getPencilImage() {
-        return pencilImage;
+    public Group getPencilContainer() {
+        return pencilContainer;
+    }
+
+    public Double getHeight() {
+        return pencilImage.getImage().getHeight();
+    }
+
+
+    public Double getWidth() {
+        return pencilImage.getImage().getWidth();
+    }
+
+    public void toFront() {
+        pencilContainer.toFront();
     }
 }

@@ -1,18 +1,17 @@
 package ca.renardnumerique.fractalr2.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.renardnumerique.fractalr2.lsystem.AcaoExpansiva;
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActionButtonsBar {
 
     private List<ActionButton> botoes;
-    private HBox container = null;
+    private HBox container;
     private ImageView clean;
 
     public ActionButtonsBar(){

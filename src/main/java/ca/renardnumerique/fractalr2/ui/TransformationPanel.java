@@ -95,8 +95,8 @@ public class TransformationPanel extends Group {
     }
 
     public void adicionarBarra() {
-        Integer inicioDesenhoY = applicationCanvas.getInicioDesenhoY();
-        applicationCanvas.setInicioDesenhoY(inicioDesenhoY + incrementoY);
+//        Integer inicioDesenhoY = applicationCanvas.getInicioDesenhoY();
+//        applicationCanvas.setInicioDesenhoY(inicioDesenhoY + incrementoY);
         TransformationPanel aux = new TransformationPanel();
         applicationLayout.addTransformationPanel(aux);
         txtSinal = "-";
