@@ -39,7 +39,6 @@ public class ControlPanel extends FlowPane {
 
 	private Integer iteracoes = 0;
 	private Integer posBotoes = 75;
-	private ImageView limpar = new ImageView();
 	private Rectangle designRetangulo = new Rectangle();
 
 	private Text iterationSpinnerCaption = new Text("Iteration");
@@ -56,6 +55,8 @@ public class ControlPanel extends FlowPane {
 
 	public void initComponents(){
 		this.getStyleClass().add("control-panel");
+
+
 		txtAngulo = new Text("Turning Angle: " + angulo);
 		anguloSlider = new Slider(0,360,angulo);
 		anguloSlider.setOrientation(Orientation.HORIZONTAL);
@@ -65,12 +66,7 @@ public class ControlPanel extends FlowPane {
 		});
 
 		iterationSpinner.setValueFactory(spinnerValueFactory);
-		limpar.setFocusTraversable(Boolean.TRUE);
-		limpar.setImage(new Image("images/limpar.png"));
-		//limpar.setY(5);
-		//limpar.setX(790);
-		//designRetangulo.setY(-2);
-		//designRetangulo.setX(785);
+
 
 		final DropShadow shadow = new DropShadow();
 		shadow.setRadius(30);
@@ -143,8 +139,6 @@ public class ControlPanel extends FlowPane {
 
 		pauseImage = new ImageView(new Image("images/pause.png"));
 		pauseImage.setFocusTraversable(Boolean.TRUE);
-		pauseImage.setY(posBotoes + 21);
-		pauseImage.setX(885);
 		pauseImage.setOnMouseClicked(e -> {
 			fractal.pararDesenho();
 		});

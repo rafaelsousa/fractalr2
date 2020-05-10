@@ -5,6 +5,7 @@ import java.util.List;
 
 import ca.renardnumerique.fractalr2.lsystem.AcaoExpansiva;
 import ca.renardnumerique.fractalr2.lsystem.AcaoLSystem;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
@@ -12,19 +13,21 @@ public class ActionsPanel {
 
     private List<ActionButton> botoes;
     private HBox container = null;
+    private ImageView clean;
 
     public ActionsPanel(){        
     }
 
     public HBox getContainer() {
         if(container==null){
-            container = new HBox();
-            this.botoes = createAllActionButtons();
+            container = new HBox(8);
+            botoes = createAllActionButtons();
+            clean = new ImageView("images/limpar.png");
             container.getChildren().addAll(botoes);
+            container.getChildren().add(clean);
         }
         return this.container;
     }
-
 
     public ActionButton findButton(Integer codigoBotao) {
         for(ActionButton btn : botoes){
