@@ -8,7 +8,7 @@ import ca.renardnumerique.fractalr2.ui.FormulaPanel;
 import ca.renardnumerique.fractalr2.ui.Pencil;
 import ca.renardnumerique.fractalr2.ui.TransformationPanel;
 import ca.renardnumerique.fractalr2.utils.Constants;
-import ca.renardnumerique.fractalr2.utils.CoordenatesUtils;
+import ca.renardnumerique.fractalr2.utils.CoordinatesUtils;
 import com.jfoenix.assets.JFoenixResources;
 import jakarta.inject.Inject;
 import javafx.animation.PathTransition;
@@ -18,7 +18,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -32,7 +31,7 @@ import java.util.List;
 public class ApplicationLayout {
 
     @Inject
-    private CoordenatesUtils coordenatesUtils;
+    private CoordinatesUtils coordinatesUtils;
 
     @Inject
     private ExamplesPanel pnlExemplos;
@@ -65,7 +64,6 @@ public class ApplicationLayout {
     }
 
     public void create(Stage stage) {
-        animatePencil();
         Group root = new Group();
         root.getChildren().add(pencil.getPencilContainer());
 
@@ -99,13 +97,14 @@ public class ApplicationLayout {
         stage.setHeight(Constants.SYSTEM_HEIGHT);
 
         pencil.toFront();
+        animatePencil();
         stage.show();
     }
 
     private void animatePencil() {
 
-        double canvasY = coordenatesUtils.getAbsoluteCoordenateY(applicationCanvas.getAreaDesenho());
-        double canvasX = coordenatesUtils.getAbsoluteCoordenateX(applicationCanvas.getAreaDesenho());
+        double canvasX = coordinatesUtils.getAbsoluteCoordinateX(applicationCanvas.getAreaDesenho());
+        double canvasY = coordinatesUtils.getAbsoluteCoordinateY(applicationCanvas.getAreaDesenho());
 
         Path path = new Path();
         path.getElements().add (new MoveTo(0, 0));
